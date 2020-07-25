@@ -1,0 +1,12 @@
+!.*
+.cache
+coverage
+dist
+examples/blog/*
+node_modules
+private
+public
+tmp
+web-build/
+web-report/
+

@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+const pack = require('../package.json')
+
+program
+  .version(pack.version)
+  .command('init', 'initialize a new project')
+  .command('run', 'run a script')
+  .parse(process.argv)
+
+if (!program.args.length) {
+  program.help()
+}

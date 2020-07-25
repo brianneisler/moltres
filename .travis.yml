@@ -1,0 +1,25 @@
+language: node_js
+sudo: false
+node_js:
+- 14
+- 12
+- 10
+os:
+- linux
+- osx
+- windows
+install:
+- npm run setup
+script:
+- npm run lint
+- npm run test:ci
+deploy:
+  provider: npm
+  email: me@brianneisler.com
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+    repo: brianneisler/moltres
+  api_key:
+    secure: KNbpfLTR/gcPx2wHQb2skaG6qAgoyzOhH+39bMbyRPeC9I1JQjh+k/b1PCKNgs6BZTaX/AZukgqQCCeMJLtHilqR/yZ0ENw+9Ac9yVQI7y/v/jqAg7QhLV+/9msHJU5aKgWHf2xnpW0UHJBDff2Kse18AvAUiOhZz4b7xaNXaQyJU1Ijvsy8IbUHH6RvXHoqheb1sW8zQlJ1Tn44sowAN/pct2cOH+eKwxLl6gDF6hv0ZXjLzFBcoukJuU0UytBGUrb2+P3sESm+2Lx5YoFG9S4I5mUkiFrtJHQSDPoJuGB5AQ0eq4C2krA6YEzaJG1Q1QY+pNKxyk6mVCqLZpiu1G6aTvSmKGDfsmUjW+X0G/3+wUf7CbMbVBurDSkeaZG3tz9lhyV1sFMV8Oy1k2XWrN0CZEuei3GZRAQyWuChvmcuUUZlaxwOCNbzbPsslcsu4NSGZvb+vAwM6ja8KjazpkIYRBxTE/8zP5aW9PEI1Bd3os1xn17MeJ76fVtQZfyLp9Xb2/Wu2G+AuLElcrhtvJCm6dthvlE6iu2+vrVTp9sInq3TQpyXiLTlYBJ1t1zg4vraRAdyd4FLsGdre91XW9C7ySCLJLJustsP9TUwLDrqUwDZxrd2a2lKQjOeKqgmLBe2wmkw65WC24Ec38liq6hi0BjWYiRvwOGgND209zo=
