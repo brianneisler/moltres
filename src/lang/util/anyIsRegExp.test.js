@@ -48,7 +48,7 @@ describe('anyIsRegExp', () => {
 
   test('returns true for instances of RegExp using non node anyIsRegExp method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsRegExp: undefined
     }))
     const anyIsRegExp = require('./anyIsRegExp').default
@@ -58,7 +58,7 @@ describe('anyIsRegExp', () => {
 
   test('returns false for all other values using non node anyIsRegExp method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsRegExp: undefined
     }))
     const anyIsRegExp = require('./anyIsRegExp').default

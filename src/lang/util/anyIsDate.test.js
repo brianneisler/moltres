@@ -46,7 +46,7 @@ describe('anyIsDate', () => {
 
   test('returns true for instances of Date using non node anyIsDate method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsDate: undefined
     }))
     const anyIsDate = require('./anyIsDate').default
@@ -55,7 +55,7 @@ describe('anyIsDate', () => {
 
   test('returns false for all other values using non node anyIsDate method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsDate: undefined
     }))
     const anyIsDate = require('./anyIsDate').default

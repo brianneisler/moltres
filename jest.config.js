@@ -3,6 +3,6 @@ module.exports = {
   coverageDirectory: './coverage/',
   setupFilesAfterEnv: ['<rootDir>/.jest.init.js'],
   testMatch: ['**/__tests__/**/*.js?(x)', '**/+(*.)+(spec|test).js?(x)'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/.cache/'],
   testURL: 'http://localhost'
 }

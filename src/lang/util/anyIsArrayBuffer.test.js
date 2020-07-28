@@ -46,7 +46,7 @@ describe('anyIsArrayBuffer', () => {
 
   test('returns true for instance of ArrayBuffer using non node anyIsArrayBuffer method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsArrayBuffer: undefined
     }))
     const anyIsArrayBuffer = require('./anyIsArrayBuffer').default
@@ -55,7 +55,7 @@ describe('anyIsArrayBuffer', () => {
 
   test('returns false for all other values using non node anyIsArrayBuffer method', () => {
     jest.mock('./nodeTypes', () => ({
-      ...require.requireActual('./nodeTypes'),
+      ...jest.requireActual('./nodeTypes'),
       anyIsArrayBuffer: undefined
     }))
     const anyIsArrayBuffer = require('./anyIsArrayBuffer').default

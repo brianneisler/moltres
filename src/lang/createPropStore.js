@@ -35,8 +35,8 @@ const createPropStore = (channel) => {
   }
   return {
     getProps,
-    put,
-    take: propChannel.take
+    next: propChannel.next,
+    put
   }
 }
 

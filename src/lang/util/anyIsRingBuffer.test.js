@@ -1,0 +1,46 @@
+import RingBuffer from '../classes/RingBuffer'
+
+import anyIsRingBuffer from './anyIsRingBuffer'
+
+describe('anyIsRingBuffer', () => {
+  test('returns true for Buffer', () => {
+    expect(anyIsRingBuffer(new RingBuffer())).toBe(true)
+  })
+
+  test('returns false for all other values', () => {
+    expect(anyIsRingBuffer(undefined)).toBe(false)
+    expect(anyIsRingBuffer(null)).toBe(false)
+    expect(anyIsRingBuffer('')).toBe(false)
+    expect(anyIsRingBuffer('abc')).toBe(false)
+    expect(anyIsRingBuffer(0)).toBe(false)
+    expect(anyIsRingBuffer(-1)).toBe(false)
+    expect(anyIsRingBuffer(1)).toBe(false)
+    expect(anyIsRingBuffer(false)).toBe(false)
+    expect(anyIsRingBuffer(true)).toBe(false)
+    expect(anyIsRingBuffer(NaN)).toBe(false)
+    expect(anyIsRingBuffer(Infinity)).toBe(false)
+    expect(anyIsRingBuffer(-Infinity)).toBe(false)
+    expect(anyIsRingBuffer({})).toBe(false)
+    expect(anyIsRingBuffer([])).toBe(false)
+    expect(anyIsRingBuffer(/abc/)).toBe(false)
+    expect(anyIsRingBuffer(async () => {})).toBe(false)
+    expect(anyIsRingBuffer(() => {})).toBe(false)
+    expect(anyIsRingBuffer(function () {})).toBe(false)
+    expect(anyIsRingBuffer((function* () {})())).toBe(false)
+    expect(anyIsRingBuffer(new Array(0))).toBe(false)
+    expect(anyIsRingBuffer(new ArrayBuffer(2))).toBe(false)
+    expect(anyIsRingBuffer(new Boolean(false))).toBe(false)
+    expect(anyIsRingBuffer(new Boolean(true))).toBe(false)
+    expect(anyIsRingBuffer(new Date())).toBe(false)
+    expect(anyIsRingBuffer(new Error())).toBe(false)
+    expect(anyIsRingBuffer(new Number(1))).toBe(false)
+    expect(anyIsRingBuffer(new Promise(() => {}))).toBe(false)
+    expect(anyIsRingBuffer(new Proxy({}, {}))).toBe(false)
+    expect(anyIsRingBuffer(new Set())).toBe(false)
+    expect(anyIsRingBuffer(new String('abc'))).toBe(false)
+    expect(anyIsRingBuffer(Symbol('abc'))).toBe(false)
+    expect(anyIsRingBuffer(new Uint8Array(2))).toBe(false)
+    expect(anyIsRingBuffer(new WeakMap())).toBe(false)
+    expect(anyIsRingBuffer(new WeakSet())).toBe(false)
+  })
+})

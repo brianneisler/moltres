@@ -1,26 +1,113 @@
-const createChannel = () => {
-  const messageQueue = []
-  const resolveQueue = []
+import { unexpected } from '../error'
 
-  const put = (msg) => {
-    if (resolveQueue.length) {
-      const nextResolve = resolveQueue.shift()
-      nextResolve(msg)
-    } else {
-      messageQueue.push(msg)
+import createExpandingBuffer from './createExpandingBuffer'
+import invariant from './invariant'
+import {
+  arrayRemove,
+  anyIsRingBuffer,
+  anyIsObserver,
+  anyIsUndefined
+} from './util'
+
+const createChannel = (buffer = createExpandingBuffer()) => {
+  let closed = false
+  let observers = []
+
+  if (process.env.NODE_ENV !== 'production') {
+    invariant(anyIsRingBuffer(buffer), 'buffer must be a RingBuffer')
+  }
+
+  function checkForbiddenStates() {
+    if (closed && observers.length) {
+      throw unexpected({
+        message: 'Cannot have a closed channel with pending observers'
+      })
+    }
+    if (observers.length && !buffer.isEmpty()) {
+      throw unexpected({
+        message: 'Cannot have pending observers with non empty buffer'
+      })
     }
   }
 
-  const take = () => {
-    if (messageQueue.length) {
-      return Promise.resolve(messageQueue.shift())
+  function put(input) {
+    if (process.env.NODE_ENV !== 'production') {
+      checkForbiddenStates()
+      invariant(!anyIsUndefined(input), 'input was undefined')
     }
-    return new Promise((resolve) => resolveQueue.push(resolve))
+
+    if (closed) {
+      return
+    }
+    if (observers.length === 0) {
+      return buffer.put(input)
+    }
+    const observer = observers.shift()
+    observer.next(input)
+  }
+
+  function next(observer) {
+    if (process.env.NODE_ENV !== 'production') {
+      checkForbiddenStates()
+      invariant(
+        anyIsObserver(observer),
+        "channel.take's observer must be an Observer"
+      )
+    }
+
+    if (closed && buffer.isEmpty()) {
+      observer.complete()
+    } else if (!buffer.isEmpty()) {
+      observer.next(buffer.take())
+    } else {
+      observers.push(observer)
+      return () => {
+        arrayRemove(observers, (value) => value === observer)
+      }
+    }
+  }
+
+  function flush(observer) {
+    if (process.env.NODE_ENV !== 'production') {
+      checkForbiddenStates()
+      invariant(
+        anyIsObserver(observer),
+        "channel.flush's observer must be a Observer"
+      )
+    }
+
+    if (closed && buffer.isEmpty()) {
+      observer.complete()
+      return
+    }
+    observer.next(buffer.flush())
+  }
+
+  function close() {
+    if (process.env.NODE_ENV !== 'production') {
+      checkForbiddenStates()
+    }
+
+    if (closed) {
+      return
+    }
+
+    closed = true
+
+    const arr = observers
+    observers = []
+
+    for (let i = 0, len = arr.length; i < len; i++) {
+      const observer = arr[i]
+      observer.complete()
+    }
   }
 
   return {
-    put,
-    take
+    close,
+    flush,
+    next,
+    put
   }
 }
 

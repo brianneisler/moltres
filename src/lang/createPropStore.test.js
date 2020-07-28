@@ -62,13 +62,19 @@ describe('createPropStore', () => {
     propStore.put({
       key: '$',
       type: 'assoc',
-      value: {}
+      value: 'foo'
     })
 
-    const result = await propStore.take()
+    const result = await new Promise((resolve, reject) => {
+      propStore.next({
+        complete: reject,
+        error: reject,
+        next: resolve
+      })
+    })
 
-    expect(result).toEqual({})
-    expect(propStore.getProps()).toBe(result)
+    expect(result).toEqual(['foo'])
+    expect(propStore.getProps()).toBe(result[0])
   })
 
   test('setting an error twice does not push duplicate ', async () => {
@@ -88,19 +94,27 @@ describe('createPropStore', () => {
       type: 'error'
     })
 
-    const result = await new Promise((resolve) => {
-      channel.take((value) => resolve(value))
+    const result = await new Promise((resolve, reject) => {
+      channel.next({
+        complete: reject,
+        error: reject,
+        next: resolve
+      })
     })
     const result2 = await Promise.race([
-      new Promise((resolve) => {
-        channel.take((value) => resolve(value))
+      new Promise((resolve, reject) => {
+        channel.next({
+          complete: reject,
+          error: reject,
+          next: resolve
+        })
       }),
       new Promise((resolve) => {
         setTimeout(() => resolve({ timeout: true }), 1000)
       })
     ])
 
-    expect(result).toEqual({ type: 'refresh' })
+    expect(result).toEqual([{ type: 'refresh' }])
     expect(result2).toEqual({ timeout: true })
 
     expect(propStore.getProps().error).toBe(error1)
