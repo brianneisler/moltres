@@ -10,16 +10,29 @@ os:
 - windows
 install:
 - npm run setup
-script:
-- npm run lint
-- npm run test:ci
-deploy:
-  provider: npm
-  email: me@brianneisler.com
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
-    repo: brianneisler/moltres
-  api_key:
-    secure: KNbpfLTR/gcPx2wHQb2skaG6qAgoyzOhH+39bMbyRPeC9I1JQjh+k/b1PCKNgs6BZTaX/AZukgqQCCeMJLtHilqR/yZ0ENw+9Ac9yVQI7y/v/jqAg7QhLV+/9msHJU5aKgWHf2xnpW0UHJBDff2Kse18AvAUiOhZz4b7xaNXaQyJU1Ijvsy8IbUHH6RvXHoqheb1sW8zQlJ1Tn44sowAN/pct2cOH+eKwxLl6gDF6hv0ZXjLzFBcoukJuU0UytBGUrb2+P3sESm+2Lx5YoFG9S4I5mUkiFrtJHQSDPoJuGB5AQ0eq4C2krA6YEzaJG1Q1QY+pNKxyk6mVCqLZpiu1G6aTvSmKGDfsmUjW+X0G/3+wUf7CbMbVBurDSkeaZG3tz9lhyV1sFMV8Oy1k2XWrN0CZEuei3GZRAQyWuChvmcuUUZlaxwOCNbzbPsslcsu4NSGZvb+vAwM6ja8KjazpkIYRBxTE/8zP5aW9PEI1Bd3os1xn17MeJ76fVtQZfyLp9Xb2/Wu2G+AuLElcrhtvJCm6dthvlE6iu2+vrVTp9sInq3TQpyXiLTlYBJ1t1zg4vraRAdyd4FLsGdre91XW9C7ySCLJLJustsP9TUwLDrqUwDZxrd2a2lKQjOeKqgmLBe2wmkw65WC24Ec38liq6hi0BjWYiRvwOGgND209zo=
+stages:
+- lint
+- test
+- name: deploy
+  if: tag =~ ^v AND \
+      branch = master AND \
+      repo = brianneisler/moltres AND \
+      os=linux
+jobs:
+  include:
+  - stage: lint
+    script: npm run lint
+  - stage: test
+    script: npm run test:ci
+  - stage: deploy
+    node_js: 14
+    script: echo "Deploying to npm ..."
+    deploy:
+      provider: npm
+      skip_cleanup: true
+      email: me@brianneisler.com
+      api_key: $NPM_API_KEY
+      on: deploy-deploy
+env:
+  global:
+    secure: lYNGNxyxz3NpvR/rUlI+TCYwCXbn2gfVw4kPZ0NEbFmm2ElFPDgbD3XhI/3HI7gzDyQgA37fSWj5sjRnSRgSxYqm8neIQfSyWZ4o8DsPAeC0U0EdP+Q+ckqPV678Hfwse04PQPTN9RowKZd1LmHO5JtWLL4NumBa22DNyuOcnS8VNPYo9rWYmFQbgPNh5XRY3VHI8xWc0U+0NNtRRFVlPkbm0Ji0P9Jn7DY/yFnHmIditSFTixWaIvg3ZqS/XhykgzEDu/WKs8+o1Ynsq9qhbL5TPbClQ7mPjNCbMSdMNturup8Tloadv2rz5Mp1A3PSNSpae8K+rDTYF7VptAkptmOdQ7djfu7fjB/4XBj5a/YEmr12B0dme4hdlLOUYReSUtvpQJxPKIMgR7xRLenZlkIHvuEKFKFGojIvK54v8ILVAxeiSCa8/05QZUElSib5LyOQdkysdG7nLsFAnkaCHtmMJrWi0jqPqWft80FhiESa1/kN9VQxSQuGUFQ9iKelS1OJ7FWP8qwhuJShrRIf3+5RwBQLY1YKBm0B3BuNjBvvGw7IpriXiiMFKcskVlag8r+d2dGUobhlBFQOgixNx+xugHXppTE5niDWMF7IiqYi5gT+tZ3mHbKsvvp2nbU5VpcrJpmrsAYL8iegZOABCUX4MPZyCiLTzRfd8wcx19Y=
