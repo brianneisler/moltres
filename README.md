@@ -30,7 +30,7 @@ npm install -g moltres
 
 
 ### Creating a new application
-* Initialize a new application
+* Initialize a new application (this will download the application [moltres-template](https://github.com/brianneisler/moltres-template/))
 ```sh
 moltres init -n newapp
 ```

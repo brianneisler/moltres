@@ -24,6 +24,7 @@ const TEMPLATE_URL =
   'https://github.com/brianneisler/moltres-template/archive/master.zip'
 
 const exec = async ({ projectName }) => {
+  // eslint-disable-next-line no-console
   console.log(`initializing new project '${projectName}'`)
   const cacheDir = path.resolve(__dirname, '..', '.cache')
   const projectDir = path.resolve(process.cwd(), projectName)
@@ -42,6 +43,7 @@ const exec = async ({ projectName }) => {
     await unzipAllTo(cacheFile, cacheDir, true)
   }
   await copyPath(unpackedProjectPath, projectDir)
+  // eslint-disable-next-line no-console
   console.log(`project '${projectName}' has been initialized`)
 }
 

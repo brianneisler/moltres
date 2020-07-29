@@ -44,6 +44,7 @@
     "commander": "^6.0.0",
     "core-js": "^3.6.5",
     "cross-fetch": "^3.0.5",
+    "dotenv": "^8.2.0",
     "fs-extra": "^9.0.1",
     "immutable": "^4.0.0-rc.12",
     "invariant": "^2.2.4",
