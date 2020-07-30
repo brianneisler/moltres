@@ -38,6 +38,8 @@ jobs:
       skip_cleanup: true
       email: me@brianneisler.com
       api_key: $NPM_API_KEY
+      on:
+        tags: true
 env:
   global:
     secure: lYNGNxyxz3NpvR/rUlI+TCYwCXbn2gfVw4kPZ0NEbFmm2ElFPDgbD3XhI/3HI7gzDyQgA37fSWj5sjRnSRgSxYqm8neIQfSyWZ4o8DsPAeC0U0EdP+Q+ckqPV678Hfwse04PQPTN9RowKZd1LmHO5JtWLL4NumBa22DNyuOcnS8VNPYo9rWYmFQbgPNh5XRY3VHI8xWc0U+0NNtRRFVlPkbm0Ji0P9Jn7DY/yFnHmIditSFTixWaIvg3ZqS/XhykgzEDu/WKs8+o1Ynsq9qhbL5TPbClQ7mPjNCbMSdMNturup8Tloadv2rz5Mp1A3PSNSpae8K+rDTYF7VptAkptmOdQ7djfu7fjB/4XBj5a/YEmr12B0dme4hdlLOUYReSUtvpQJxPKIMgR7xRLenZlkIHvuEKFKFGojIvK54v8ILVAxeiSCa8/05QZUElSib5LyOQdkysdG7nLsFAnkaCHtmMJrWi0jqPqWft80FhiESa1/kN9VQxSQuGUFQ9iKelS1OJ7FWP8qwhuJShrRIf3+5RwBQLY1YKBm0B3BuNjBvvGw7IpriXiiMFKcskVlag8r+d2dGUobhlBFQOgixNx+xugHXppTE5niDWMF7IiqYi5gT+tZ3mHbKsvvp2nbU5VpcrJpmrsAYL8iegZOABCUX4MPZyCiLTzRfd8wcx19Y=
