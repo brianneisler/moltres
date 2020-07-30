@@ -1,8 +1,8 @@
 import all from './all'
-import deferredPromise from './deferredPromise'
+import externalPromise from './externalPromise'
 
 const listPromise = (values = []) => {
-  const promise = deferredPromise()
+  const promise = externalPromise()
   const { reject, resolve } = promise
   promise.promises = values
 
