@@ -1,3 +1,1 @@
-const _Promise = Promise
-
-export default _Promise
+export { default } from 'bluebird'

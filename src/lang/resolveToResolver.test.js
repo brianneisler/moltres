@@ -1,3 +1,5 @@
+import Function from './classes/Function'
+import Promise from './classes/Promise'
 import resolveToResolver from './resolveToResolver'
 
 describe('resolveToResolver', () => {
