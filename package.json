@@ -1,6 +1,6 @@
 {
   "name": "moltres",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Firebase application framework",
   "author": "Brian Neisler <hello@brianneisler.com>",
   "license": "Apache-2.0",
