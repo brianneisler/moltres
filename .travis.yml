@@ -18,6 +18,7 @@ script:
 - npm run test:ci
 
 stages:
+- audit
 - lint
 - test
 - name: deploy
@@ -25,6 +26,10 @@ stages:
 
 jobs:
   include:
+  - stage: audit
+    node_js: 14
+    os: linux
+    script: npm run security:audit
   - stage: lint
     node_js: 14
     os: linux

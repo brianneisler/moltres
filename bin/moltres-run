@@ -17,7 +17,7 @@ const exec = async ({ args, stage }) => {
   }
   const cwd = process.cwd()
   const env = await loadDotEnv(cwd, { cwd, stage })
-  const spawn = processSpawn('bash', [script], {
+  const spawn = processSpawn('bash', args, {
     cwd,
     env: {
       ...process.env,
