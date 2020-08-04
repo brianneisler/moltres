@@ -1,5 +1,6 @@
 export * from './constants'
 
+export { default as __ } from './__'
 export { default as addIndex } from './addIndex'
 export { default as all } from './all'
 export { default as always } from './always'
