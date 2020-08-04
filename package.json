@@ -17,9 +17,15 @@
   },
   "main": "./index.module.js",
   "exports": {
-    "./error": "./src/error/index.js",
-    "./test": "./src/test/index.js",
-    "./tools": "./src/tools/index.js",
+    "./config": "./dist/config/index.js",
+    "./error": "./dist/error/index.js",
+    "./fs": "./dist/fs/index.js",
+    "./lang": "./dist/lang/index.js",
+    "./path": "./dist/path/index.js",
+    "./process": "./dist/process/index.js",
+    "./request": "./dist/request/index.js",
+    "./test": "./dist/test/index.js",
+    "./zip": "./dist/zip/index.js",
     "./package.json": "./package.json"
   },
   "engines": {
