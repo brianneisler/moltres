@@ -3,10 +3,10 @@ import { unexpected } from '../error'
 import createExpandingBuffer from './createExpandingBuffer'
 import invariant from './invariant'
 import {
-  arrayRemove,
-  anyIsRingBuffer,
   anyIsObserver,
-  anyIsUndefined
+  anyIsRingBuffer,
+  anyIsUndefined,
+  arrayRemove
 } from './util'
 
 const createChannel = (buffer = createExpandingBuffer()) => {
