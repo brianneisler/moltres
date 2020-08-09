@@ -14,9 +14,11 @@ const generateProjectId = (config = {}) => {
     return slice(0, 30, `test-${config.test.runId}`)
   }
 
-  if (config.stage === 'local') {
-    return 'local'
-  }
+  // NOTE BRN: We couldn't do this because the emulator requires that the
+  // projectId match the actual project in order to show data
+  // if (config.stage === 'local') {
+  //   return 'local'
+  // }
 
   invariant(
     process.env.FIREBASE_PROJECT_ID,
