@@ -10,7 +10,7 @@ import size from './size'
  *
  * @function
  * @since v0.1.0
- * @category data
+ * @category lang
  * @param {Array | String | Function} selector The property path to set or functional selector
  * @param {object} objA The object to compare to B
  * @param {object} objB The object to compare to A

@@ -6,11 +6,12 @@ import anyIsIterator from './anyIsIterator'
  * property named `next` that is a plain function and a property named `getKey`
  * that returns the current key.
  *
+ * @private
  * @function
  * @since v0.1.0
- * @category lang
- * @param {*} any The value to check.
- * @returns {boolean} Returns `true` if `value` is a KeyedIterator
+ * @category lang.util
+ * @param {Any} any The value to check.
+ * @returns {Boolean} Returns `true` if `value` is a KeyedIterator
  * @example
  *
  * const object = {}

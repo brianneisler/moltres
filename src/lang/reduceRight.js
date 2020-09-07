@@ -18,7 +18,7 @@ import pipe from './pipe'
  *
  * @function
  * @since v0.1.0
- * @category data
+ * @category lang
  * @param {Function} fn The iterator function. Receives three values, the accumulator, the current value from the collection and the key or index.
  * @param {*} accumulator The accumulator value.
  * @param {Array|string|Object|Promise} collection The collection to iterate over.

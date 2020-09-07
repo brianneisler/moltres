@@ -36,15 +36,15 @@ import anyResolveToGenerator from './anyResolveToGenerator'
  * })
  * //=> bar
  */
-const anyResolve = (any) => {
+const anyResolve = (any, ...rest) => {
   if (!anyIsResolved(any)) {
     if (anyIsFunction(any.resolve)) {
-      return anyResolve(any.resolve())
+      return anyResolve(any.resolve(...rest), ...rest)
     }
     if (anyIsPromise(any)) {
-      return any.then((resolved) => anyResolve(resolved))
+      return any.then((resolved) => anyResolve(resolved, ...rest))
     }
-    return anyResolveToGenerator(any)
+    return anyResolveToGenerator(any, ...rest)
   }
   return any
 }

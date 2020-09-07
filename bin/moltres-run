@@ -16,13 +16,14 @@ const exec = async ({ args, stage }) => {
     throw new Error('Must specify a path to a script as an argument')
   }
   const cwd = process.cwd()
-  const env = await loadDotEnv(cwd, { cwd, stage })
+  const env = await loadDotEnv({ stage })
   const spawn = processSpawn('bash', args, {
     cwd,
     env: {
       ...process.env,
       ...env,
-      STAGE: stage
+      STAGE: stage,
+      TARGET: 'cli'
     },
     stdio: 'inherit'
   })

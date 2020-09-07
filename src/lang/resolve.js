@@ -8,8 +8,7 @@ import { anyResolve } from './util'
  *
  * @function
  * @since v0.0.9
- * @category common
- * @sig [String] -> {a} -> String
+ * @category lang
  * @param {...String} values The values to check.
  * @returns {String} The first value found that is a path.
  * @example

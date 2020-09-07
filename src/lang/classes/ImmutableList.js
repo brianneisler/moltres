@@ -4,7 +4,7 @@ import { List } from 'immutable'
  * @private
  * @function
  * @since v0.1.0
- * @category lang.util.js
+ * @category lang.classes
  * @param {*} value
  * @returns {ImmutableList} A new ImmutableList
  * @example

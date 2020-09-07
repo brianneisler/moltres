@@ -6,7 +6,7 @@ import Promise from 'bluebird'
  *
  * @function
  * @since v0.1.0
- * @category common
+ * @category lang
  * @returns {Promise} The promise with exposed methods
  * @example
  *

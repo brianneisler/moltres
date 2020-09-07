@@ -11,6 +11,8 @@ import mapHasKey from './mapHasKey'
  * @function
  * @immutable
  * @pure
+ * @category lang.util
+ * @since v0.1.0
  * @param {Map} map
  * @param {Key} key
  * @param {Any} value

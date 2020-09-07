@@ -1,6 +1,7 @@
 export { default as copyPath } from './copyPath'
 export { default as createWriteStream } from './createWriteStream'
 export { default as ensureDirectory } from './ensureDirectory'
+export { default as fileExists } from './fileExists'
 export { default as isPathDirectory } from './isPathDirectory'
 export { default as pathExists } from './pathExists'
 export { default as pathStat } from './pathStat'

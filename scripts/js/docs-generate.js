@@ -20,10 +20,11 @@ import pack from '../../package.json'
 
 import { reduceObjIndexed } from './utils'
 
+const GIT_URL = pack.repository.url
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
 const CURRENT_VERSION = pack.version
-const GITHUB_TAG_URL = `https://github.com/brianneisler/stutter/tree/v${CURRENT_VERSION}`
+const GITHUB_TAG_URL = `${GIT_URL}/tree/v${CURRENT_VERSION}`
 const REGEX_RETURN_TYPE = /\{.*\}/s
 const REGEX_PARAM = /(\{.*\})\s*([a-zA-Z0-9$_]*)/s
 
@@ -129,10 +130,9 @@ const findSince = (tags) => {
   return prop('string', sinceTag)
 }
 
-const findFunction = (tags) => {
-  const functionTag = find((tag) => tag.type === 'function', tags)
-  return functionTag
-}
+const findFunction = (tags) => find((tag) => tag.type === 'function', tags)
+
+const findClass = (tags) => find((tag) => tag.type === 'class', tags)
 
 const findPrivate = (tags) => {
   const privateTag = find((tag) => tag.type === 'private', tags)
@@ -188,11 +188,12 @@ const renderFunctionMarkdown = ({
   line,
   name,
   params,
+  private: _private,
   returns,
   since,
   srcFile
 }) => {
-  let markdown = `### ${name}()\n\n`
+  let markdown = `### ${_private ? '**private** ' : ''}function ${name}()\n\n`
   // console.log('meta:', JSON.stringify(data, null, 2))
   markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
   markdown += `${description}\n\n`
@@ -204,16 +205,36 @@ const renderFunctionMarkdown = ({
   return markdown
 }
 
+const renderClassMarkdown = ({
+  description,
+  example,
+  line,
+  name,
+  private: _private,
+  since,
+  srcFile
+}) => {
+  let markdown = `### ${_private ? '**private** ' : ''}class ${name}\n\n`
+  markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
+  markdown += `${description}\n\n`
+
+  markdown += `**Class**: \`${name}\`\n\n`
+  markdown += renderExampleMarkdown(example)
+  markdown += '<br /><br />\n\n'
+  return markdown
+}
+
 const renderValueMarkdown = ({
   description,
   example,
   line,
   name,
+  private: _private,
   since,
   srcFile,
   type
 }) => {
-  let markdown = `### ${name}\n\n`
+  let markdown = `### ${_private ? '**private** ' : ''}${name}\n\n`
   markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
   markdown += `${description}\n\n`
 
@@ -231,6 +252,13 @@ const renderCategoryMarkdown = (category) => {
     },
     markdown,
     category.functions
+  )
+  markdown = reduce(
+    (accMarkdown, _class) => {
+      return accMarkdown + renderClassMarkdown(_class)
+    },
+    markdown,
+    category.classes
   )
   return reduce(
     (accMarkdown, value) => {
@@ -288,6 +316,29 @@ const generateFunctionDocs = (meta, srcFile) => {
   }
 }
 
+const generateClassDocs = (meta, srcFile) => {
+  // console.log('meta:', meta)
+  const category = findCategory(meta.tags)
+  if (!category) {
+    throw new Error(`Source file ${srcFile} did not declare a @category tag`)
+  }
+  const since = findSince(meta.tags)
+  if (!since) {
+    throw new Error(`Source file ${srcFile} did not declare a @since tag`)
+  }
+  return {
+    category,
+    class: true,
+    description: meta.description.full,
+    example: findExample(meta.tags),
+    extends: meta.ctx.extends,
+    line: meta.line,
+    name: meta.ctx.name,
+    since,
+    srcFile
+  }
+}
+
 const generateValueDocs = (meta, srcFile) => {
   const category = findCategory(meta.tags)
   if (!category) {
@@ -315,6 +366,10 @@ const getType = (tags) => {
   if (functionTag) {
     return 'function'
   }
+  const classTag = findClass(tags)
+  if (classTag) {
+    return 'class'
+  }
   const typeTag = findType(tags)
   if (typeTag) {
     return typeTag.string
@@ -326,6 +381,7 @@ const getCategory = (name, categories) => {
   let category = prop(name, categories)
   if (!category) {
     category = {
+      classes: [],
       functions: [],
       name,
       values: []
@@ -342,21 +398,28 @@ const generateCategoryDocs = (srcData) =>
           const type = getType(meta.tags)
           if (!type) {
             throw new Error(
-              `Source file ${data.srcFile} did not declare a @function tag or a @type tag`
+              `Source file ${data.srcFile} did not declare a @function, @class tag or a @type tag`
             )
           }
 
           if (type === 'function') {
             const fnDocs = generateFunctionDocs(meta, data.srcFile)
-            if (!fnDocs.private) {
-              let category = getCategory(fnDocs.category, categories)
-              category = assoc(
-                'functions',
-                append(fnDocs, category.functions),
-                category
-              )
-              categories = assoc(fnDocs.category, category, categories)
-            }
+            let category = getCategory(fnDocs.category, categories)
+            category = assoc(
+              'functions',
+              append(fnDocs, category.functions),
+              category
+            )
+            categories = assoc(fnDocs.category, category, categories)
+          } else if (type === 'class') {
+            const classDocs = generateClassDocs(meta, data.srcFile)
+            let category = getCategory(classDocs.category, categories)
+            category = assoc(
+              'classes',
+              append(classDocs, category.classes),
+              category
+            )
+            categories = assoc(classDocs.category, category, categories)
           } else {
             const valueDocs = generateValueDocs(meta, data.srcFile)
             let category = getCategory(valueDocs.category, categories)

@@ -2,9 +2,11 @@ import { Map } from 'immutable'
 
 /**
  * @private
- * @class
+ * @function
  * @since v0.1.0
- * @category lang.util.js
+ * @category lang.classes
+ * @param {*} value
+ * @returns {ImmutableMap} A new ImmutableMap
  * @example
  */
 const ImmutableMap = Map

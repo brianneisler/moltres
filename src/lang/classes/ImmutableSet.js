@@ -2,9 +2,11 @@ import { Set } from 'immutable'
 
 /**
  * @private
- * @class
+ * @function
  * @since v0.1.0
  * @category lang.util.js
+ * @param {*} value
+ * @returns {ImmutableSet} A new ImmutableSet
  * @example
  */
 const ImmutableSet = Set
