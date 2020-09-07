@@ -2,10 +2,10 @@ import { List } from 'immutable'
 
 /**
  * @private
- * @function
+ * @class
  * @since v0.1.0
  * @category lang.classes
- * @param {*} value
+ * @param {Any} value
  * @returns {ImmutableList} A new ImmutableList
  * @example
  */

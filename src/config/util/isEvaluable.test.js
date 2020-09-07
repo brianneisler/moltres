@@ -1,7 +1,7 @@
 import isEvaluable from './isEvaluable'
 import newVariable from './newVariable'
 
-describe('#isEvaluable()', () => {
+describe('isEvaluable', () => {
   it('should return true for a variable', () => {
     expect(isEvaluable(newVariable('${foo}', { foo: 'bar' }))).toBe(true)
   })

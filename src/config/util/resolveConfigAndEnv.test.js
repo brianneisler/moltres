@@ -1,6 +1,6 @@
 import resolveConfigAndEnv from './resolveConfigAndEnv'
 
-describe('#resolveConfigAndEnv()', () => {
+describe('resolveConfigAndEnv', () => {
   it('resolve config and env values', () => {
     const result = resolveConfigAndEnv({
       config: {

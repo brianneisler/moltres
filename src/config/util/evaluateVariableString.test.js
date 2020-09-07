@@ -1,6 +1,6 @@
 import evaluateVariableString from './evaluateVariableString'
 
-describe('#evaluateVariableString()', () => {
+describe('evaluateVariableString', () => {
   it('should resolve exact matches to actual value', () => {
     expect(evaluateVariableString('${abc}', { abc: undefined })).toBe(undefined)
     expect(evaluateVariableString('${abc}', { abc: null })).toBe(null)

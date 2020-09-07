@@ -5,12 +5,13 @@ import anyToImmutableList from '../util/anyToImmutableList'
  * Note: This class is **immutable**
  *
  * This class represents a Path of one or more Propeties, Keys and Indexes
+ *
+ * @private
+ * @class
+ * @category lang.classes
+ * @since v0.1.0
  */
 class Path {
-  /**
-   * Create a `Path`
-   * @param {Array} path An array of Path parts
-   */
   constructor(path) {
     this.path = anyToImmutableList(path)
     this.size = this.path.size

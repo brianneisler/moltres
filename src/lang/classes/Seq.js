@@ -66,10 +66,10 @@ import { Seq as baseSeq } from 'immutable'
  * ```
  *
  * @private
- * @function
+ * @class
  * @since v0.1.0
- * @category lang.util.js
- * @param {*} value
+ * @category lang.class
+ * @param {Any} value
  * @returns {Seq} A new Seq
  * @example
  */

@@ -5,8 +5,8 @@ import { TO_STRING_TAG } from '../constants/Symbol'
  *
  * This class represents an Op which can be yielded and executed by Generator middleware
  *
- * @class
  * @private
+ * @class
  * @category lang.classes
  * @since v0.1.0
  */

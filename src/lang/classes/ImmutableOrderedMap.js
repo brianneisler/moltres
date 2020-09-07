@@ -2,10 +2,10 @@ import { OrderedMap } from 'immutable'
 
 /**
  * @private
- * @function
+ * @class
  * @since v0.1.0
  * @category lang.classes
- * @param {*} value
+ * @param {Any} value
  * @returns {ImmutableOrderedMap} A new ImmutableOrderedMap
  * @example
  */

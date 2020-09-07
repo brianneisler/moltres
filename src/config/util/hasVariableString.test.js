@@ -1,6 +1,6 @@
 import hasVariableString from './hasVariableString'
 
-describe('#hasVariableString()', () => {
+describe('hasVariableString', () => {
   it('should match variable with only one word', () => {
     expect(hasVariableString('${abc}')).toBe(true)
   })

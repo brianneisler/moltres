@@ -2,7 +2,7 @@ import { VARIABLE } from '../constants/Symbol'
 
 import isVariable from './isVariable'
 
-describe('#isVariable()', () => {
+describe('isVariable', () => {
   it('should return true for object with variable symbol', () => {
     expect(isVariable({ [VARIABLE]: true })).toBe(true)
   })

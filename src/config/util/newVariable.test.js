@@ -2,7 +2,7 @@ import { resolve } from '../../lang'
 
 import newVariable from './newVariable'
 
-describe('#newVariable()', () => {
+describe('newVariable', () => {
   it('should resolve as string when coherced', () => {
     const variableString = '${foo}'
     const data = {

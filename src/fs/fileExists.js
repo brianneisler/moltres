@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 
 import { defn } from '../lang'
 
-const fileExists = defn(async (filePath) => {
+const fileExists = defn('fileExists', async (filePath) => {
   try {
     const stats = await fs.lstat(filePath)
     return stats.isFile()

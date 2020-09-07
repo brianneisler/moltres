@@ -1,6 +1,6 @@
 import matchVariable from './matchVariable'
 
-describe('#matchVariable()', () => {
+describe('matchVariable', () => {
   it('should exact match variable with only one word', () => {
     expect(matchVariable('${abc}')).toEqual({
       exact: true,

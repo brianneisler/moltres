@@ -1,6 +1,6 @@
 import extractExpressions from './extractExpressions'
 
-describe('#extractExpressions()', () => {
+describe('extractExpressions', () => {
   it('should extract expressions from code statements', () => {
     expect(extractExpressions('this.foo || this.foo.bar || true')).toEqual(
       expect.arrayContaining(['this.foo', 'this.foo.bar'])
