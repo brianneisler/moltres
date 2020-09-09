@@ -3,9 +3,10 @@ import { Index, Property } from '../classes'
 /**
  * Checks if `any` is a key.
  *
+ * @private
  * @function
  * @since v0.1.0
- * @category lang
+ * @category lang.util
  * @param {*} any The value to check.
  * @param {Keyed} keyed The keyed value to query keys on.
  * @returns {boolean} Returns `true` if `value` is a key

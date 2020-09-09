@@ -11,8 +11,7 @@ const { keys } = Array.prototype
  * @function
  * @since v0.1.0
  * @category lang.util
- * @template T
- * @param {[]} array The array whose indexes to iterate over.
+ * @param {Array} array The array whose indexes to iterate over.
  * @returns {Iterator<Index>} Iterator of the Array's Indexes
  * @example
  *

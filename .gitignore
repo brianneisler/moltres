@@ -32,7 +32,6 @@ npm-debug.log
 .cache
 tmp
 dist
-.env
 yarn.lock
 
 *.sample

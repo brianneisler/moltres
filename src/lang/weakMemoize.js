@@ -1,4 +1,4 @@
-import cacheChain from './cacheChain'
+import { cacheChain } from './util'
 import weakMemoizeWith from './weakMemoizeWith'
 
 const weakMemoize = weakMemoizeWith(cacheChain)

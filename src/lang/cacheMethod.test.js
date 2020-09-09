@@ -24,7 +24,7 @@ describe('cacheMethod', () => {
     })
   })
 
-  test('oHit is called on a cache hit', () => {
+  test('onHit is called on a cache hit', () => {
     const context = {
       cache: {
         foo: {

@@ -1,6 +1,6 @@
 import curry from './curry'
 import getProp from './getProp'
-import hasProp from './hasProp'
+import hasProperty from './hasProperty'
 import identical from './identical'
 import keys from './keys'
 import size from './size'
@@ -10,7 +10,7 @@ import size from './size'
  *
  * @function
  * @since v0.1.0
- * @category data
+ * @category lang
  * @param {Array | String | Function} selector The property path to set or functional selector
  * @param {object} objA The object to compare to B
  * @param {object} objB The object to compare to A
@@ -44,7 +44,7 @@ const shallowEquals = curry((objA, objB) => {
   // Test for A's keys different from B.
   for (let i = 0; i < keysA.length; i++) {
     if (
-      !hasProp(getProp(i, keysA), objB) ||
+      !hasProperty(getProp(i, keysA), objB) ||
       !identical(
         getProp(getProp(i, keysA), objA),
         getProp(getProp(i, keysA), objB)

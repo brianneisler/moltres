@@ -5,8 +5,7 @@ import curryN from './curryN'
  *
  * @function
  * @since v0.0.4
- * @category data
- * @sig
+ * @category lang
  * @param {Function} walkee The function responsible for returning the next value in the walk
  * @param {Function} iteratee The iterator function.
  * @returns {*} The final value returned by the walk

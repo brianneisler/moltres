@@ -12,9 +12,9 @@ const { filter } = Array.prototype
  * @since v0.2.0
  * @category lang.util
  * @template T
- * @param {T[]} array The array to iterate over.
- * @param {(value: T, index: Number, array:Array) => Boolean} predicate The function to execute for each element
- * @returns {T[]} A new Array with the values that passed the given predicate test
+ * @param {Array} array The array to iterate over.
+ * @param {Function} predicate The function to execute for each element
+ * @returns {Array} A new Array with the values that passed the given predicate test
  * @example
  *
  * const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']

@@ -14,7 +14,7 @@ import arrayLikeSlice from './util/arrayLikeSlice'
  *
  * @function
  * @since v0.1.0
- * @category common
+ * @category lang
  * @param {...Function} functions
  * @returns {Function}
  * @example

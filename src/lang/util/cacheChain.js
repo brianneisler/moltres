@@ -1,9 +1,12 @@
-import { ImmutableMap } from './classes'
-import isImmutable from './isImmutable'
-import isObject from './isObject'
+import ImmutableMap from '../classes/ImmutableMap'
+import WeakMap from '../classes/WeakMap'
+
+import anyIsImmutable from './anyIsImmutable'
+import anyIsObject from './anyIsObject'
+import arrayForEach from './arrayForEach'
 
 const makeCacheChain = () => ({
-  strongMap: ImmutableMap(),
+  strongMap: new ImmutableMap(),
   weakMap: new WeakMap()
 })
 
@@ -12,7 +15,7 @@ const makeCacheLink = () => ({
   ref: {}
 })
 
-const isWeakKey = (value) => isObject(value) && !isImmutable(value)
+const isWeakKey = (value) => anyIsObject(value) && !anyIsImmutable(value)
 
 const setCacheKey = (cacheChain, key, value) => {
   if (isWeakKey(key)) {
@@ -65,7 +68,7 @@ const cache = makeCacheChain()
 const cacheChain = (...args) => {
   let chain = cache
   let link = linkCacheKey(chain)
-  args.forEach((arg) => {
+  arrayForEach(args, (arg) => {
     link = linkCacheKey(chain, arg)
     chain = link.cacheChain
   })

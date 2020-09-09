@@ -9,7 +9,7 @@ import reduceRight from './reduceRight'
  *
  * @function
  * @since v0.1.0
- * @category common
+ * @category lang
  * @param {...Function} functions The functions to compose
  * @returns {Function}
  * @example

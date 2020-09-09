@@ -4,11 +4,12 @@ import ImmutableMap from './classes/ImmutableMap'
 import createPath from './createPath'
 import first from './first'
 import getProp from './getProp'
-import hasProp from './hasProp'
+import hasProperty from './hasProperty'
 import isImmutable from './isImmutable'
 import isInteger from './isInteger'
 import isNil from './isNil'
 import isObject from './isObject'
+import isPath from './isPath'
 import isString from './isString'
 import size from './size'
 import slice from './slice'
@@ -19,7 +20,7 @@ const getNextCollection = (collection, part, parts) => {
   }
   if (
     !isNil(collection) &&
-    hasProp(part, collection) &&
+    hasProperty(part, collection) &&
     isObject(getProp(part, collection))
   ) {
     return getProp(part, collection)
@@ -42,6 +43,11 @@ const getNextCollection = (collection, part, parts) => {
 const assocPath = (path, value, collection) => {
   if (isString(path)) {
     path = createPath(path)
+  }
+  if (!isPath(path)) {
+    throw new TypeError(
+      `setPath expected 'path' parameter to be a Path. Instead received ${path}`
+    )
   }
   if (size(path) === 0) {
     return value
