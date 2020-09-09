@@ -2,14 +2,12 @@
 // import env from 'react-native-config'
 import { mergeDeepRight } from '../lang'
 
-import getStage from './util/getStage'
+import evaluateConfigAndEnv from './util/evaluateConfigAndEnv'
 import getTarget from './util/getTarget'
-import resolveConfigAndEnv from './util/resolveConfigAndEnv'
 import updateEnv from './util/updateEnv'
 import validateConfig from './util/validateConfig'
 
-const loadConfig = async (options = {}, initialConfig = {}) => {
-  const stage = getStage(options)
+const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
   const target = getTarget(options)
 
   let config
@@ -23,27 +21,30 @@ const loadConfig = async (options = {}, initialConfig = {}) => {
       : {}
     env = process.env.MOLTRES_ENV ? JSON.parse(process.env.MOLTRES_ENV) : {}
   } else {
-    // TODO BRN: dynamically require the needed modules here so that we avoid
+    // NOTE BRN: dynamically require the needed modules here so that we avoid
     // loading node specific modules in the web environment
     const { loadConfigFile, loadDotEnv } = require('./util')
 
-    env = loadDotEnv(options)
-    config = loadConfigFile(options)
+    env = await loadDotEnv(options)
+    config = await loadConfigFile(options)
   }
 
-  // TODO BRN: Load raw config and env and then resolve their values against
+  // Load raw config and env and then resolve their values against
   // each other since they can cross reference each other
 
-  ;({ config, env } = resolveConfigAndEnv({
-    config: mergeDeepRight(initialConfig, config),
-    env
-  }))
-  // TODO BRN: Validate config
+  ;({ config, env } = evaluateConfigAndEnv(
+    {
+      config: mergeDeepRight(initialConfig, config),
+      env
+    },
+    options,
+    context
+  ))
+
   const { modules } = options
   if (modules) {
     validateConfig(modules, config)
   }
-
   updateEnv(env)
 
   return config

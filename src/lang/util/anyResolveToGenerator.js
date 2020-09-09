@@ -17,17 +17,17 @@ import anyIsResolved from './anyIsResolved'
  * generator.next()
  * //=> { value: 'foo', done: true }
  */
-const anyResolveToGenerator = function* (any, ...rest) {
+const anyResolveToGenerator = function* (any) {
   if (!anyIsResolved(any)) {
     let result
     if (anyIsGenerator(any)) {
       result = yield* any
     } else if (anyIsFunction(any.resolve)) {
-      result = any.resolve(...rest)
+      result = any.resolve()
     } else {
       result = yield any
     }
-    return yield* anyResolveToGenerator(result, ...rest)
+    return yield* anyResolveToGenerator(result)
   }
   return any
 }

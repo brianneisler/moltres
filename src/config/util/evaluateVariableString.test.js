@@ -1,3 +1,5 @@
+import { get } from '../../lang'
+
 import evaluateVariableString from './evaluateVariableString'
 
 describe('evaluateVariableString', () => {
@@ -74,19 +76,25 @@ describe('evaluateVariableString', () => {
     ).toBe(true)
   })
 
-  it('supports internal get helper function on object with get ', () => {
+  it('supports functions when supplied in context ', () => {
     expect(
-      evaluateVariableString('${get("abc.def", this)}', {
-        this: {
-          abc: {
-            get: (prop) => {
-              return {
-                def: 'ghi'
-              }[prop]
+      evaluateVariableString(
+        '${get("abc.def", this)}',
+        {
+          this: {
+            abc: {
+              get: (prop) => {
+                return {
+                  def: 'ghi'
+                }[prop]
+              }
             }
           }
+        },
+        {
+          get
         }
-      })
+      )
     ).toBe('ghi')
   })
 

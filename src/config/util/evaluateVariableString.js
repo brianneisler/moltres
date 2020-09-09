@@ -1,19 +1,8 @@
-import * as lang from '../../lang'
-import * as path from '../../path'
+import { concat, getProp, keys, omit, values } from '../../lang'
 
 import matchVariable from './matchVariable'
 
-const { concat, getProp, keys, omit, values } = lang
-
-const UTIL_METHODS = {
-  ...lang,
-  ...path
-}
-
-UTIL_METHODS.KEYS = Object.keys(UTIL_METHODS)
-UTIL_METHODS.VALUES = Object.values(UTIL_METHODS)
-
-const evaluateVariableString = (variableString, data) => {
+const evaluateVariableString = (variableString, data, context = {}) => {
   const { exact, expression, match } = matchVariable(variableString)
 
   if (!match) {
@@ -25,8 +14,8 @@ const evaluateVariableString = (variableString, data) => {
   const self = getProp('this', data)
   data = omit(['this'], data)
 
-  const params = concat(keys(data), UTIL_METHODS.KEYS)
-  const args = concat(values(data), UTIL_METHODS.VALUES)
+  const params = concat(keys(data), Object.keys(context))
+  const args = concat(values(data), Object.values(context))
   const func = new Function(params, `return ${resolvedExpression}`)
 
   let value = func.apply(self, args)

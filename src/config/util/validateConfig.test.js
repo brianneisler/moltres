@@ -34,6 +34,10 @@ describe('validateConfig', () => {
     const config = {
       foo: {}
     }
-    expect(() => validateConfig(modules, config)).toThrow()
+    expect(() => validateConfig(modules, config)).toThrow(
+      expect.objectContaining({
+        code: 'ConfigMissing'
+      })
+    )
   })
 })

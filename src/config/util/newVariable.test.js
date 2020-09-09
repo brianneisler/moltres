@@ -1,14 +1,13 @@
-import { resolve } from '../../lang'
-
+import evaluate from './evaluate'
 import newVariable from './newVariable'
 
 describe('newVariable', () => {
-  it('should resolve as string when coherced', () => {
+  it('should evaluate as string when coherced', () => {
     const variableString = '${foo}'
     const data = {
       foo: 123
     }
     const variable = newVariable(variableString)
-    expect('abc' + resolve(variable, data)).toBe('abc123')
+    expect('abc' + evaluate(variable, data)).toBe('abc123')
   })
 })

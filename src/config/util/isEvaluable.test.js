@@ -6,8 +6,8 @@ describe('isEvaluable', () => {
     expect(isEvaluable(newVariable('${foo}', { foo: 'bar' }))).toBe(true)
   })
 
-  it('should return true any object with resolve method', () => {
-    expect(isEvaluable({ resolve: () => {} })).toBe(true)
+  it('should return true any object with evaluate method', () => {
+    expect(isEvaluable({ evaluate: () => {} })).toBe(true)
   })
 
   test('returns false for all other values', () => {

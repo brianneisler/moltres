@@ -17,15 +17,12 @@ const expectedBadVariableEvaluation = (variable, evalError) =>
 const newVariable = (variableString) => {
   const variable = {
     [VARIABLE]: true,
-    evaluate(data) {
+    evaluate(data, context) {
       try {
-        return evaluateVariableString(variableString, data)
+        return evaluateVariableString(variableString, data, context)
       } catch (error) {
         throw expectedBadVariableEvaluation(variable, error)
       }
-    },
-    resolve(data) {
-      return variable.evaluate(data)
     },
     variableString
   }

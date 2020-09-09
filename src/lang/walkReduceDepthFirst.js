@@ -9,7 +9,7 @@ import walk from './walk'
 const reduceWalkee = () => {
   const visited = new Set()
   return (iteratee, accum, value, keys, recur) => {
-    const resolvedValue = resolve(value, accum)
+    const resolvedValue = resolve(value)
     return pipe(
       (result) => {
         if (isObjectLike(resolvedValue) && !visited.has(resolvedValue)) {

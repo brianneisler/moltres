@@ -1,18 +1,18 @@
-import findConfigFileAtPath from './findConfigFileAtPath'
+import findConfigFileAtPathSync from './findConfigFileAtPathSync'
 import getStage from './getStage'
-import readConfigFile from './readConfigFile'
+import readConfigFileSync from './readConfigFileSync'
 import resolveStagePath from './resolveStagePath'
 
-const loadConfigFile = async (options) => {
+const loadConfigFileSync = async (options) => {
   const absoluteStagePath = resolveStagePath(options)
-  const configFilePath = await findConfigFileAtPath(absoluteStagePath)
+  const configFilePath = findConfigFileAtPathSync(absoluteStagePath)
   if (!configFilePath) {
     // eslint-disable-next-line no-console
     console.log(`could not find config file for stage '${getStage(options)}'`)
     return undefined
   }
 
-  return await readConfigFile(configFilePath)
+  return readConfigFileSync(configFilePath)
 }
 
-export default loadConfigFile
+export default loadConfigFileSync

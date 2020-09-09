@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 
-import { readFile } from '../../fs'
+import { readFileSync } from '../../fs'
 import { defn } from '../../lang'
 import { pathResolve } from '../../path'
 
@@ -8,11 +8,11 @@ import resolveStagePath from './resolveStagePath'
 
 const FILE_NAME_ENV = '.env'
 
-const loadDotEnv = defn('loadDotEnv', async (options) => {
+const loadDotEnvSync = defn('loadDotEnvSync', (options) => {
   const envFilePath = pathResolve(resolveStagePath(options), FILE_NAME_ENV)
   let loadedEnv = {}
   try {
-    const data = await readFile(envFilePath, 'utf8')
+    const data = readFileSync(envFilePath, 'utf8')
     const values = dotenv.parse(data)
     loadedEnv = values
   } catch (error) {
@@ -23,4 +23,4 @@ const loadDotEnv = defn('loadDotEnv', async (options) => {
   return loadedEnv
 })
 
-export default loadDotEnv
+export default loadDotEnvSync

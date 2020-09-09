@@ -1,6 +1,12 @@
 import { pathResolve } from '../../path'
 
-const resolveStagePath = ({ cwd = process.cwd(), stage }) =>
-  pathResolve(cwd, 'stages', stage)
+import getCwd from './getCwd'
+import getStage from './getStage'
+
+const resolveStagePath = (options) => {
+  const stage = getStage(options)
+  const cwd = getCwd(options)
+  return pathResolve(cwd, 'stages', stage)
+}
 
 export default resolveStagePath

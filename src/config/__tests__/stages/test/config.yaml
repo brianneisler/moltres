@@ -1,0 +1,12 @@
+bim:
+  bop: 'bopity'
+
+foo:
+  bar: ${env.BAR}
+  baz: ${this.bim.bop}
+
+ping:
+  sensitive: true
+  value: 'pong'
+
+
