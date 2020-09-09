@@ -7,6 +7,8 @@ import mapClone from './mapClone'
  * @private
  * @function
  * @immutable
+ * @category lang.util
+ * @since v0.1.0
  * @pure
  * @param {Map} map
  * @param {Key} key

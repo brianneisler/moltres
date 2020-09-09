@@ -5,7 +5,7 @@ import Op from './classes/Op'
  *
  * @function
  * @since v0.1.0
- * @category common
+ * @category lang
  * @param {Function} fn The function to execute when the op is executed
  * @returns {Object} The op object
  */

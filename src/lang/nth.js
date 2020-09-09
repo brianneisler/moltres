@@ -9,11 +9,10 @@ import size from './size'
  *
  * @function
  * @since v0.1.0
- * @category common
- * @sig Number -> String -> String
- * @param {number} offset The offset from the 0 index to select from. If negative it will be subtracted from length
- * @param {*} collection The collection to select from
- * @returns {*} The value at the nth index
+ * @category lang
+ * @param {Number} offset The offset from the 0 index to select from. If negative it will be subtracted from length
+ * @param {Indexed} collection The collection to select from
+ * @returns {Any} The value at the nth index
  * @example
  *
  * const list = ['foo', 'bar', 'baz', 'quux']

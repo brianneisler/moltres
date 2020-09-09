@@ -2,10 +2,10 @@ import { OrderedSet } from 'immutable'
 
 /**
  * @private
- * @function
+ * @class
  * @since v0.1.0
- * @category lang.util.js
- * @param {*} value
+ * @category lang.classes
+ * @param {Any} value
  * @returns {ImmutableOrderedSet} A new ImmutableOrderedSet
  * @example
  */

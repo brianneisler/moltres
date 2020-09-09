@@ -2,11 +2,11 @@
  * The Boolean object is an object wrapper for a boolean value.
  *
  * @private
- * @function
+ * @class
  * @since v0.1.0
- * @category lang.util.js
- * @param {*} value Optional. The initial value of the Boolean object.
- * @returns {boolean} A boolean value
+ * @category lang.class
+ * @param {Any} value Optional. The initial value of the Boolean object.
+ * @returns {Boolean} A boolean value
  * @example
  *
  * Boolean(false)

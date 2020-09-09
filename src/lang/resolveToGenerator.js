@@ -6,8 +6,8 @@ import { anyResolveToGenerator } from './util'
  *
  * @function
  * @since v0.0.16
- * @category common
- * @param {*} value The value to resolve with the generator
+ * @category lang
+ * @param {Any} value The value to resolve with the generator
  * @returns {Generator}
  * @example
  *

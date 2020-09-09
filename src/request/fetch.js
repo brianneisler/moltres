@@ -10,8 +10,8 @@ import { curryN } from 'ramda'
  *
  * @function
  * @since v0.1.0
- * @category fetch
- * @param {string} url
+ * @category request
+ * @param {Url} url
  * @returns {Promise<Response>} the web request response
  * @example
  *

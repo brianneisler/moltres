@@ -1,8 +1,9 @@
+import contagion from './contagion'
 import get from './get'
 import isFunction from './isFunction'
 import isNil from './isNil'
 import isString from './isString'
-import set from './set'
+import { anySetPathWith, anyToPath, objectMutateSetProperty } from './util'
 
 const cacheMethod = (options, method) => {
   const { key, onHit, ttl } = options
@@ -23,7 +24,7 @@ const cacheMethod = (options, method) => {
       )
     }
     const cacheKey = keyFn(context, ...rest)
-    const cached = get(cache, cacheKey)
+    const cached = get(cacheKey, cache)
     if (
       cached &&
       (isNil(ttl) || ttl === Infinity || system.now() < cached.cachedAt + ttl)
@@ -34,10 +35,17 @@ const cacheMethod = (options, method) => {
       return cached.result
     }
     const result = method(context, ...rest)
-    set(cache, cacheKey, {
-      cachedAt: system.now(),
-      result
-    })
+    anySetPathWith(
+      cache,
+      anyToPath(cacheKey),
+      {
+        cachedAt: system.now(),
+        result
+      },
+      contagion,
+      get,
+      objectMutateSetProperty
+    )
     return result
   }
 }

@@ -5,10 +5,10 @@ const generateProjectId = (config = {}) => {
     invariant(config.test.runId, 'config.test.runId must be defined')
     if (config.test.integration) {
       invariant(
-        process.env.FIREBASE_PROJECT_ID,
-        'FIREBASE_PROJECT_ID must be defined when TEST_INTEGRATION is defined'
+        config.firebase.projectId,
+        'config.firebase.projectId must be defined when config.test.integration is defined'
       )
-      return process.env.FIREBASE_PROJECT_ID
+      return config.firebase.projectId
     }
     // NOTE BRN: The max length of a project id is 30 characters
     return slice(0, 30, `test-${config.test.runId}`)
@@ -21,11 +21,10 @@ const generateProjectId = (config = {}) => {
   // }
 
   invariant(
-    process.env.FIREBASE_PROJECT_ID,
-    'FIREBASE_PROJECT_ID must be defined when STAGE is NOT "local"'
+    config.firebase.projectId,
+    'config.firebase.projectId must be defined'
   )
-
-  return process.env.FIREBASE_PROJECT_ID
+  return config.firebase.projectId
 }
 
 export default generateProjectId

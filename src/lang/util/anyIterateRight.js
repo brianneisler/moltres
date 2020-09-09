@@ -47,7 +47,7 @@ const doReverseSeriesIteration = (fn, iter) => {
  * @private
  * @function
  * @since v0.1.0
- * @category common
+ * @category lang.util
  * @param {Function} iteratee The iteratee Function
  * @param  {*} collection The collection or iterator to iterate over
  * @returns {*} The final value returned when the iteratee returns done or `undefined`
