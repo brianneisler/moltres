@@ -6,7 +6,7 @@ const CONFIG_FILE_NAMES = ['config.js', 'config.yaml', 'config.json']
 
 const findConfigFileAtPathSync = defn(
   'findConfigFileAtPathSync',
-  async (absolutePath) =>
+  (absolutePath) =>
     find(
       fileExistsSync,
       map(
