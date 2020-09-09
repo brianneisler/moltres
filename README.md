@@ -14,7 +14,7 @@ An app built using moltres is a full fledged mobile app (iOS and Android) as wel
 [![license](https://img.shields.io/npm/l/moltres.svg)](https://github.com/brianneisler/moltres/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/moltres.svg)](https://badge.fury.io/js/moltres)
 [![Build
-Status](https://travis-ci.org/brianneisler/moltres.svg)](https://travis-ci.org/brianneisler/moltres)
+Status](https://travis-ci.com/brianneisler/moltres.svg)](https://travis-ci.com/brianneisler/moltres)
 [![codecov](https://codecov.io/gh/brianneisler/moltres/branch/master/graph/badge.svg)](https://codecov.io/gh/brianneisler/moltres)<br/>
 [![NPM](https://nodei.co/npm/moltres.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/moltres/)
 
