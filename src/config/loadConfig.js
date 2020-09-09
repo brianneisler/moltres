@@ -20,6 +20,9 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
       ? JSON.parse(process.env.MOLTRES_CONFIG)
       : {}
     env = process.env.MOLTRES_ENV ? JSON.parse(process.env.MOLTRES_ENV) : {}
+
+    // NOTE BRN: We do not need to evaluate this config because it should have
+    // already been evaluated at webpack time.
   } else {
     // NOTE BRN: dynamically require the needed modules here so that we avoid
     // loading node specific modules in the web environment
@@ -27,19 +30,19 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
 
     env = await loadDotEnv(options)
     config = await loadConfigFile(options)
+    const cwd = options.cwd || process.cwd()
+    // Load raw config and env and then resolve their values against
+    // each other since they can cross reference each other
+
+    ;({ config, env } = evaluateConfigAndEnv(
+      {
+        config: mergeDeepRight(initialConfig, config),
+        env
+      },
+      options,
+      mergeDeepRight({ project: { dir: cwd } }, context)
+    ))
   }
-
-  // Load raw config and env and then resolve their values against
-  // each other since they can cross reference each other
-
-  ;({ config, env } = evaluateConfigAndEnv(
-    {
-      config: mergeDeepRight(initialConfig, config),
-      env
-    },
-    options,
-    context
-  ))
 
   const { modules } = options
   if (modules) {

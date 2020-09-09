@@ -3,7 +3,7 @@ import getStage from './getStage'
 import readConfigFileSync from './readConfigFileSync'
 import resolveStagePath from './resolveStagePath'
 
-const loadConfigFileSync = async (options) => {
+const loadConfigFileSync = (options) => {
   const absoluteStagePath = resolveStagePath(options)
   const configFilePath = findConfigFileAtPathSync(absoluteStagePath)
   if (!configFilePath) {
