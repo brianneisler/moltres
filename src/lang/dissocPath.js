@@ -1,6 +1,6 @@
 import assoc from './assoc'
 import createPath from './createPath'
-import dissocProp from './dissocProp'
+import dissocProperty from './dissocProperty'
 import first from './first'
 import getProp from './getProp'
 import isNil from './isNil'
@@ -31,7 +31,7 @@ import tail from './tail'
  * //=> {a: 1, b: 2}
  */
 const dissocPath = (path, collection) => {
-  if (isString()) {
+  if (isString(path)) {
     path = createPath(path)
   }
   if (size(path) === 0) {
@@ -40,7 +40,7 @@ const dissocPath = (path, collection) => {
 
   const part = first(path)
   if (size(path) === 1) {
-    return dissocProp(part, collection)
+    return dissocProperty(part, collection)
   }
 
   const rest = tail(path)
