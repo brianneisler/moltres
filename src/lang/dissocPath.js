@@ -8,6 +8,28 @@ import isString from './isString'
 import size from './size'
 import tail from './tail'
 
+/**
+ * Makes a shallow clone of an object, removing the specified property. Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.
+ *
+ * Supports path based property selectors 'foo.bar'.
+ *
+ * @function
+ * @since v0.3.0
+ * @category lang
+ * @param {Array | String} selector The property path to delete
+ * @param {Any} collection The collection to clone and remove the given property from
+ * @returns {Any} A new collection equivalent to the original except for the property removed
+ * @example
+ *
+ * dissocPath(['a'], {a: 1, b: 2})
+ * //=> { b: 2 }
+ *
+ * dissocPath('c.d', {a: 1, b: 2, c: { d: 3 }})
+ * //=> {a: 1, b: 2}
+ *
+ * dissocPath([ 'c', 'd' ],{a: 1, b: 2, c: { d: 3 }})
+ * //=> {a: 1, b: 2}
+ */
 const dissocPath = (path, collection) => {
   if (isString()) {
     path = createPath(path)
