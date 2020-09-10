@@ -41,10 +41,6 @@ class Path {
     return new Path(this.path.rest())
   }
 
-  /**
-   * Convert this Path to a name representing it
-   * @returns {string} The name of this `Path`
-   */
   toName() {
     return this.path.join('.')
   }

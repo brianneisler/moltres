@@ -8,5 +8,3 @@ foo:
 ping:
   sensitive: true
   value: 'pong'
-
-

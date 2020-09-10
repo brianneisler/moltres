@@ -1,10 +1,11 @@
 import {
   assocPath,
-  dissocPath,
   equals,
+  getParent,
   hasProperty,
   isObject,
   isString,
+  last,
   map,
   pick,
   reject,
@@ -27,23 +28,33 @@ const UTIL_METHODS = {
 }
 
 // NOTE BRN: This step converts variable strings into variable objects.
-// NOTE BRN: The data object should not have any cicular references so this should be safe to walk without infinite loops.
+// NOTE BRN: The data object should not have any cicular references so this
+// should be safe to walk without infinite loops.
+
+const isValueObject = (value) => isObject(value) && hasProperty('value', value)
+
 const enhanceData = (data, options) =>
   walkReduceDepthFirst(
     (accum, value, pathParts) => {
+      const lastPathPart = last(pathParts)
+      const parentValue = getParent(pathParts, data)
       // NOTE BRN: We drop any path parts that are the key 'value' since those
       // are collapsed during this process.
       pathParts = reject(equals('value'), pathParts)
       // TODO BRN: Break this up into something that is pluggable by core so
       // that anyone can introduce new interpretable values.
       if (isObject(value)) {
-        if (hasProperty('value', value)) {
-          if (value.sensitive && options.dropSensitive) {
-            return dissocPath(pathParts, accum)
-          }
-        }
         return accum
       }
+      if (isValueObject(parentValue)) {
+        if (lastPathPart !== 'value') {
+          return accum
+        }
+        if (parentValue.sensitive && options.dropSensitive) {
+          return accum
+        }
+      }
+
       if (isString(value) && hasVariableString(value)) {
         return assocPath(pathParts, newVariable(value), accum)
       }
