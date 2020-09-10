@@ -131,4 +131,48 @@ describe('evaluateConfigAndEnv', () => {
       }
     })
   })
+
+  it('drops sensitive values when dropSensitive option is set to true', () => {
+    const result = evaluateConfigAndEnv(
+      {
+        config: {
+          foo: {
+            sensitive: true,
+            value: 'bar'
+          }
+        }
+      },
+      {
+        dropSensitive: true
+      }
+    )
+    expect(result).toEqual({
+      config: {}
+    })
+  })
+
+  it('does not include sensitive prop in value object when dropSensitive is false', () => {
+    const result = evaluateConfigAndEnv(
+      {
+        config: {
+          foo: {
+            sensitive: true,
+            value: {
+              bar: 'baz'
+            }
+          }
+        }
+      },
+      {
+        dropSensitive: false
+      }
+    )
+    expect(result).toEqual({
+      config: {
+        foo: {
+          bar: 'baz'
+        }
+      }
+    })
+  })
 })
