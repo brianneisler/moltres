@@ -6,6 +6,7 @@ import {
   isObject,
   isString,
   pick,
+  reject,
   walkReduceDepthFirst
 } from '../../lang'
 import * as lang from '../../lang'
@@ -29,23 +30,25 @@ const UTIL_METHODS = {
 const enhanceData = (data, options) =>
   walkReduceDepthFirst(
     (accum, value, pathParts) => {
+      // NOTE BRN: We drop any path parts that are the key 'value' since those
+      // are collapsed during this process.
+      pathParts = reject(equals('value'), pathParts)
       // TODO BRN: Break this up into something that is pluggable by core so
       // that anyone can introduce new interpretable values.
-
-      // TODO BRN: This has a bug in it where nested value statments won't
-      // properly assoc to the correct place. Need to handle that case...
-      if (isObject(value) && hasProperty('value', value)) {
-        if (value.sensitive && options.dropSensitive) {
-          return dissocPath(pathParts, accum)
+      if (isObject(value)) {
+        if (hasProperty('value', value)) {
+          if (value.sensitive && options.dropSensitive) {
+            return dissocPath(pathParts, accum)
+          }
         }
-        return assocPath(pathParts, value.value, accum)
+        return accum
       }
       if (isString(value) && hasVariableString(value)) {
         return assocPath(pathParts, newVariable(value), accum)
       }
-      return accum
+      return assocPath(pathParts, value, accum)
     },
-    data,
+    {},
     data
   )
 

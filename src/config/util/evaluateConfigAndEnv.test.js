@@ -24,6 +24,34 @@ describe('evaluateConfigAndEnv', () => {
     })
   })
 
+  it('supports arrays', () => {
+    const result = evaluateConfigAndEnv({
+      config: {
+        bar: ['foo', 'bar']
+      }
+    })
+    expect(result).toEqual({
+      config: {
+        bar: ['foo', 'bar']
+      }
+    })
+  })
+
+  it('supports resolving variables in arrays', () => {
+    const result = evaluateConfigAndEnv({
+      config: {
+        bar: ['${this.foo}', 'bar'],
+        foo: 'fooed'
+      }
+    })
+    expect(result).toEqual({
+      config: {
+        bar: ['fooed', 'bar'],
+        foo: 'fooed'
+      }
+    })
+  })
+
   it('flattens single value statements', () => {
     const result = evaluateConfigAndEnv({
       config: {
@@ -39,27 +67,47 @@ describe('evaluateConfigAndEnv', () => {
     })
   })
 
-  // TODO BRN: Fix this bug
-  // it('flattens nested value statements', () => {
-  //   const result = evaluateConfigAndEnv({
-  //     config: {
-  //       bar: {
-  //         value: {
-  //           baz: {
-  //             value: 'bong'
-  //           }
-  //         }
-  //       }
-  //     }
-  //   })
-  //   expect(result).toEqual({
-  //     config: {
-  //       bar: {
-  //         baz: 'bong'
-  //       }
-  //     }
-  //   })
-  // })
+  it('flattens nested value statements', () => {
+    const result = evaluateConfigAndEnv({
+      config: {
+        bar: {
+          value: {
+            baz: {
+              value: 'bong'
+            }
+          }
+        }
+      }
+    })
+    expect(result).toEqual({
+      config: {
+        bar: {
+          baz: 'bong'
+        }
+      }
+    })
+  })
+
+  it('evaluates variables that are contained withing a value statement', () => {
+    const result = evaluateConfigAndEnv({
+      config: {
+        foo: {
+          value: {
+            bar: 'barred',
+            baz: '${this.foo.bar}'
+          }
+        }
+      }
+    })
+    expect(result).toEqual({
+      config: {
+        foo: {
+          bar: 'barred',
+          baz: 'barred'
+        }
+      }
+    })
+  })
 
   it('evaluates variables that point to objects that also have variables', () => {
     const result = evaluateConfigAndEnv({
