@@ -5,6 +5,7 @@ import {
   hasProperty,
   isObject,
   isString,
+  map,
   pick,
   reject,
   walkReduceDepthFirst
@@ -48,10 +49,7 @@ const enhanceData = (data, options) =>
       }
       return assocPath(pathParts, value, accum)
     },
-    {
-      config: {},
-      env: {}
-    },
+    map(() => ({}), data),
     data
   )
 
