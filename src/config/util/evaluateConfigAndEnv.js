@@ -48,7 +48,10 @@ const enhanceData = (data, options) =>
       }
       return assocPath(pathParts, value, accum)
     },
-    {},
+    {
+      config: {},
+      env: {}
+    },
     data
   )
 
