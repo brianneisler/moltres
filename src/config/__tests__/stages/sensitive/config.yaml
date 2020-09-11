@@ -1,0 +1,13 @@
+foo: 'bar'
+
+ping:
+  sensitive: true
+  value: 'pong'
+
+ding:
+  sensitive: true
+  value:
+    dong: 'bong'
+    ring:
+      value: 'wrong'
+

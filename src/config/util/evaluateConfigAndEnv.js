@@ -1,7 +1,9 @@
 import {
+  append,
   assocPath,
   equals,
   getParent,
+  getPath,
   hasProperty,
   isObject,
   isString,
@@ -32,6 +34,22 @@ const UTIL_METHODS = {
 // should be safe to walk without infinite loops.
 
 const isValueObject = (value) => isObject(value) && hasProperty('value', value)
+const isSensitivePath = (pathParts, data) => {
+  let index = 0
+  let currentPath = []
+  while (index < pathParts.length) {
+    const part = pathParts[index]
+    if (part === 'value') {
+      const value = getPath(currentPath, data)
+      if (value.sensitive) {
+        return true
+      }
+    }
+    currentPath = append(part, currentPath)
+    index += 1
+  }
+  return false
+}
 
 const enhanceData = (data, options) =>
   walkReduceDepthFirst(
@@ -40,7 +58,7 @@ const enhanceData = (data, options) =>
       const parentValue = getParent(pathParts, data)
       // NOTE BRN: We drop any path parts that are the key 'value' since those
       // are collapsed during this process.
-      pathParts = reject(equals('value'), pathParts)
+      const collapsedPathParts = reject(equals('value'), pathParts)
       // TODO BRN: Break this up into something that is pluggable by core so
       // that anyone can introduce new interpretable values.
       if (isObject(value)) {
@@ -50,15 +68,14 @@ const enhanceData = (data, options) =>
         if (lastPathPart !== 'value') {
           return accum
         }
-        if (parentValue.sensitive && options.dropSensitive) {
-          return accum
-        }
       }
-
+      if (options.dropSensitive && isSensitivePath(pathParts, data)) {
+        return accum
+      }
       if (isString(value) && hasVariableString(value)) {
-        return assocPath(pathParts, newVariable(value), accum)
+        return assocPath(collapsedPathParts, newVariable(value), accum)
       }
-      return assocPath(pathParts, value, accum)
+      return assocPath(collapsedPathParts, value, accum)
     },
     map(() => ({}), data),
     data
