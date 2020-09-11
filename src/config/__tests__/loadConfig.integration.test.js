@@ -174,4 +174,35 @@ describe('loadConfig', () => {
       ping: 'pong'
     })
   })
+
+  it('should drop all sensitive values when dropSensitive is strue including nested values', async () => {
+    const result = await loadConfig({
+      cwd: __dirname,
+      dropSensitive: true,
+      stage: 'sensitive',
+      target: 'cli'
+    })
+
+    expect(result).toEqual({
+      foo: 'bar'
+    })
+  })
+
+  it('should retain all sensitive values when dropSensitive is false', async () => {
+    const result = await loadConfig({
+      cwd: __dirname,
+      dropSensitive: false,
+      stage: 'sensitive',
+      target: 'cli'
+    })
+
+    expect(result).toEqual({
+      ding: {
+        dong: 'bong',
+        ring: 'wrong'
+      },
+      foo: 'bar',
+      ping: 'pong'
+    })
+  })
 })

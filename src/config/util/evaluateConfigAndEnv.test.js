@@ -151,6 +151,30 @@ describe('evaluateConfigAndEnv', () => {
     })
   })
 
+  it('drops nested values in parent sensitive values when dropSensitive option is set to true', () => {
+    const result = evaluateConfigAndEnv(
+      {
+        config: {
+          foo: {
+            sensitive: true,
+            value: {
+              bar: {
+                value: 'baz'
+              },
+              dong: 'bong'
+            }
+          }
+        }
+      },
+      {
+        dropSensitive: true
+      }
+    )
+    expect(result).toEqual({
+      config: {}
+    })
+  })
+
   it('does not include sensitive prop in value object when dropSensitive is false', () => {
     const result = evaluateConfigAndEnv(
       {
