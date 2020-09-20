@@ -39,7 +39,7 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
 
     ;({ config, env } = evaluateConfigAndEnv(
       {
-        config: mergeDeepRight(initialConfig, config),
+        config: mergeDeepRight(initialConfig, config || {}),
         env
       },
       options,

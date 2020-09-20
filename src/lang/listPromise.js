@@ -12,7 +12,10 @@ const listPromise = (values = []) => {
   }
 
   promise.resolve = function () {
-    Promise.resolve(all(this.promises))
+    if (this.promises.length === 0) {
+      return resolve(this.promises)
+    }
+    return Promise.resolve(all(this.promises))
       .then((results) => {
         resolve(results)
       })

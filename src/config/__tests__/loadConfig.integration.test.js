@@ -43,7 +43,9 @@ describe('loadConfig', () => {
         bar: 'barred',
         baz: 'bopity'
       },
-      ping: 'pong'
+      ping: 'pong',
+      stage: 'test',
+      target: 'cli'
     })
   })
 
@@ -100,7 +102,10 @@ describe('loadConfig', () => {
       target: 'cli'
     })
 
-    expect(result).toEqual({})
+    expect(result).toEqual({
+      stage: 'test',
+      target: 'cli'
+    })
   })
 
   it('should drop sensitive values when dropSensitive is true', async () => {
@@ -118,7 +123,9 @@ describe('loadConfig', () => {
       foo: {
         bar: 'barred',
         baz: 'bopity'
-      }
+      },
+      stage: 'test',
+      target: 'cli'
     })
   })
 
@@ -143,7 +150,9 @@ describe('loadConfig', () => {
         bar: 'barred',
         baz: 'bopity'
       },
-      ping: 'pong'
+      ping: 'pong',
+      stage: 'test',
+      target: 'cli'
     })
   })
 
@@ -171,7 +180,9 @@ describe('loadConfig', () => {
         bar: 'barred',
         baz: 'bopity'
       },
-      ping: 'pong'
+      ping: 'pong',
+      stage: 'test',
+      target: 'cli'
     })
   })
 
@@ -184,7 +195,9 @@ describe('loadConfig', () => {
     })
 
     expect(result).toEqual({
-      foo: 'bar'
+      foo: 'bar',
+      stage: 'sensitive',
+      target: 'cli'
     })
   })
 
@@ -202,7 +215,9 @@ describe('loadConfig', () => {
         ring: 'wrong'
       },
       foo: 'bar',
-      ping: 'pong'
+      ping: 'pong',
+      stage: 'sensitive',
+      target: 'cli'
     })
   })
 })
