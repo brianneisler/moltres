@@ -19,6 +19,11 @@ Status](https://travis-ci.com/brianneisler/moltres.svg)](https://travis-ci.com/b
 [![NPM](https://nodei.co/npm/moltres.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/moltres/)
 
 
+## Documentation
+
+[Full API documentation](docs/API.md) - Learn about each method
+
+
 ## Getting Started
 
 Setup your firebase application on https://firebase.google.com/
