@@ -37,6 +37,8 @@ import resolveWith from './resolveWith'
  */
 const all = curry(
   resolveWith((value) => {
+    // TODO BRN :When this method receives an empty Array or empty anything, it
+    // will not return a Promise so anything attaching using .then will break
     let result
     if (isArray(value) || isIterator(value)) {
       result = []

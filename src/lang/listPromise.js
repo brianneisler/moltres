@@ -12,7 +12,7 @@ const listPromise = (values = []) => {
   }
 
   promise.resolve = function () {
-    all(this.promises)
+    Promise.resolve(all(this.promises))
       .then((results) => {
         resolve(results)
       })
