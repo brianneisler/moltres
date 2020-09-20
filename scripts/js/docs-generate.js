@@ -20,7 +20,7 @@ import pack from '../../package.json'
 
 import { reduceObjIndexed } from './utils'
 
-const GIT_URL = pack.repository.url
+const GIT_URL = pack.repository.url.replace('.git', '')
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
 const CURRENT_VERSION = pack.version

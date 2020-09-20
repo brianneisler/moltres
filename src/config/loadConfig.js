@@ -1,15 +1,18 @@
 // TODO: Split this function into different versions based on ios, android and web
 // import env from 'react-native-config'
-import { mergeDeepRight } from '../lang'
+import { merge, mergeDeepRight } from '../lang'
 
 import evaluateConfigAndEnv from './util/evaluateConfigAndEnv'
+import getStage from './util/getStage'
 import getTarget from './util/getTarget'
 import updateEnv from './util/updateEnv'
 import validateConfig from './util/validateConfig'
 
 const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
+  const stage = getStage(options)
   const target = getTarget(options)
 
+  initialConfig = merge({ stage, target }, initialConfig)
   let config
   let env
   if (target === 'web') {
@@ -36,7 +39,7 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
 
     ;({ config, env } = evaluateConfigAndEnv(
       {
-        config: mergeDeepRight(initialConfig, config),
+        config: mergeDeepRight(initialConfig, config || {}),
         env
       },
       options,
