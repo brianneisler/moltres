@@ -15,18 +15,19 @@
   "bin": {
     "moltres": "./bin/moltres"
   },
-  "main": "./index.module.js",
+  "main": "./index.js",
+  "module": "./index.module.js",
   "exports": {
-    "./config": "./dist/config/index.js",
-    "./error": "./dist/error/index.js",
-    "./fs": "./dist/fs/index.js",
-    "./lang": "./dist/lang/index.js",
-    "./path": "./dist/path/index.js",
-    "./process": "./dist/process/index.js",
-    "./request": "./dist/request/index.js",
-    "./schema": "./dist/schema/index.js",
-    "./test": "./dist/test/index.js",
-    "./zip": "./dist/zip/index.js",
+    "./config": "./src/config/index.js",
+    "./error": "./src/error/index.js",
+    "./fs": "./src/fs/index.js",
+    "./lang": "./src/lang/index.js",
+    "./path": "./src/path/index.js",
+    "./process": "./src/process/index.js",
+    "./request": "./src/request/index.js",
+    "./schema": "./src/schema/index.js",
+    "./test": "./src/test/index.js",
+    "./zip": "./src/zip/index.js",
     "./package.json": "./package.json"
   },
   "engines": {

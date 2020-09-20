@@ -10,7 +10,7 @@ const {
   ensureDirectory,
   pathExists,
   unzipAllTo
-} = require('../index')
+} = require('../index.bin')
 
 program
   .description('initialize a new project')
