@@ -2,7 +2,7 @@
 
 const program = require('commander')
 
-const { loadConfig, processSpawn } = require('../index')
+const { loadConfig, processSpawn } = require('../index.bin')
 
 program
   .description('run a script')
