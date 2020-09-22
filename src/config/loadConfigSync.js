@@ -45,7 +45,9 @@ const loadConfigSync = (options = {}, initialConfig = {}, context = {}) => {
   if (modules) {
     validateConfig(modules, config)
   }
-  updateEnv(env)
+  if (target !== 'web') {
+    updateEnv(env)
+  }
 
   return config
 }

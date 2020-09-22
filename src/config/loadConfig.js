@@ -23,7 +23,6 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
       ? JSON.parse(process.env.MOLTRES_CONFIG)
       : {}
     env = process.env.MOLTRES_ENV ? JSON.parse(process.env.MOLTRES_ENV) : {}
-
     // NOTE BRN: We do not need to evaluate this config because it should have
     // already been evaluated at webpack time.
   } else {
@@ -51,7 +50,9 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
   if (modules) {
     validateConfig(modules, config)
   }
-  updateEnv(env)
+  if (target !== 'web') {
+    updateEnv(env)
+  }
 
   return config
 }

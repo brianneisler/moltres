@@ -1,5 +1,5 @@
 const getStage = (options = {}) => {
-  return process.env.STAGE || options.stage
+  return options.stage || process.env.STAGE
 }
 
 export default getStage
