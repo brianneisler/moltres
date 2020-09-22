@@ -1,5 +1,5 @@
 const getTarget = (options = {}) => {
-  return process.env.TARGET || options.target
+  return options.target || process.env.TARGET
 }
 
 export default getTarget
