@@ -3,20 +3,20 @@ import isFunction from './isFunction'
 import isNil from './isNil'
 import isUndefined from './isUndefined'
 
-const getProp = curry((prop, value) => {
-  if (isUndefined(prop) || prop === '$') {
+const getProperty = curry((property, value) => {
+  if (isUndefined(property) || property === '$') {
     return value
   }
-  if (isFunction(prop)) {
-    return prop(value)
+  if (isFunction(property)) {
+    return property(value)
   }
   if (isNil(value)) {
     return undefined
   }
   if (isFunction(value.get)) {
-    return value.get(prop)
+    return value.get(property)
   }
-  return value[prop]
+  return value[property]
 })
 
-export default getProp
+export default getProperty

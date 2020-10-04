@@ -1,6 +1,6 @@
 import curry from './curry'
-import getProp from './getProp'
+import getProperty from './getProperty'
 
-const propOf = curry((value, name) => getProp(name, value))
+const propOf = curry((value, name) => getProperty(name, value))
 
 export default propOf

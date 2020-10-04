@@ -1,4 +1,4 @@
-import { concat, getProp, keys, omit, values } from '../../lang'
+import { concat, getProperty, keys, omit, values } from '../../lang'
 
 import matchVariable from './matchVariable'
 
@@ -11,7 +11,7 @@ const evaluateVariableString = (variableString, data, context = {}) => {
 
   const resolvedExpression = evaluateVariableString(expression, data)
 
-  const self = getProp('this', data)
+  const self = getProperty('this', data)
   data = omit(['this'], data)
 
   const params = concat(keys(data), Object.keys(context))

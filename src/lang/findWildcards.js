@@ -2,7 +2,7 @@ import assoc from './assoc'
 import { ImmutableMap } from './classes'
 import createPath from './createPath'
 import equals from './equals'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import isFunction from './isFunction'
 import isSelector from './isSelector'
 import isWildcard from './isWildcard'
@@ -21,9 +21,9 @@ const findWildcards = (selector, wildcards = ImmutableMap([])) => {
     (accum, name, index) => {
       if (isWildcard(name)) {
         const basePath = slice(0, index, selector)
-        const existing = getProp(name, accum)
+        const existing = getProperty(name, accum)
         if (existing) {
-          if (!equals(getProp('basePath', existing), basePath)) {
+          if (!equals(getProperty('basePath', existing), basePath)) {
             throw new Error(
               `wild cards with the same name must have the same basePath`
             )

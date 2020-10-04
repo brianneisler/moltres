@@ -1,7 +1,7 @@
 import assoc from './assoc'
 import { ImmutableMap } from './classes'
 import curry from './curry'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import isImmutableMap from './isImmutableMap'
 import keys from './keys'
 import reduce from './reduce'
@@ -19,7 +19,7 @@ const omit = curry((names, collection) => {
   return reduce(
     (result, key) => {
       if (!index.hasOwnProperty(key)) {
-        return assoc(key, getProp(key, collection), result)
+        return assoc(key, getProperty(key, collection), result)
       }
       return result
     },

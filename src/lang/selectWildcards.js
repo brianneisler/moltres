@@ -5,7 +5,7 @@ import containsWildcard from './containsWildcard'
 import curry from './curry'
 import findWildcards from './findWildcards'
 import getPath from './getPath'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import head from './head'
 import isFunction from './isFunction'
 import isNil from './isNil'
@@ -23,8 +23,8 @@ import values from './values'
 const sortWildcards = (wildcards) =>
   sort(
     (itemA, itemB) =>
-      toStringPath(getProp('basePath', itemA)) >
-      toStringPath(getProp('basePath', itemB)),
+      toStringPath(getProperty('basePath', itemA)) >
+      toStringPath(getProperty('basePath', itemB)),
     values(wildcards)
   )
 
@@ -33,8 +33,8 @@ const reduceWildcard = (wildcards, wildValues, results, state) => {
     return results
   }
   const wildcard = head(wildcards)
-  let basePath = getProp('basePath', wildcard)
-  const name = getProp('name', wildcard)
+  let basePath = getProperty('basePath', wildcard)
+  const name = getProperty('name', wildcard)
   if (containsWildcard(basePath)) {
     try {
       basePath = replaceWildcards(wildValues, basePath)

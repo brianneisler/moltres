@@ -1,5 +1,5 @@
 import curry from './curry'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import hasProperty from './hasProperty'
 import identical from './identical'
 import keys from './keys'
@@ -44,10 +44,10 @@ const shallowEquals = curry((objA, objB) => {
   // Test for A's keys different from B.
   for (let i = 0; i < keysA.length; i++) {
     if (
-      !hasProperty(getProp(i, keysA), objB) ||
+      !hasProperty(getProperty(i, keysA), objB) ||
       !identical(
-        getProp(getProp(i, keysA), objA),
-        getProp(getProp(i, keysA), objB)
+        getProperty(getProperty(i, keysA), objA),
+        getProperty(getProperty(i, keysA), objB)
       )
     ) {
       return false
