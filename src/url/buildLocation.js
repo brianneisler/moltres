@@ -1,26 +1,47 @@
-import { cleanse, isEmpty, isFunction, isObject, isString, omit } from '../lang'
+import { assocProperty, isFunction, isObject, isString } from '../lang'
 
+import formatHash from './formatHash'
+import formatHost from './formatHost'
+import formatHostname from './formatHostname'
+import formatHref from './formatHref'
+import formatOrigin from './formatOrigin'
+import formatPassword from './formatPassword'
+import formatPathname from './formatPathname'
+import formatPort from './formatPort'
+import formatProtocol from './formatProtocol'
+import formatQuery from './formatQuery'
 import formatSearch from './formatSearch'
+import formatUsername from './formatUsername'
 import parseURL from './parseURL'
+
+const formatLocation = (location) => {
+  const result = {
+    hash: formatHash(location),
+    host: formatHost(location),
+    hostname: formatHostname(location),
+    href: formatHref(location),
+    origin: formatOrigin(location),
+    password: formatPassword(location),
+    pathname: formatPathname(location),
+    port: formatPort(location),
+    protocol: formatProtocol(location),
+    query: formatQuery(location),
+    search: formatSearch(location),
+    username: formatUsername(location)
+  }
+  if (location.state) {
+    return assocProperty('state', location.state, result)
+  }
+  return result
+}
 
 const buildLocation = (value) => {
   if (isString(value)) {
-    return parseURL(value)
+    return buildLocation(parseURL(value))
   } else if (isFunction(value)) {
     return (...args) => buildLocation(value(...args))
   } else if (isObject(value)) {
-    let { query, ...location } = value
-    if (query) {
-      query = cleanse(query)
-      location = omit(['search'], location)
-      if (!isEmpty(query)) {
-        location = {
-          ...location,
-          search: formatSearch(query)
-        }
-      }
-    }
-    return location
+    return formatLocation(value)
   }
 
   throw new TypeError(
