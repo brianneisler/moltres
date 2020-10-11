@@ -172,7 +172,7 @@
 
 ### **private** function evaluate()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/config/util/evaluate.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/config/util/evaluate.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Evaluates a value.</p>
 <p>Dispatches to the <code>evaluate</code> method if it exists. If an evaluate method returns<br />
 a value that is also evaluate, this method will evaluate that value as<br />
@@ -205,7 +205,7 @@ evaluate({
 
 ### **private** function matchVariable()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/config/util/matchVariable.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/config/util/matchVariable.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Accepts a string and attempts to find a variable string match</p>
 
 **Params**
@@ -223,7 +223,7 @@ evaluate({
 
 ### function all()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/all.js#L9)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/all.js#L9)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
 <p>Resolves all async values in an array or object</p>
 <p>Auto curried for placeholder support.</p>
 
@@ -256,7 +256,7 @@ await all(123) //=> 123
 
 ### function allWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/allWith.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.13
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/allWith.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.13
 <p>Resolves all async values in an array or object and executes the given with the result</p>
 <p>Auto curried for placeholder support.</p>
 
@@ -299,7 +299,7 @@ allWith(
 
 ### function defn()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/defn.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/defn.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
 <p>Defines a function with a few predefined behaviours. Functions defined with this method will...</p>
 <ul>
 <li><a href="#curry">curry</a></li>
@@ -331,7 +331,7 @@ get('a', obj) //=> 'bar'
 
 ### function dispatchable()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/dispatchable.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/dispatchable.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
 <p>Returns a function that dispatches with different strategies based on the object in list position (last argument). If it is an array, executes [fn].</p>
 <p>Otherwise, it will default to executing [fn].</p>
 
@@ -359,7 +359,7 @@ get('a', obj) //=> 'bar'
 
 ### function nArySpread()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/nArySpread.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/nArySpread.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
 <p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
 
 **Params**
@@ -390,7 +390,7 @@ takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
 
 ### function resolveWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/resolveWith.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/resolveWith.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Resolves a value to the given method.</p>
 <p>If the value to be resolved is a promise then this method will return a promise. The fn method will be triggered once the promise resolves.</p>
 <p>If the value to be resolved is a generator, this method will return a generator.</p>
@@ -420,7 +420,7 @@ resolveWith(
 
 ### function assoc()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/assoc.js#L26)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/assoc.js#L26)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Makes a shallow clone of an object, setting or overriding the specified property with the given value. Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.</p>
 <p>Supports path based property selectors 'foo.bar' and functional selectors which performs an over on the entire collection and sets each matching selector to the given value.</p>
 
@@ -442,7 +442,7 @@ assoc([ 'c', 'd' ], 3, {a: 1, b: 2}) //=> {a: 1, b: 2, c: { d: 3 }}
 
 ### function compose()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/compose.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compose.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Performs right-to-left function composition. The rightmost function may have any arity; the remaining functions must be unary.</p>
 <p><strong>Note:</strong> The result of compose is not automatically curried.</p>
 
@@ -465,7 +465,7 @@ compose(Math.abs, add(1), multiply(2))(-4) //=> 7
 
 ### function dissocPath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/dissocPath.js#L11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/dissocPath.js#L11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Makes a shallow clone of an object, removing the specified property. Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.</p>
 <p>Supports path based property selectors 'foo.bar'.</p>
 
@@ -491,7 +491,7 @@ dissocPath([ 'c', 'd' ],{a: 1, b: 2, c: { d: 3 }})
 
 ### function externalPromise()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/externalPromise.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/externalPromise.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Creates a promise with the resolve and reject methods exposed as properties<br />
 on the promise.</p>
 
@@ -511,7 +511,7 @@ promise.resolve(someValue)
 
 ### function find()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/find.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/find.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns the first element of the collection which matches the predicate, or<br />
 <code>undefined</code> if no element matches.</p>
 <p>Dispatches to the <code>find</code> method of the collection argument, if present.</p>
@@ -539,7 +539,7 @@ find(propEq('a', 4))(xs)
 
 ### function findAtIndex()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/findAtIndex.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/findAtIndex.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns the first element of the list which matches the predicate, or <code>undefined</code> if no element matches starting at the given index.</p>
 <p>Dispatches to the <code>findAtIndex</code> method of the last argument, if present.</p>
 <p>Supports async predicates. If a predicate returns a Promise than the entire method will upgrade to async and return a Promise.</p>
@@ -563,7 +563,7 @@ findAtIndex(propEq('a', 2), 2)(xs) //=> undefined
 
 ### function getParent()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/getParent.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/getParent.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Retrieve the parent value from a given path. The parent value is the value immediately before the last path part.</p>
 <p>Paths can be defined by a string an array. The path parameter also accepts a function that will be used as a selector against the data.</p>
 
@@ -595,7 +595,7 @@ getParent('a[0]', {a: [ 1, 2 ]})
 
 ### function isPlainFunction()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/isPlainFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/isPlainFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Checks if <code>any</code> is plain function. A plain function is not an AsyncFunction and not a GeneratorFunction</p>
 
 **Params**
@@ -622,7 +622,7 @@ isPlainFunction(function* () {})
 
 ### function nth()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/nth.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/nth.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns the nth element of the given list or string. If n is negative the<br />
 element at index length + n is returned.</p>
 
@@ -647,7 +647,7 @@ nth(3, 'abc') //=> ''
 
 ### function op()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/op.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/op.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Creates an op object that can be yielded by a generator and intercepted/executed by any generator middleware</p>
 
 **Params**
@@ -660,7 +660,7 @@ nth(3, 'abc') //=> ''
 
 ### function pipe()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/pipe.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/pipe.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Performs left-to-right function composition. The leftmost function may have<br />
 any arity; the remaining functions must be unary.</p>
 <p>In some libraries this function is named <code>sequence</code>.</p>
@@ -682,7 +682,7 @@ f(3, 4) // -(3^4) + 1
 
 ### function reduceRight()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/reduceRight.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/reduceRight.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a single item by iterating through the collection, successively calling the iterator function and passing it an accumulator value,  the current value and the index or key from the collection, and then passing the result to the next call.</p>
 <p>Similar to <a href="#reduce"><code>reduce</code></a>, except moves through the input list from the right to the left.</p>
 <p>The iterator function receives three values: <em>(acc, value, kdx)</em>.</p>
@@ -716,7 +716,7 @@ reduceRight(subtract, 0, [1, 2, 3, 4]) // => (1 - (2 - (3 - (4 - 0)))) = -2
 
 ### function resolve()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/resolve.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.9
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/resolve.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.9
 <p>Resolves a value to its valueOf.</p>
 <p>Dispatches to the <code>resolve</code> method if it exists. If a resolve method returns a value that is also resolvable, this method will resolve that value as well.</p>
 
@@ -754,7 +754,7 @@ resolve({
 
 ### function resolveToGenerator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/resolveToGenerator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.16
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/resolveToGenerator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.16
 <p>Resolves a value to a generator using the generator to yield values.</p>
 
 **Params**
@@ -772,7 +772,7 @@ generator.next() //=> { value: 'foo', done: true }
 
 ### function shallowEquals()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/shallowEquals.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/shallowEquals.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Performs equality by iterating through keys on an object and returning false when any key has values which are not strictly equal between the arguments. Returns true when the values of all keys are strictly equal.</p>
 
 **Params**
@@ -792,7 +792,7 @@ shallowEquals({ a: 1, b: 2, c: 3 }, { a: 1, b: 2 }) //=> false
 
 ### **private** function anyIsSymbol()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsSymbol.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsSymbol.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>Symbol</code> primitive or object.</p>
 
 **Params**
@@ -819,7 +819,7 @@ anyIsSymbol('abc')
 
 ### function walk()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/walk.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walk.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
 <p>Walk using the given walkee and iteratee functions.</p>
 
 **Params**
@@ -862,7 +862,7 @@ console.log(result)
 
 ### **private** function _Array()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Array.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Array.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>The JavaScript Array object is a global object that is used in the construction of arrays; which are high-level, list-like objects.</p>
 
 **Params**
@@ -879,7 +879,7 @@ console.log(result)
 
 ### class _Boolean
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Boolean.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Boolean.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>The Boolean object is an object wrapper for a boolean value.</p>
 
 **Class**: `_Boolean`
@@ -893,7 +893,7 @@ Boolean(false)
 
 ### class _Function
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Function.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Function.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>The Function constructor creates a new Function object. Calling the constructor directly can create functions dynamically, but suffers from security and similar (but far less significant) performance issues to eval. However, unlike eval, the Function constructor creates functions which execute in the global scope only.</p>
 
 **Class**: `_Function`
@@ -906,7 +906,7 @@ Boolean(false)
 
 ### class Seq
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Seq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Seq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Seq describes a lazy operation, allowing them to efficiently chain use of all the higher-order collection methods (such as map and filter) by not creating intermediate collections.</p>
 <pre><code>type Seq&lt;K, V&gt; extends Collection&lt;K, V&gt;
 </code></pre>
@@ -961,7 +961,7 @@ Range(1, Infinity)
 
 ### class ImmutableList
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableList.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableList.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableList`
@@ -974,7 +974,7 @@ Range(1, Infinity)
 
 ### class ImmutableMap
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableMap`
@@ -987,7 +987,7 @@ Range(1, Infinity)
 
 ### class ImmutableOrderedMap
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableOrderedMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableOrderedMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableOrderedMap`
@@ -1000,7 +1000,7 @@ Range(1, Infinity)
 
 ### class ImmutableOrderedSet
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableOrderedSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableOrderedSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableOrderedSet`
@@ -1013,7 +1013,7 @@ Range(1, Infinity)
 
 ### class ImmutableSet
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableSet`
@@ -1026,7 +1026,7 @@ Range(1, Infinity)
 
 ### class ImmutableStack
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/ImmutableStack.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/ImmutableStack.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `ImmutableStack`
@@ -1039,7 +1039,7 @@ Range(1, Infinity)
 
 ### class Key
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Key.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Key.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 
 
 **Class**: `Key`
@@ -1052,7 +1052,7 @@ Range(1, Infinity)
 
 ### class Op
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Op.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Op.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Note: This class is <strong>immutable</strong></p>
 <p>This class represents an Op which can be yielded and executed by Generator middleware</p>
 
@@ -1062,7 +1062,7 @@ Range(1, Infinity)
 
 ### class Path
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/classes/Path.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Path.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Note: This class is <strong>immutable</strong></p>
 <p>This class represents a Path of one or more Propeties, Keys and Indexes</p>
 
@@ -1074,7 +1074,7 @@ Range(1, Infinity)
 
 ### function compact()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/compact.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.10
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compact.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.10
 <p>Creates an array with all nil values removed.</p>
 
 **Params**
@@ -1092,7 +1092,7 @@ compact([0, 1, false, 2, null, '', 3, undefined])
 
 ### function get()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/get.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/get.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
 <p>Retrieve the value at a given path.</p>
 <p>Paths can be defined by a string an array. The path parameter also accepts a function that will be used as a selector against the data.</p>
 
@@ -1127,7 +1127,7 @@ get('[0]', [ 1, 2 ])
 
 ### function getParentPath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/getParentPath.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/getParentPath.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Retrieve the parent value from a given path. The parent value is the value immediately before the last path part.</p>
 
 **Params**
@@ -1146,7 +1146,7 @@ getParentPath(['a', 'b'], {c: {b: 2}}); //=> undefined
 
 ### function init()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/init.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.5
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/init.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.5
 <p>Returns all but the last element of the given list or string.</p>
 
 **Params**
@@ -1171,7 +1171,7 @@ init('')     //=> ''
 
 ### function walkReduceDepthFirst()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/walkReduceDepthFirst.js#L33)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReduceDepthFirst.js#L33)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
 <p>Walk depth first and reduce using the given reducer function</p>
 <p>NOTE: This method will resolve values during the walk before iterating and walking them.</p>
 
@@ -1216,7 +1216,7 @@ walkReduceDepthFirst(
 
 ### function walkReducePath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/walkReducePath.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReducePath.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
 <p>Walk reduce the specific path using the given reducer function</p>
 <p>NOTE: This method will resolve values during the walk before walking them. However, the unresolved value will be delivered to the iteratee.</p>
 
@@ -1260,7 +1260,7 @@ walkReducePath(
 
 ### **private** function anyIsArguments()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsArguments.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsArguments.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is likely an <code>arguments</code> object.</p>
 
 **Params**
@@ -1281,7 +1281,7 @@ anyIsArguments([1, 2, 3])
 
 ### **private** function anyIsArray()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsArray.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsArray.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as an <code>Array</code> object.</p>
 
 **Params**
@@ -1308,7 +1308,7 @@ anyIsArray(noop)
 
 ### **private** function anyIsArrayBuffer()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsArrayBuffer.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsArrayBuffer.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as an <code>ArrayBuffer</code> object.</p>
 
 **Params**
@@ -1329,7 +1329,7 @@ anyIsArrayBuffer(new Array(2))
 
 ### **private** function anyIsArrayLike()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsArrayLike.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsArrayLike.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is array-like. A value is considered array-like if it's not a function and has a <code>value.length</code> that's an integer greater than or equal to <code>0</code> and less than or equal to <code>Number.MAX_SAFE_INTEGER</code>.</p>
 
 **Params**
@@ -1356,7 +1356,7 @@ anyIsArrayLike(Function)
 
 ### **private** function anyIsBoolean()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsBoolean.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsBoolean.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>value</code> is classified as a boolean primitive or object.</p>
 
 **Params**
@@ -1377,7 +1377,7 @@ anyIsBoolean(null)
 
 ### **private** function anyIsBuffer()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsBuffer.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsBuffer.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is a buffer.</p>
 
 **Params**
@@ -1398,7 +1398,7 @@ anyIsBuffer(new Uint8Array(2))
 
 ### **private** function anyIsDate()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsDate.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsDate.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>Date</code> object.</p>
 
 **Params**
@@ -1419,7 +1419,7 @@ anyIsDate('Mon April 23 2012')
 
 ### **private** function anyIsError()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsError.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsError.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is an <code>Error</code>, <code>EvalError</code>, <code>RangeError</code>, <code>ReferenceError</code>, <code>SyntaxError</code>, <code>TypeError</code>, or <code>URIError</code> object.</p>
 
 **Params**
@@ -1440,7 +1440,7 @@ anyIsError(Error)
 
 ### **private** function anyIsFunction()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>Function</code> object.</p>
 
 **Params**
@@ -1461,7 +1461,7 @@ anyIsFunction(/abc/)
 
 ### **private** function anyIsGenerator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsGenerator.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsGenerator.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks whether the given value is a generator.</p>
 
 **Params**
@@ -1485,7 +1485,7 @@ anyIsGenerator({
 
 ### **private** function anyIsGeneratorFunction()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsGeneratorFunction.js#L17)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsGeneratorFunction.js#L17)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks whether a function is generator function.</p>
 
 **Params**
@@ -1506,7 +1506,7 @@ anyIsGeneratorFunction(function() {})
 
 ### **private** function anyIsImmutableCollection()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableCollection.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableCollection.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableCollection</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1536,7 +1536,7 @@ anyIsImmutableCollection(ImmutableStack())
 
 ### **private** function anyIsImmutableList()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableList.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableList.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableList</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1566,7 +1566,7 @@ anyIsImmutableList(ImmutableStack())
 
 ### **private** function anyIsImmutableMap()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableMap</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1596,7 +1596,7 @@ anyIsImmutableMap(ImmutableStack())
 
 ### **private** function anyIsImmutableOrderedMap()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableOrderedMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableOrderedMap.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableOrderedMap</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1629,7 +1629,7 @@ anyIsImmutableOrderedMap(ImmutableOrderedMap())
 
 ### **private** function anyIsImmutableOrderedSet()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableOrderedSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableOrderedSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableOrderedSet</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1665,7 +1665,7 @@ anyIsImmutableOrderedSet(ImmutableOrderedSet())
 
 ### **private** function anyIsImmutableSet()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableSet.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableSet</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1695,7 +1695,7 @@ anyIsImmutableSet(ImmutableStack())
 
 ### **private** function anyIsImmutableStack()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsImmutableStack.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsImmutableStack.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is an <code>ImmutableStack</code>, or any of its subclasses.</p>
 
 **Params**
@@ -1725,7 +1725,7 @@ anyIsImmutableStack(ImmutableStack())
 
 ### **private** function anyIsIndex()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsIndex.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsIndex.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>value</code> is a valid array-like index.</p>
 
 **Params**
@@ -1749,7 +1749,7 @@ anyIsIndex(-1)
 
 ### **private** function anyIsIndexedIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsIndexedIterator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsIndexedIterator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is an IndexedIterator. An IndexedIterator is classified as having a property named <code>next</code> that is a plain function and a property named <code>getIndex</code> that is a plain function.</p>
 
 **Params**
@@ -1773,7 +1773,7 @@ anyIsIndexedIterator(array[Symbol.iterator])
 
 ### **private** function anyIsInfinity()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsInfinity.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsInfinity.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is <code>Infinity</code> or <code>-Infinity</code>.</p>
 
 **Params**
@@ -1803,7 +1803,7 @@ anyIsInfinity(123)
 
 ### **private** function anyIsInteger()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsInteger.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsInteger.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Determine if the given value is an integer.</p>
 
 **Params**
@@ -1839,7 +1839,7 @@ anyIsInteger('3')
 
 ### **private** function anyIsIterable()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsIterable.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsIterable.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> implements the iterator symbol or is iterable</p>
 
 **Params**
@@ -1866,7 +1866,7 @@ anyIsIterable([])
 
 ### **private** function anyIsIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsIterator.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsIterator.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is an <code>Iterator</code>. An <code>Iterator</code> is classified as having a property named <code>next</code> that is a function.</p>
 <p>Note, this method returns <code>true</code> for async Iterators.</p>
 
@@ -1891,7 +1891,7 @@ anyIsIterator({
 
 ### **private** function anyIsKey()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsKey.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsKey.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is a key.</p>
 
 **Params**
@@ -1934,7 +1934,7 @@ anyIsKey({})
 
 ### **private** function anyIsKeyedIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsKeyedIterator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsKeyedIterator.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is a KeyedIterator. A KeyedIterator is classified as having a<br />
 property named <code>next</code> that is a plain function and a property named <code>getKey</code><br />
 that returns the current key.</p>
@@ -1965,7 +1965,7 @@ anyIsKeyedIterator({
 
 ### **private** function anyIsLength()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsLength.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsLength.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is an integer that can be a lngth for an array like value</p>
 
 **Params**
@@ -1998,7 +1998,7 @@ anyIsLength(MAX_SAFE_INTEGER + 1)
 
 ### **private** function anyIsMap()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsMap.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsMap.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>value</code> is classified as a <code>Map</code> object.</p>
 
 **Params**
@@ -2017,7 +2017,7 @@ anyIsMap(new WeakMap) // => false
 
 ### **private** function anyIsNaN()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsNaN.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsNaN.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is <code>NaN</code>.</p>
 <p><strong>Note:</strong> This method is based on <a href="https://mdn.io/Number/isNaN"><code>Number.isNaN</code></a> and is not the same as global <a href="https://mdn.io/isNaN"><code>isNaN</code></a> which returns <code>true</code> for <code>undefined</code> and other non-number values.</p>
 
@@ -2042,7 +2042,7 @@ anyIsNaN(undefined)
 
 ### **private** function anyIsNil()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsNil.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsNil.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is <code>null</code> or <code>undefined</code>.</p>
 
 **Params**
@@ -2066,7 +2066,7 @@ anyIsNil(NaN)
 
 ### **private** function anyIsNull()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsNull.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsNull.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is <code>null</code>.</p>
 
 **Params**
@@ -2087,7 +2087,7 @@ anyIsNull(void 0)
 
 ### **private** function anyIsNumber()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsNumber.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsNumber.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>value</code> is classified as a <code>Number</code> primitive or object.</p>
 <p><strong>Note:</strong> To exclude <code>Infinity</code>, <code>-Infinity</code>, and <code>NaN</code>, which are<br />
 classified as numbers, use the <code>Number.isFinite</code> method.</p>
@@ -2116,7 +2116,7 @@ anyIsNumber('3')
 
 ### **private** function anyIsObject()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsObject.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsObject.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is the<br />
 <a href="http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types">language type</a><br />
 of <code>Object</code>. (e.g. arrays, functions, objects, regexes, <code>new Number(0)</code>, and <code>new String('')</code>)</p>
@@ -2145,7 +2145,7 @@ anyIsObject(null)
 
 ### **private** function anyIsObjectLike()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsObjectLike.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsObjectLike.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is object-like. A value is object-like if it's not <code>null</code> and has a <code>typeof</code> result of &quot;object&quot;.</p>
 
 **Params**
@@ -2172,7 +2172,7 @@ anyIsObjectLike(null)
 
 ### **private** function anyIsObserver()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsObserver.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsObserver.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
 <p>Checks whether the given value is an Observer.</p>
 
 **Params**
@@ -2197,7 +2197,7 @@ anyIsObserver({})
 
 ### **private** function anyIsOp()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsOp.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsOp.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Determines if <code>any</code> is an Op.</p>
 
 **Params**
@@ -2220,7 +2220,7 @@ anyIsOp({
 
 ### **private** function anyIsPath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsPath.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsPath.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is a Path.</p>
 
 **Params**
@@ -2271,7 +2271,7 @@ anyIsPath({})
 
 ### **private** function anyIsPlainFunction()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsPlainFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsPlainFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Checks if <code>any</code> is plain function. A plain function is not an AsyncFunction and not a GeneratorFunction</p>
 
 **Params**
@@ -2298,7 +2298,7 @@ anyIsPlainFunction(function* () {})
 
 ### **private** function anyIsPlainObject()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsPlainObject.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsPlainObject.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>value</code> is a plain object, that is, an object created by the<br />
 <code>Object</code> constructor or one with a <code>[[Prototype]]</code> of <code>null</code>.</p>
 
@@ -2330,7 +2330,7 @@ anyIsPlainObject(Object.create(null))
 
 ### **private** function anyIsPromise()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsPromise.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsPromise.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks whether the given value is a Promise.</p>
 
 **Params**
@@ -2351,7 +2351,7 @@ anyIsPromise({ then: () => {} }) //=> true
 
 ### **private** function anyIsProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsProperty.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsProperty.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is a Property</p>
 
 **Params**
@@ -2399,7 +2399,7 @@ anyIsProperty({})
 
 ### **private** function anyIsRegExp()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsRegExp.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsRegExp.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>RegExp</code> object.</p>
 
 **Params**
@@ -2420,7 +2420,7 @@ anyIsRegExp('/abc/')
 
 ### **private** function anyIsResolved()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsResolved.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsResolved.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Determines if <code>any</code> is a resolvable value.</p>
 
 **Params**
@@ -2458,7 +2458,7 @@ anyIsResolved('abc')
 
 ### **private** function anyIsSeq()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsSeq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsSeq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns <code>true</code> if <code>any</code> is a <code>Seq</code>.</p>
 
 **Params**
@@ -2485,7 +2485,7 @@ anyIsSeq(Seq())
 
 ### **private** function anyIsSet()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsSet.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsSet.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>Set</code> object.</p>
 
 **Params**
@@ -2506,7 +2506,7 @@ anyIsSet(new WeakSet())
 
 ### **private** function anyIsString()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsString.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsString.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>String</code> primitive or object.</p>
 
 **Params**
@@ -2530,7 +2530,7 @@ anyIsString(1)
 
 ### **private** function anyIsUndefined()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsUndefined.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsUndefined.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is <code>undefined</code>.</p>
 
 **Params**
@@ -2551,7 +2551,7 @@ anyIsUndefined(null)
 
 ### **private** function isWeakMap()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsWeakMap.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsWeakMap.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>WeakMap</code> object.</p>
 
 **Params**
@@ -2572,7 +2572,7 @@ isWeakMap(new Map())
 
 ### **private** function anyIsWeakSet()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIsWeakSet.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsWeakSet.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks if <code>any</code> is classified as a <code>WeakSet</code> object.</p>
 
 **Params**
@@ -2593,7 +2593,7 @@ anyIsWeakSet(new Set())
 
 ### **private** function anyIterate()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIterate.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIterate.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method iterates over the given collection or iterator in <strong>series</strong>. If the <code>iteratee</code> method returns <code>{ done: true }</code> then the iteration will complete.</p>
 <p>This method automatically upgrades to async. If the <code>iteratee</code> returns a Promise or a generator, this method will return a Promise or a generator. Values are iterated in order and if the iteratee returns a resolvable value the iteration will wait until that value resolves before continuing with the iteration.</p>
 <p>This method also supports async iterators. If an unresolved value is received from the iterator instead of an object with <code>value</code> and <code>done</code> properties, the iteration will wait for the value to resolve before continuing to the next iteration. This will also cause the method to upgrade to async and return a Promise.</p>
@@ -2629,7 +2629,7 @@ anyIterate(['a', 'b', 'c'], async (value, kdx) => new Promise((resolve, reject) 
 
 ### **private** function anyIterateRight()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyIterateRight.js#L40)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIterateRight.js#L40)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method iterates over the given collection or iterator in <strong>series</strong>. If the <code>iteratee</code> method returns <code>{ done: true }</code> then the iteration will complete.</p>
 <p>This method automatically upgrades to async. If the <code>iteratee</code> returns a Promise or a generator, this method will return a Promise or a generator. Values are iterated in order and if the iteratee returns a resolvable value the iteration will wait until that value resolves before continuing with the iteration.</p>
 <p>This method also supports async iterators. If an unresolved value is received from the iterator instead of an object with <code>value</code> and <code>done</code> properties, the iteration will wait for the value to resolve before continuing to the next iteration. This will also cause the method to upgrade to async and return a Promise.</p>
@@ -2665,7 +2665,7 @@ anyIterateRight(async (value, kdx) => new Promise((resolve, reject) => {
 
 ### **private** function anyResolve()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyResolve.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyResolve.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves a value.</p>
 <p>If the value is a <code>Promise</code>, this will return a Promise that will then resolve<br />
 the returned value.</p>
@@ -2700,7 +2700,7 @@ anyResolve({
 
 ### **private** function anyResolveToGenerator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyResolveToGenerator.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyResolveToGenerator.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves a value to a generator using the generator to yield values.</p>
 
 **Params**
@@ -2719,7 +2719,7 @@ generator.next()
 
 ### **private** function anyResolveToGeneratorWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyResolveToGeneratorWith.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyResolveToGeneratorWith.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves a value to a generator using the generator to yield values. When the<br />
 generator is complete the fn method is executed with the final result.</p>
 
@@ -2745,7 +2745,7 @@ generator.next()
 
 ### **private** function anyResolveWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyResolveWith.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyResolveWith.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves a value to the given method.</p>
 <p>If the value to be resolved is a promise then this method will return a promise. The fn method will be triggered once the promise resolves.</p>
 <p>If the value to be resolved is a generator, this method will return a generator.</p>
@@ -2775,7 +2775,7 @@ anyResolveWith(
 
 ### **private** function anyToFinite()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToFinite.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToFinite.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Converts <code>any</code> to a finite number.</p>
 
 **Params**
@@ -2802,7 +2802,7 @@ anyToFinite('3.2')
 
 ### **private** function anyToInteger()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToInteger.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToInteger.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Converts <code>any</code> to an Integer.</p>
 <p><strong>Note:</strong> This method is loosely based on<br />
 <a href="http://www.ecma-international.org/ecma-262/7.0/#sec-tointeger"><code>ToInteger</code></a>.</p>
@@ -2831,7 +2831,7 @@ anyToInteger('3.2')
 
 ### **private** function anyToIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToIterator.js#L14)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToIterator.js#L14)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method generates an iterator for the given value</p>
 
 **Params**
@@ -2856,7 +2856,7 @@ anyToIterator({ a: 1, b: 2, c: 3 })
 
 ### **private** function anyToNumber()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToNumber.js#L22)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToNumber.js#L22)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Converts <code>any</code> to a <code>Number</code>.</p>
 
 **Params**
@@ -2883,7 +2883,7 @@ anyToNumber('3.2')
 
 ### **private** function anyToPath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToPath.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToPath.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
 <p>Casts a value to an array path.</p>
 
 **Params**
@@ -2901,7 +2901,7 @@ anyToPath('a.b.c')
 
 ### **private** function anyToStringTag()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/anyToStringTag.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyToStringTag.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Gives a single-word string description of the (native) type of a value,<br />
 returning such answers as 'Object', 'Number', 'Array', or 'Null'. Does not<br />
 attempt to distinguish user Object types any further, reporting them all as<br />
@@ -2946,7 +2946,7 @@ anyToStringTag(undefined)
 
 ### **private** function arrayClone()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayClone.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayClone.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Clones the given <code>array</code></p>
 
 **Params**
@@ -2959,7 +2959,7 @@ anyToStringTag(undefined)
 
 ### **private** function arrayConcat()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayConcat.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayConcat.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Concat an <code>Array</code> with one or more <code>Array</code>s.</p>
 
 **Params**
@@ -2984,7 +2984,7 @@ arrayConcat(['a', 'b', 'c'], 1, [2, 3])
 
 ### **private** function arrayDifference()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayDifference.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayDifference.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns an <code>Array</code> of all elements in the first <code>Array</code> not contained in the<br />
 second <code>Array</code>.</p>
 
@@ -3010,7 +3010,7 @@ arrayConcat(['a', 'b', 'c'], 1, [2, 3])
 
 ### **private** function arrayFilter()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayFilter.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayFilter.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
 <p>This method creates a new <code>Array</code> with all elements that pass the test implemented by the provided function.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">Array.prototype.filter()</a> for more information</p>
 
@@ -3034,7 +3034,7 @@ console.log(result)
 
 ### **private** function arrayFlatten()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayFlatten.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayFlatten.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a new array by pulling every item out of it (and all its sub-arrays) and putting them in a new array, depth-first.</p>
 
 **Params**
@@ -3052,7 +3052,7 @@ arrayFlatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]])
 
 ### **private** function arrayForEach()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayForEach.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayForEach.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method executes a provided function once for each array element.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a> for more information</p>
 
@@ -3077,7 +3077,7 @@ for (let i=0; i<items.length; i++) {
 
 ### **private** function arrayGetIndex()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayGetIndex.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayGetIndex.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a value from the Array stored at the specified Index.</p>
 
 **Params**
@@ -3101,7 +3101,7 @@ arrayGetIndex(array, 1)
 
 ### **private** function arrayKeys()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayKeys.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayKeys.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method returns a new Array Iterator object that contains the keys for each index in the array.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/keys">Array.prototype.keys()</a> for more information</p>
 
@@ -3127,7 +3127,7 @@ for (const key of iterator) {
 
 ### **private** function arrayLikeReduce()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayLikeReduce.js#L45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayLikeReduce.js#L45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Reduces over an <code>ArrayLike</code> value</p>
 
 **Params**
@@ -3143,7 +3143,7 @@ for (const key of iterator) {
 
 ### **private** function arrayLikeSlice()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayLikeSlice.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayLikeSlice.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a shallow copy of a portion of an array into a new array object<br />
 selected from begin to end (end not included). The original array will not<br />
 be modified.</p>
@@ -3165,7 +3165,7 @@ arrayLikeSlice(['a', 'b', 'c'], 0, 2)
 
 ### **private** function arrayLikeToIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/arrayLikeToIterator.js#L30)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/arrayLikeToIterator.js#L30)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns iterator for an array like value.</p>
 
 **Params**
@@ -3212,7 +3212,7 @@ arrayLikeToIterator('tests')
 
 ### **private** function cacheChain()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/cacheChain.js#L46)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/cacheChain.js#L46)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method generates a specific object instance for use in a WeakMap cache.<br />
 The object instance is unique based upon the parameters that are passed to<br />
 the this method.</p>
@@ -3236,7 +3236,7 @@ cache chains connected to the object will automatically be removed from the cach
 
 ### **private** function functionDefineLength()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/functionDefineLength.js#L58)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/functionDefineLength.js#L58)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Defines <code>length</code> for the given <code>func</code></p>
 <p>Note: This mutates <code>func</code></p>
 
@@ -3257,7 +3257,7 @@ result.length
 
 ### **private** function functionMemoize()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/functionMemoize.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/functionMemoize.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Creates a new function that, when invoked, caches the result of calling<br />
 <code>func</code> for a given argument set and returns the result. Subsequent calls to<br />
 the memoized <code>func</code> with the same argument set will not result in an additional<br />
@@ -3293,7 +3293,7 @@ count
 
 ### **private** function functionMemoizeWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/functionMemoizeWith.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/functionMemoizeWith.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>A customisable version of <a href="#functionMemoize"><code>functionMemoize</code></a>.<br />
 <code>functionMemoizeWith</code> takes an additional function that will be applied to a<br />
 given argument set and used to create the cache key under which the results<br />
@@ -3332,7 +3332,7 @@ count
 
 ### **private** function functionToString()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/functionToString.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/functionToString.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a string representing the function.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString">Function.prototype.toString()</a> for more information</p>
 
@@ -3349,7 +3349,7 @@ functionToString(function () {})<br />
 
 ### **private** function generatorResolveToGeneratorWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/generatorResolveToGeneratorWith.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/generatorResolveToGeneratorWith.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves a Generator to a Generator yielding all values of the Generator to<br />
 the new one.</p>
 
@@ -3369,7 +3369,7 @@ generator.next()
 
 ### **private** function indexEndOffset()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/indexEndOffset.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/indexEndOffset.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Generate a start index with an offset where if the start is less than 0 it will return an offset from the length of <code>length + start</code></p>
 
 **Params**
@@ -3394,7 +3394,7 @@ indexEndOffset(-1, 3)
 
 ### **private** function iteratorResolver()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/iteratorResolver.js#L108)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/iteratorResolver.js#L108)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns iterator capable of resolving iterators that might be async, wrapping it in additional functionality.</p>
 
 **Params**
@@ -3428,7 +3428,7 @@ iteratorResolver(
 
 ### **private** function iteratorToArray()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/iteratorToArray.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/iteratorToArray.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method converts an <code>Iterator</code> into an <code>Array</code></p>
 
 **Params**
@@ -3445,7 +3445,7 @@ iteratorResolver(
 
 ### **private** function mapDeleteKey()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/mapDeleteKey.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/mapDeleteKey.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Deletes a <code>Key</code> from a <code>Map</code>. Returns a new copy of the <code>Map</code> with the <code>Key</code><br />
 removed.</p>
 
@@ -3460,7 +3460,7 @@ removed.</p>
 
 ### **private** function mapGetKey()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/mapGetKey.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/mapGetKey.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method returns an element from a Map object stored at the given Key.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has">Map.prototype.has()</a> for more information</p>
 
@@ -3485,7 +3485,7 @@ mapGetKey(map, 'baz')
 
 ### **private** function mapHasKey()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/mapHasKey.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/mapHasKey.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method returns a boolean indicating whether an element with the specified key exists or not.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has">Map.prototype.has()</a> for more information</p>
 
@@ -3507,7 +3507,7 @@ mapHasKey(map, 'foo')
 
 ### **private** function mapSetKey()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/mapSetKey.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/mapSetKey.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Deletes a <code>Key</code> from a <code>Map</code>. Returns a new copy of the <code>Map</code> with the <code>Key</code><br />
 removed.</p>
 
@@ -3523,7 +3523,7 @@ removed.</p>
 
 ### **private** function objectAssign()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectAssign.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectAssign.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will return the target object.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> for more information</p>
 
@@ -3554,7 +3554,7 @@ objectAssign(object1, {c: 4, d: 5})
 
 ### **private** function objectClone()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectClone.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectClone.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>This method is used to copy the values of all enumerable own properties from<br />
 one object to a new object.</p>
 
@@ -3586,7 +3586,7 @@ objectCopy === object
 
 ### **private** function objectDefineProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectDefineProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectDefineProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Defines a new property directly on an object, or modifies an existing property on an object, and returns the object.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> for more information</p>
 
@@ -3614,7 +3614,7 @@ object1.property1<br />
 
 ### **private** function objectDeleteProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectDeleteProperty.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectDeleteProperty.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Removes a property from an Object. Returns a copy of the object with the<br />
 Property removed.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete">delete operator</a> for more information</p>
@@ -3639,7 +3639,7 @@ object.foo<br />
 
 ### **private** function objectGetOwnPropertyDescriptor()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectGetOwnPropertyDescriptor.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectGetOwnPropertyDescriptor.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a property descriptor for an own property</p>
 
 **Params**
@@ -3671,7 +3671,7 @@ objectGetOwnPropertyDescriptor(object, 'foo')
 
 ### **private** function objectGetOwnPropertySymbols()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectGetOwnPropertySymbols.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectGetOwnPropertySymbols.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns an array of all symbol properties found directly upon a given object.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols()</a> for more information</p>
 
@@ -3696,7 +3696,7 @@ console.log(objectSymbols.length)<br />
 
 ### **private** function objectGetProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectGetProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectGetProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a value from the Object stored at the specified Property.</p>
 
 **Params**
@@ -3716,7 +3716,7 @@ objectGetProperty(object, &#39;bar&#39;)<br />
 
 ### **private** function objectHasOwnProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectHasOwnProperty.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectHasOwnProperty.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.hasOwnProperty()</a> for more information</p>
 
@@ -3743,7 +3743,7 @@ objectHasOwnProperty(object, &#39;hasOwnProperty&#39;)<br />
 
 ### **private** function objectKeys()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectKeys.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectKeys.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a list containing the names of all the enumerable own properties of the supplied object.<br />
 Note that the order of the output array is not guaranteed to be consistent across different JS platforms.</p>
 <p>Note: known bugs with the Object.keys method are addressed using the core-js polyfill provided by babel</p>
@@ -3763,7 +3763,7 @@ objectKeys({a: 1, b: 2, c: 3})
 
 ### **private** function objectMutateDeleteProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectMutateDeleteProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectMutateDeleteProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
 <p>Mutably removes a property from an Object.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete">delete operator</a> for more information</p>
 
@@ -3787,7 +3787,7 @@ object.foo<br />
 
 ### **private** function objectMutateSetProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectMutateSetProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectMutateSetProperty.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
 <p>Mutably sets a <code>Property</code> on an <code>Object</code></p>
 
 **Params**
@@ -3812,7 +3812,7 @@ object.foo<br />
 
 ### **private** function objectMutateUpdateProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectMutateUpdateProperty.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectMutateUpdateProperty.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.2.0
 <p>Updates a <code>Property</code> on an <code>Object</code></p>
 
 **Params**
@@ -3838,7 +3838,7 @@ object.foo<br />
 
 ### **private** function objectSetProperty()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectSetProperty.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectSetProperty.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Sets a <code>Property</code> on an <code>Object</code> and returns a copy of the <code>Object</code> with the<br />
 <code>Property</code> set. If the property's value is set to the same value, then the<br />
 same instance of Object will be returned with no changes.</p>
@@ -3865,7 +3865,7 @@ object.foo<br />
 
 ### **private** function objectToIterator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectToIterator.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectToIterator.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns iterator for an object's keys and values.</p>
 <p>Note, iterates over object's own keys and symbols</p>
 
@@ -3907,7 +3907,7 @@ iter.next()
 
 ### **private** function objectToString()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/objectToString.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/objectToString.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns a string representing the object.</p>
 <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString()</a> for more information</p>
 
@@ -3924,7 +3924,7 @@ objectToString({</code> - )<br />
 
 ### **private** function reflectOwnKeys()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/reflectOwnKeys.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/reflectOwnKeys.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns an array of the target object's own property keys. Its return value is equivalent to <code>Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))</code>.</p>
 <p>Note: known bugs with the Reflect.ownKeys method or lack of support are addressed using the core-js polyfill provided by babel</p>
 
@@ -3943,7 +3943,7 @@ reflectOwnKeys([]) // ["length"]
 
 ### **private** function stringSubstring()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/stringSubstring.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/stringSubstring.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Returns the part of the string between the start and end indexes, or to the end of the string.</p>
 <p>Note: known bugs with the <code>String.prototype.substring</code> method or lack of support are addressed using the core-js polyfill provided by babel</p>
 
@@ -3967,7 +3967,7 @@ stringSubstring('abc', 1)
 
 ### **private** function unresolvedResolveToGenerator()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/unresolvedResolveToGenerator.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/unresolvedResolveToGenerator.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves an unresolved value to a generator using the generator to yield values.</p>
 
 **Params**
@@ -3986,7 +3986,7 @@ generator.next()
 
 ### **private** function unresolvedResolveWith()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/lang/util/unresolvedResolveWith.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/unresolvedResolveWith.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Resolves an unresolved value to the given method.</p>
 <p>If the value to be resolved is a promise then this method will return a promise. The fn method will be triggered once the promise resolves.</p>
 <p>If the value to be resolved is a generator, this method will return a generator.</p>
@@ -4012,7 +4012,7 @@ await unresolvedResolveWith(
 
 ### function fetch()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/request/fetch.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/request/fetch.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Fetch provides a generic definition of Request and Response objects (and other things involved with network requests). This will allow them to be used wherever they are needed in the future, whether it’s for service workers, Cache API and other similar things that handle or modify requests and responses, or any kind of use case that might require you to generate your own responses programmatically.</p>
 <p>See the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> API docs for more information.</p>
 <p>Auto curried with placeholder support</p>
@@ -4034,7 +4034,7 @@ const data = await response.json()
 
 ### function formatURL()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/url/formatURL.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.0
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/url/formatURL.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.0
 <ol>
 <li>Initially, an empty string (‘’ say result) is created and then following parameters are looked for in order.</li>
 <li>urlObject.protocol: string<br />
