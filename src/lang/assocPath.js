@@ -3,7 +3,7 @@ import ImmutableList from './classes/ImmutableList'
 import ImmutableMap from './classes/ImmutableMap'
 import createPath from './createPath'
 import first from './first'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import hasProperty from './hasProperty'
 import isImmutable from './isImmutable'
 import isInteger from './isInteger'
@@ -21,14 +21,14 @@ const getNextCollection = (collection, part, parts) => {
   if (
     !isNil(collection) &&
     hasProperty(part, collection) &&
-    isObject(getProp(part, collection))
+    isObject(getProperty(part, collection))
   ) {
-    return getProp(part, collection)
+    return getProperty(part, collection)
   }
   if (isNil(collection)) {
     return {}
   }
-  if (isInteger(getProp(1, parts))) {
+  if (isInteger(getProperty(1, parts))) {
     if (isImmutable(collection)) {
       return new ImmutableList()
     }

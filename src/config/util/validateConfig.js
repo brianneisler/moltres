@@ -1,12 +1,12 @@
 import { expected } from '../../error'
-import { forEach, getProp } from '../../lang'
+import { forEach, getProperty } from '../../lang'
 import { validateSchema } from '../../schema'
 
 const validateConfig = (modules, config) => {
   forEach((mod, name) => {
     if (mod.configSchema) {
       try {
-        validateSchema(mod.configSchema, getProp(name, config))
+        validateSchema(mod.configSchema, getProperty(name, config))
       } catch (error) {
         // TOOD BRN: Use schema.describe to convert this into a more useful
         // error message that displays the expected shape of the config for this
@@ -17,7 +17,7 @@ const validateConfig = (modules, config) => {
         // )
         throw expected({
           code: 'ConfigMissing',
-          data: getProp(name, config),
+          data: getProperty(name, config),
           message: `Config missing for module '${name}'. ${error.message}`
         })
       }

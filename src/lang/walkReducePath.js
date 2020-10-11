@@ -1,6 +1,6 @@
 import append from './append'
 import curry from './curry'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import isObject from './isObject'
 import pipe from './pipe'
 import resolve from './resolve'
@@ -14,7 +14,7 @@ const reduceWalkee = (iteratee, pathParts, accum, value, keys, recur) =>
     (result) => {
       const resolvedValue = resolve(value)
       if (size(pathParts) > size(keys) && isObject(resolvedValue)) {
-        const nextKey = getProp(keys.length, pathParts)
+        const nextKey = getProperty(keys.length, pathParts)
         const newKeys = append(nextKey, keys)
         value = resolve(value)
         return recur(

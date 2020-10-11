@@ -163,6 +163,8 @@
   * [**private** function unresolvedResolveWith()](#private-function-unresolvedresolvewith)
 - [request](#request)
   * [function fetch()](#function-fetch)
+- [url](#url)
+  * [function formatURL()](#function-formaturl)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (METHODS) -->
@@ -4026,6 +4028,56 @@ await unresolvedResolveWith(
 const response = await fetch('http://example.com/movies.json')
 const data = await response.json()
 ```
+<br /><br />
+
+## url
+
+### function formatURL()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.3.9/src/url/formatURL.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.0
+<ol>
+<li>Initially, an empty string (‘’ say result) is created and then following parameters are looked for in order.</li>
+<li>urlObject.protocol: string<br />
+If urlObject.protocol is a string it is appended to the result else if not undefined and not a string then Error is thrown.<br />
+If urlObject.protocol do not end with ASCII colon ( : ) then, the literal ‘:’ is appended to the result.</li>
+<li>urlObject.slashes: boolean<br />
+If either of the following property is true, then literals ‘//’ are appended to the result:<br />
+urlObject.slashes is true.<br />
+urlObject.protocol is http, https, ftp, gopher, or file, then slashes will be automatically true even if slashes is false.</li>
+<li>urlObject.auth: string<br />
+If the urlObject.auth is not undefined and urlObject.host or urlObject.hostname is also not undefined then auth is appended to the result with literal ‘@’ irrespective of whether the literal ‘@’ present or not at the end.</li>
+<li>urlObject.host: string<br />
+If urlObject.host is a string it is appended to the result else if not undefined and not a string then Error is thrown.<br />
+If it is undefined then urlObject.hostname is considered.</li>
+<li>urlObject.hostname: string<br />
+If urlObject.hostname is a string it is appended to the result else if not undefined and not a string then Error is thrown.<br />
+If both host and hostname are defined then host will be given considered.</li>
+<li>urlObject.port: (number | string)<br />
+If hostname is considered and urlObject.port is defined then literal ‘:’ will be appended to the result along with urlObject.port.</li>
+<li>urlObject.pathname: string} value<br />
+If urlObject.pathname is a string but not empty string and not starting with literal ‘/’, then literal ‘/’ is appended to the result.<br />
+urlObject.pathname is appended to the result.<br />
+Else UrlObject.pathname is not a string then Error is thrown.</li>
+<li>urlObject.search: string<br />
+If urlObject.search is a string but not empty string and not starting with literal ‘?’, then literal ‘?’ is appended to the result.<br />
+urlObject.search is appended to the result.<br />
+If urlObject.search is not a string then Error is thrown.</li>
+<li>urlObject.query: Object<br />
+If urlObject.query is an Object then literal ‘?’ is appended to the result along with output of calling the querystring module’s stringify() method passing the value of urlObject.query.<br />
+If both urlObject.search and urlObject.query are defined then urlObject.search will only be considered.</li>
+<li>urlObject.hash: string<br />
+If urlObject.hash is a string but not empty string and not starting with literal ‘#’, then literal ‘#’ is appended to the result.<br />
+urlObject.hash is appended to the result.<br />
+Else urlObject.hash is not a string and is not undefined then Error is thrown.</li>
+<li>Finally, the result is returned.</li>
+</ol>
+
+**Params**
+<p><code>value</code>: <code>Object|Function</code> - </p>
+
+**Returns**
+<br /><p><code>String</code> - A formatted URL string</p>
+
 <br /><br />
 
 

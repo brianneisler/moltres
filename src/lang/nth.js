@@ -1,5 +1,5 @@
 import curry from './curry'
-import getProp from './getProp'
+import getProperty from './getProperty'
 import isString from './isString'
 import size from './size'
 
@@ -25,7 +25,7 @@ import size from './size'
  */
 const nth = curry((offset, list) => {
   const idx = offset < 0 ? size(list) + offset : offset
-  return isString(list) ? list.charAt(idx) : getProp(idx, list)
+  return isString(list) ? list.charAt(idx) : getProperty(idx, list)
 })
 
 export default nth
