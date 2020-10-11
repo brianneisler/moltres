@@ -12,6 +12,7 @@ describe('assocLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -25,6 +26,7 @@ describe('assocLocationQuery', () => {
         foo: 'bar'
       },
       search: '?foo=bar',
+      slashes: false,
       username: ''
     })
   })
@@ -42,6 +44,7 @@ describe('assocLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -55,6 +58,7 @@ describe('assocLocationQuery', () => {
         foo: 'bip'
       },
       search: '?foo=bip',
+      slashes: false,
       username: ''
     })
   })
@@ -72,6 +76,7 @@ describe('assocLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -86,6 +91,7 @@ describe('assocLocationQuery', () => {
         foo: 'bar'
       },
       search: '?foo=bar&bar=baz',
+      slashes: false,
       username: ''
     })
   })

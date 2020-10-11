@@ -11,6 +11,7 @@ describe('omitLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -22,6 +23,7 @@ describe('omitLocationQuery', () => {
       protocol: '',
       query: {},
       search: '',
+      slashes: false,
       username: ''
     })
   })
@@ -38,6 +40,7 @@ describe('omitLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -49,6 +52,7 @@ describe('omitLocationQuery', () => {
       protocol: '',
       query: {},
       search: '',
+      slashes: false,
       username: ''
     })
   })
@@ -66,6 +70,7 @@ describe('omitLocationQuery', () => {
         })
       )
     ).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -79,6 +84,7 @@ describe('omitLocationQuery', () => {
         foo: 'bar'
       },
       search: '?foo=bar',
+      slashes: false,
       username: ''
     })
   })

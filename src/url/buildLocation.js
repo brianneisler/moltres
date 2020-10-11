@@ -1,5 +1,6 @@
 import { assocProperty, isFunction, isObject, isString } from '../lang'
 
+import formatAuth from './formatAuth'
 import formatHash from './formatHash'
 import formatHost from './formatHost'
 import formatHostname from './formatHostname'
@@ -11,11 +12,13 @@ import formatPort from './formatPort'
 import formatProtocol from './formatProtocol'
 import formatQuery from './formatQuery'
 import formatSearch from './formatSearch'
+import formatSlashes from './formatSlashes'
 import formatUsername from './formatUsername'
 import parseURL from './parseURL'
 
 const formatLocation = (location) => {
   const result = {
+    auth: formatAuth(location),
     hash: formatHash(location),
     host: formatHost(location),
     hostname: formatHostname(location),
@@ -27,6 +30,7 @@ const formatLocation = (location) => {
     protocol: formatProtocol(location),
     query: formatQuery(location),
     search: formatSearch(location),
+    slashes: formatSlashes(location),
     username: formatUsername(location)
   }
   if (location.state) {

@@ -1,7 +1,6 @@
 const formatAuth = ({ password, username }) => {
-  let auth = null
+  let auth = ''
   if (username) {
-    auth = ''
     auth += username
     if (password) {
       auth += `:${password}`

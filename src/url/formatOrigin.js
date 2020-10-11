@@ -1,19 +1,12 @@
 import formatProtocol from './formatProtocol'
+import formatSlashes from './formatSlashes'
 
-const formatOrigin = ({ host, hostname, port, protocol, slashes }) => {
+const formatOrigin = (location) => {
+  const { host, hostname, port, protocol } = location
   let origin = ''
   if (protocol) {
-    const formattedProtocol = formatProtocol({ protocol })
-    origin += formattedProtocol
-    if (
-      slashes ||
-      formattedProtocol === 'http:' ||
-      formattedProtocol === 'https:' ||
-      formattedProtocol === 'ftp:' ||
-      formattedProtocol === 'ftps:' ||
-      formattedProtocol === 'gopher:' ||
-      formattedProtocol === 'file:'
-    ) {
+    origin += formatProtocol(location)
+    if (formatSlashes(location)) {
       origin += '//'
     }
   }

@@ -3,6 +3,7 @@ import buildLocation from './buildLocation'
 describe('buildLocation', () => {
   test('buildLocation from protocol only', () => {
     expect(buildLocation('https://')).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -14,12 +15,14 @@ describe('buildLocation', () => {
       protocol: 'https:',
       query: {},
       search: '',
+      slashes: true,
       username: ''
     })
   })
 
   test('buildLocation from basic url with protocol', () => {
     expect(buildLocation('https://wat.app')).toEqual({
+      auth: '',
       hash: '',
       host: 'wat.app',
       hostname: 'wat.app',
@@ -31,6 +34,7 @@ describe('buildLocation', () => {
       protocol: 'https:',
       query: {},
       search: '',
+      slashes: true,
       username: ''
     })
   })
@@ -38,6 +42,7 @@ describe('buildLocation', () => {
   test('buildLocation from basic url with protocol and username password', () => {
     const location = buildLocation('https://duck:quack@wat.app')
     expect(location).toEqual({
+      auth: 'duck:quack',
       hash: '',
       host: 'wat.app',
       hostname: 'wat.app',
@@ -49,6 +54,7 @@ describe('buildLocation', () => {
       protocol: 'https:',
       query: {},
       search: '',
+      slashes: true,
       username: 'duck'
     })
   })
@@ -58,6 +64,7 @@ describe('buildLocation', () => {
       'https://wat-dev.com/wat/xbRf7k4euvo1QirancLP'
     )
     expect(location).toEqual({
+      auth: '',
       hash: '',
       host: 'wat-dev.com',
       hostname: 'wat-dev.com',
@@ -69,6 +76,7 @@ describe('buildLocation', () => {
       protocol: 'https:',
       query: {},
       search: '',
+      slashes: true,
       username: ''
     })
   })
@@ -78,6 +86,7 @@ describe('buildLocation', () => {
       () => 'https://wat-dev.com/wat/xbRf7k4euvo1QirancLP'
     )
     expect(builder()).toEqual({
+      auth: '',
       hash: '',
       host: 'wat-dev.com',
       hostname: 'wat-dev.com',
@@ -89,6 +98,7 @@ describe('buildLocation', () => {
       protocol: 'https:',
       query: {},
       search: '',
+      slashes: true,
       username: ''
     })
   })
@@ -103,6 +113,7 @@ describe('buildLocation', () => {
       }
     })
     expect(location).toEqual({
+      auth: '',
       hash: '',
       host: 'wat-dev.com',
       hostname: 'wat-dev.com',
@@ -116,6 +127,7 @@ describe('buildLocation', () => {
         foo: 'bar'
       },
       search: '?foo=bar',
+      slashes: true,
       username: ''
     })
   })
@@ -125,6 +137,7 @@ describe('buildLocation', () => {
       pathname: '/foo'
     })
     expect(location).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -136,6 +149,7 @@ describe('buildLocation', () => {
       protocol: '',
       query: {},
       search: '',
+      slashes: false,
       username: ''
     })
   })
@@ -148,6 +162,7 @@ describe('buildLocation', () => {
       }
     })
     expect(location).toEqual({
+      auth: '',
       hash: '',
       host: '',
       hostname: '',
@@ -159,6 +174,7 @@ describe('buildLocation', () => {
       protocol: '',
       query: {},
       search: '',
+      slashes: false,
       state: {
         foo: 'bar'
       },
