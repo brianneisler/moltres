@@ -68,7 +68,7 @@ import { Seq as baseSeq } from 'immutable'
  * @private
  * @class
  * @since v0.1.0
- * @category lang.class
+ * @category lang.classes
  * @param {Any} value
  * @returns {Seq} A new Seq
  * @example

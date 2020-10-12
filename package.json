@@ -18,6 +18,7 @@
   "main": "./index.js",
   "module": "./index.module.js",
   "exports": {
+    ".": "./index.module.js",
     "./config": "./src/config/index.js",
     "./error": "./src/error/index.js",
     "./fs": "./src/fs/index.js",

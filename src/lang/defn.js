@@ -12,7 +12,7 @@ import nArySpread from './nArySpread'
  *
  * @function
  * @since v0.0.3
- * @category common
+ * @category lang
  * @sig defn(
  *   name: string,
  *   fn: (*) => any

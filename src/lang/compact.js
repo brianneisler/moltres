@@ -7,7 +7,7 @@ import reject from './reject'
  *
  * @function
  * @since v0.0.10
- * @category data
+ * @category lang
  * @param {Array} array The array to compact.
  * @returns {Array} Returns the new array of filtered values.
  * @example

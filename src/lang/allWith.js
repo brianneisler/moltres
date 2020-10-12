@@ -9,7 +9,7 @@ import resolveWith from './resolveWith'
  *
  * @function
  * @since v0.0.13
- * @category common
+ * @category lang
  * @param {Function} fn The function to execute at the end of the resolution
  * @param {*} value The array or object whose values should be resolved. If value is not an object or array, the value is simply resolved to itself
  * @returns {*} The array or object with its values resolved

@@ -8,6 +8,7 @@
  * @param {Object} object The object on which to get the property.
  * @param {Property} property The Property to get.
  * @returns {Any} The value at the specified property. Undefined if the Object does not have the property.
+ * @example
  *
  * const object = { foo: 42 }
  *

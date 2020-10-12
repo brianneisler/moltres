@@ -10,7 +10,7 @@ import { anyResolveWith } from './util'
  *
  * @function
  * @since v0.3.0
- * @category common
+ * @category lang
  * @param {Function} fn The function to execute at the end of the resolution
  * @param {*} value The value to resolve with the generator
  * @returns {Generator}
