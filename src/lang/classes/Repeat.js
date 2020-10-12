@@ -6,7 +6,7 @@ import Immutable from 'immutable'
  * @private
  * @class
  * @since v0.1.0
- * @category lang.class
+ * @category lang.classes
  * @param {Any} value The value to repeat
  * @param {?Number} times The number of times to repeat the value (defaults to Infinity)
  * @returns {Seq.Indexed} A new Indexed Seq

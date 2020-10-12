@@ -14,6 +14,7 @@ const { hasOwnProperty } = Object.prototype
  * @param {Object} object The object on which to check for the property.
  * @param {Property} property The String name or symbol of the property to test.
  * @returns {Boolean} A boolean indicating whether or not the object has the specified property as own property.
+ * @example
  *
  * const object = new Object()
  * object.property1 = 42

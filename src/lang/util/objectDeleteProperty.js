@@ -16,6 +16,7 @@ import objectHasOwnProperty from './objectHasOwnProperty'
  * @param {Object} object The Object on which to remove the property.
  * @param {String} prop The name or Symbol of the property to be deleted.
  * @returns {Object} A copy of the Object that was passed to the function.
+ * @example
  *
  * const object = {
  *   foo: 1,

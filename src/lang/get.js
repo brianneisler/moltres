@@ -14,7 +14,7 @@ import isUndefined from './isUndefined'
  *
  * @function
  * @since v0.0.3
- * @category data
+ * @category lang
  * @param {Array|string|number|Function} path The path to use.
  * @param {Object} value The value to retrieve the nested property from.
  * @returns {*} The data at `path`.

@@ -11,6 +11,7 @@
  * @param {string} prop The name or Symbol of the property to be defined or modified.
  * @param {object} descriptor The descriptor for the property being defined or modified.
  * @returns {object} The object that was passed to the function.
+ * @example
  *
  * const object1 = {}
  *

@@ -5,7 +5,7 @@ import curry from './curry'
  *
  * @function
  * @since v0.0.4
- * @category common
+ * @category lang
  * @param {Number} n The desired arity of the new function.
  * @param {Function} fn The function to wrap.
  * @returns {Function} A new function wrapping `fn`. The new function is guaranteed to be of parameter length `n`.

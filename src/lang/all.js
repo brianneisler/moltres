@@ -13,7 +13,7 @@ import resolveWith from './resolveWith'
  *
  * @function
  * @since v0.0.6
- * @category common
+ * @category lang
  * @param {*} value The array or object whose values should be resolved. If value is not an object or array, the value is simply resolved to itself
  * @returns {*} The array or object with its values resolved
  * @example

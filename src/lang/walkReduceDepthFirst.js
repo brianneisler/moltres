@@ -37,7 +37,7 @@ const reduceWalkee = () => {
  *
  * @function
  * @since v0.0.4
- * @category data
+ * @category lang
  * @param {Function} iteratee The iterator function. Receives three values, the accumulator and the current element from the walk and the current set of keys from the entire depth of the walk.
  * @param {*} accum The accumulator value.
  * @param {*} collection The collection to walk.

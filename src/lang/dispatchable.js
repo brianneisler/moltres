@@ -10,7 +10,7 @@ import nArySpread from './nArySpread'
  *
  * @function
  * @since v0.0.6
- * @category common
+ * @category lang
  * @param {string} name The name of the method to call if it exists
  * @param {Function} fn The default function to execute if the named one does not exist on the last arg
  * @returns {Function} A function that dispatches on object in list position

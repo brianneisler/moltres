@@ -11,7 +11,8 @@ import Object from '../classes/Object'
  * @category lang.util
  * @param {Object} object The object whose symbol properties are to be returned.
  * @returns {Array} An array of all symbol properties found directly upon the given object.
- *
+ * @example
+
  * const object1 = {}
  * const a = Symbol('a')
  * const b = Symbol.for('b')

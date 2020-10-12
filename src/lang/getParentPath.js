@@ -10,7 +10,7 @@ import isEmpty from './isEmpty'
  *
  * @function
  * @since v0.3.0
- * @category data
+ * @category lang
  * @param {Array} path The path to use.
  * @param {*} value The value to retrieve the nested property from.
  * @returns {*} The data at `path`.

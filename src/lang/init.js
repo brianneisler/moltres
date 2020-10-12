@@ -6,7 +6,7 @@ import slice from './slice'
  *
  * @function
  * @since v0.0.5
- * @category data
+ * @category lang
  * @sig [a] -> [a]
  * @param {*} list The list to select from
  * @returns {*} A new array or string of all but the last element in the list
