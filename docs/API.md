@@ -9,37 +9,39 @@
 - [config.util](#configutil)
   * [**private** function evaluate()](#private-function-evaluate)
   * [**private** function matchVariable()](#private-function-matchvariable)
-- [common](#common)
+- [lang](#lang)
   * [function all()](#function-all)
   * [function allWith()](#function-allwith)
+  * [function assoc()](#function-assoc)
+  * [function compact()](#function-compact)
+  * [function compose()](#function-compose)
   * [function defn()](#function-defn)
   * [function dispatchable()](#function-dispatchable)
-  * [function nArySpread()](#function-naryspread)
-  * [function resolveWith()](#function-resolvewith)
-- [lang](#lang)
-  * [function assoc()](#function-assoc)
-  * [function compose()](#function-compose)
   * [function dissocPath()](#function-dissocpath)
   * [function externalPromise()](#function-externalpromise)
   * [function find()](#function-find)
   * [function findAtIndex()](#function-findatindex)
+  * [function get()](#function-get)
   * [function getParent()](#function-getparent)
+  * [function getParentPath()](#function-getparentpath)
+  * [function init()](#function-init)
   * [function isPlainFunction()](#function-isplainfunction)
+  * [function nArySpread()](#function-naryspread)
   * [function nth()](#function-nth)
   * [function op()](#function-op)
   * [function pipe()](#function-pipe)
   * [function reduceRight()](#function-reduceright)
   * [function resolve()](#function-resolve)
   * [function resolveToGenerator()](#function-resolvetogenerator)
+  * [function resolveWith()](#function-resolvewith)
   * [function shallowEquals()](#function-shallowequals)
-  * [**private** function anyIsSymbol()](#private-function-anyissymbol)
   * [function walk()](#function-walk)
-- [lang.class](#langclass)
+  * [function walkReduceDepthFirst()](#function-walkreducedepthfirst)
+  * [function walkReducePath()](#function-walkreducepath)
+- [lang.classes](#langclasses)
   * [**private** function _Array()](#private-function-_array)
   * [class _Boolean](#class-_boolean)
   * [class _Function](#class-_function)
-  * [class Seq](#class-seq)
-- [lang.classes](#langclasses)
   * [class ImmutableList](#class-immutablelist)
   * [class ImmutableMap](#class-immutablemap)
   * [class ImmutableOrderedMap](#class-immutableorderedmap)
@@ -49,13 +51,7 @@
   * [class Key](#class-key)
   * [class Op](#class-op)
   * [class Path](#class-path)
-- [data](#data)
-  * [function compact()](#function-compact)
-  * [function get()](#function-get)
-  * [function getParentPath()](#function-getparentpath)
-  * [function init()](#function-init)
-  * [function walkReduceDepthFirst()](#function-walkreducedepthfirst)
-  * [function walkReducePath()](#function-walkreducepath)
+  * [class Seq](#class-seq)
 - [lang.util](#langutil)
   * [**private** function anyIsArguments()](#private-function-anyisarguments)
   * [**private** function anyIsArray()](#private-function-anyisarray)
@@ -103,6 +99,7 @@
   * [**private** function anyIsSeq()](#private-function-anyisseq)
   * [**private** function anyIsSet()](#private-function-anyisset)
   * [**private** function anyIsString()](#private-function-anyisstring)
+  * [**private** function anyIsSymbol()](#private-function-anyissymbol)
   * [**private** function anyIsUndefined()](#private-function-anyisundefined)
   * [**private** function isWeakMap()](#private-function-isweakmap)
   * [**private** function anyIsWeakSet()](#private-function-anyisweakset)
@@ -219,7 +216,7 @@ evaluate({
 
 <br /><br />
 
-## common
+## lang
 
 ### function all()
 
@@ -297,6 +294,69 @@ allWith(
 ```
 <br /><br />
 
+### function assoc()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/assoc.js#L26)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+<p>Makes a shallow clone of an object, setting or overriding the specified property with the given value. Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.</p>
+<p>Supports path based property selectors 'foo.bar' and functional selectors which performs an over on the entire collection and sets each matching selector to the given value.</p>
+
+**Params**
+<p><code>selector</code>: <code>Array | String | Function</code> - The property path to set or functional selector</p>
+<p><code>value</code>: <code>Any</code> - The new value</p>
+<p><code>collection</code>: <code>Any</code> - The collection to clone and assign the new value</p>
+
+**Returns**
+<br /><p><code>Any</code> - A new collection equivalent to the original except for the changed selector path.</p>
+
+**Example**
+```js
+assoc('c', 3, {a: 1, b: 2})          //=> {a: 1, b: 2, c: 3}
+assoc('c.d', 3, {a: 1, b: 2})        //=> {a: 1, b: 2, c: { d: 3 }}
+assoc([ 'c', 'd' ], 3, {a: 1, b: 2}) //=> {a: 1, b: 2, c: { d: 3 }}
+```
+<br /><br />
+
+### function compact()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compact.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.10
+<p>Creates an array with all nil values removed.</p>
+
+**Params**
+<p><code>array</code>: <code>Array</code> - The array to compact.</p>
+
+**Returns**
+<br /><p><code>Array</code> - Returns the new array of filtered values.</p>
+
+**Example**
+```js
+compact([0, 1, false, 2, null, '', 3, undefined])
+// => [0, 1, false, 2, null, '', 3]
+```
+<br /><br />
+
+### function compose()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compose.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+<p>Performs right-to-left function composition. The rightmost function may have any arity; the remaining functions must be unary.</p>
+<p><strong>Note:</strong> The result of compose is not automatically curried.</p>
+
+**Params**
+<p><code>functions</code>: <code>...Function</code> - The functions to compose</p>
+
+**Returns**
+<br /><p><code>Function</code> - </p>
+
+**Example**
+```js
+const classyGreeting = (firstName, lastName) => "The name's " + lastName + ", " + firstName + " " + lastName
+const yellGreeting = compose(toUpper, classyGreeting)
+yellGreeting('James', 'Bond')
+//=> "THE NAME'S BOND, JAMES BOND"
+
+compose(Math.abs, add(1), multiply(2))(-4) //=> 7
+```
+<br /><br />
+
 ### function defn()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/defn.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
@@ -354,112 +414,6 @@ const obj = {
   get: (prop) => obj.props[prop]
 }
 get('a', obj) //=> 'bar'
-```
-<br /><br />
-
-### function nArySpread()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/nArySpread.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
-<p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
-
-**Params**
-<p><code>n</code>: <code>Number</code> - The desired arity of the new function.</p>
-<p><code>fn</code>: <code>Function</code> - The function to wrap.</p>
-
-**Returns**
-<br /><p><code>Function</code> - A new function wrapping `fn`. The new function is guaranteed to be of parameter length `n`.</p>
-
-**Example**
-```js
-const takesNArgs = (...args) => [ ...args ]
-
-takesNArgs.length //=> 0
-takesNArgs(1, 2) //=> [1, 2]
-
-const takesTwoArgs = nArySpread(2, takesNArgs)
-takesTwoArgs.length //=> 2
-// All arguments are passed to the wrapped function
-takesTwoArgs(1, 2, 3) //=> [1, 2, 3]
-
-const curriedTakesTwoArgs = curry(takesTwoArgs)
-// auto currying works as expected
-const takesAtLeastOneMoreArg = curriedTakesTwoArgs(3)
-takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
-```
-<br /><br />
-
-### function resolveWith()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/resolveWith.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
-<p>Resolves a value to the given method.</p>
-<p>If the value to be resolved is a promise then this method will return a promise. The fn method will be triggered once the promise resolves.</p>
-<p>If the value to be resolved is a generator, this method will return a generator.</p>
-
-**Params**
-<p><code>fn</code>: <code>Function</code> - The function to execute at the end of the resolution</p>
-<p><code>value</code>: <code>&ast;</code> - The value to resolve with the generator</p>
-
-**Returns**
-<br /><p><code>Generator</code> - </p>
-
-**Example**
-```js
-await resolveWith(
-  (resolvedValue) => 'bar' // resolvedValue == 'foo'
-  Promise.resolve('foo')
-) //=> 'bar'
-
-resolveWith(
-  (resolvedValue) => 'bar' // resolvedValue == 'foo'
-  'foo'
-) //=> 'bar'
-```
-<br /><br />
-
-## lang
-
-### function assoc()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/assoc.js#L26)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
-<p>Makes a shallow clone of an object, setting or overriding the specified property with the given value. Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.</p>
-<p>Supports path based property selectors 'foo.bar' and functional selectors which performs an over on the entire collection and sets each matching selector to the given value.</p>
-
-**Params**
-<p><code>selector</code>: <code>Array | String | Function</code> - The property path to set or functional selector</p>
-<p><code>value</code>: <code>Any</code> - The new value</p>
-<p><code>collection</code>: <code>Any</code> - The collection to clone and assign the new value</p>
-
-**Returns**
-<br /><p><code>Any</code> - A new collection equivalent to the original except for the changed selector path.</p>
-
-**Example**
-```js
-assoc('c', 3, {a: 1, b: 2})          //=> {a: 1, b: 2, c: 3}
-assoc('c.d', 3, {a: 1, b: 2})        //=> {a: 1, b: 2, c: { d: 3 }}
-assoc([ 'c', 'd' ], 3, {a: 1, b: 2}) //=> {a: 1, b: 2, c: { d: 3 }}
-```
-<br /><br />
-
-### function compose()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compose.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
-<p>Performs right-to-left function composition. The rightmost function may have any arity; the remaining functions must be unary.</p>
-<p><strong>Note:</strong> The result of compose is not automatically curried.</p>
-
-**Params**
-<p><code>functions</code>: <code>...Function</code> - The functions to compose</p>
-
-**Returns**
-<br /><p><code>Function</code> - </p>
-
-**Example**
-```js
-const classyGreeting = (firstName, lastName) => "The name's " + lastName + ", " + firstName + " " + lastName
-const yellGreeting = compose(toUpper, classyGreeting)
-yellGreeting('James', 'Bond')
-//=> "THE NAME'S BOND, JAMES BOND"
-
-compose(Math.abs, add(1), multiply(2))(-4) //=> 7
 ```
 <br /><br />
 
@@ -561,6 +515,41 @@ findAtIndex(propEq('a', 2), 2)(xs) //=> undefined
 ```
 <br /><br />
 
+### function get()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/get.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
+<p>Retrieve the value at a given path.</p>
+<p>Paths can be defined by a string an array. The path parameter also accepts a function that will be used as a selector against the data.</p>
+
+**Params**
+<p><code>path</code>: <code>Array|string|number|Function</code> - The path to use.</p>
+<p><code>value</code>: <code>Object</code> - The value to retrieve the nested property from.</p>
+
+**Returns**
+<br /><p><code>&ast;</code> - The data at `path`.</p>
+
+**Example**
+```js
+get(['a', 'b'], {a: {b: 2}})
+//=> 2
+
+get(['a', 'b'], {c: {b: 2}})
+//=> undefined
+
+get('a', {a: {b: 2}})
+//=> { b: 2 }
+
+get('a.b', {a: {b: 2}})
+//=> 2
+
+get('a[0]', {a: [ 1, 2 ]})
+//=> 1
+
+get('[0]', [ 1, 2 ])
+//=> 1
+```
+<br /><br />
+
 ### function getParent()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/getParent.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
@@ -593,6 +582,50 @@ getParent('a[0]', {a: [ 1, 2 ]})
 ```
 <br /><br />
 
+### function getParentPath()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/getParentPath.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+<p>Retrieve the parent value from a given path. The parent value is the value immediately before the last path part.</p>
+
+**Params**
+<p><code>path</code>: <code>Array</code> - The path to use.</p>
+<p><code>value</code>: <code>&ast;</code> - The value to retrieve the nested property from.</p>
+
+**Returns**
+<br /><p><code>&ast;</code> - The data at `path`.</p>
+
+**Example**
+```js
+getParentPath(['a', 'b'], {a: {b: 2}}); //=> {b: 2}
+getParentPath(['a', 'b'], {c: {b: 2}}); //=> undefined
+```
+<br /><br />
+
+### function init()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/init.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.5
+<p>Returns all but the last element of the given list or string.</p>
+
+**Params**
+<p><code>list</code>: <code>&ast;</code> - The list to select from</p>
+
+**Returns**
+<br /><p><code>&ast;</code> - A new array or string of all but the last element in the list</p>
+
+**Example**
+```js
+init([1, 2, 3])  //=> [1, 2]
+init([1, 2])     //=> [1]
+init([1])        //=> []
+init([]);         //=> []
+
+init('abc')  //=> 'ab'
+init('ab')   //=> 'a'
+init('a')    //=> ''
+init('')     //=> ''
+```
+<br /><br />
+
 ### function isPlainFunction()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/isPlainFunction.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
@@ -617,6 +650,37 @@ isPlainFunction(async function() {})
 
 isPlainFunction(function* () {})
 // => false
+```
+<br /><br />
+
+### function nArySpread()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/nArySpread.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+<p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
+
+**Params**
+<p><code>n</code>: <code>Number</code> - The desired arity of the new function.</p>
+<p><code>fn</code>: <code>Function</code> - The function to wrap.</p>
+
+**Returns**
+<br /><p><code>Function</code> - A new function wrapping `fn`. The new function is guaranteed to be of parameter length `n`.</p>
+
+**Example**
+```js
+const takesNArgs = (...args) => [ ...args ]
+
+takesNArgs.length //=> 0
+takesNArgs(1, 2) //=> [1, 2]
+
+const takesTwoArgs = nArySpread(2, takesNArgs)
+takesTwoArgs.length //=> 2
+// All arguments are passed to the wrapped function
+takesTwoArgs(1, 2, 3) //=> [1, 2, 3]
+
+const curriedTakesTwoArgs = curry(takesTwoArgs)
+// auto currying works as expected
+const takesAtLeastOneMoreArg = curriedTakesTwoArgs(3)
+takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
 ```
 <br /><br />
 
@@ -770,6 +834,34 @@ generator.next() //=> { value: 'foo', done: true }
 ```
 <br /><br />
 
+### function resolveWith()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/resolveWith.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
+<p>Resolves a value to the given method.</p>
+<p>If the value to be resolved is a promise then this method will return a promise. The fn method will be triggered once the promise resolves.</p>
+<p>If the value to be resolved is a generator, this method will return a generator.</p>
+
+**Params**
+<p><code>fn</code>: <code>Function</code> - The function to execute at the end of the resolution</p>
+<p><code>value</code>: <code>&ast;</code> - The value to resolve with the generator</p>
+
+**Returns**
+<br /><p><code>Generator</code> - </p>
+
+**Example**
+```js
+await resolveWith(
+  (resolvedValue) => 'bar' // resolvedValue == 'foo'
+  Promise.resolve('foo')
+) //=> 'bar'
+
+resolveWith(
+  (resolvedValue) => 'bar' // resolvedValue == 'foo'
+  'foo'
+) //=> 'bar'
+```
+<br /><br />
+
 ### function shallowEquals()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/shallowEquals.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
@@ -787,33 +879,6 @@ generator.next() //=> { value: 'foo', done: true }
 ```js
 shallowEquals({ a: 1, b: 2, c: undefined }, { a: 1, b: 2, c: undefined }) //=> true
 shallowEquals({ a: 1, b: 2, c: 3 }, { a: 1, b: 2 }) //=> false
-```
-<br /><br />
-
-### **private** function anyIsSymbol()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsSymbol.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
-<p>Checks if <code>any</code> is classified as a <code>Symbol</code> primitive or object.</p>
-
-**Params**
-<p><code>any</code>: <code>&ast;</code> - The value to check.</p>
-
-**Returns**
-<br /><p><code>boolean</code> - Returns `true` if `any` is a symbol, else `false`.</p>
-
-**Example**
-```js
-anyIsSymbol(Symbol.iterator)
-// => true
-
-anyIsSymbol(Symbol('abc'))
-// => true
-
-anyIsSymbol(Symbol.for('abc'))
-// => true
-
-anyIsSymbol('abc')
-// => false
 ```
 <br /><br />
 
@@ -858,7 +923,94 @@ console.log(result)
 ```
 <br /><br />
 
-## lang.class
+### function walkReduceDepthFirst()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReduceDepthFirst.js#L33)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+<p>Walk depth first and reduce using the given reducer function</p>
+<p>NOTE: This method will resolve values during the walk before iterating and walking them.</p>
+
+**Params**
+<p><code>iteratee</code>: <code>Function</code> - The iterator function. Receives three values, the accumulator and the current element from the walk and the current set of keys from the entire depth of the walk.</p>
+<p><code>accum</code>: <code>&ast;</code> - The accumulator value.</p>
+<p><code>collection</code>: <code>&ast;</code> - The collection to walk.</p>
+
+**Returns**
+<br /><p><code>&ast;</code> - The final, accumulated value.</p>
+
+**Example**
+```js
+walkReduceDepthFirst(
+  (accum, value, keys) => {
+    accum.push(keys)
+    return accum
+  },
+  [],
+  {
+    a: {
+      b: {
+        c: 'c'
+      },
+      d: 'd',
+    },
+    e: [ 'e', 'f' ]
+  }
+)
+//=> [
+  [ 'a', 'b', 'c' ],
+  [ 'a', 'b' ],
+  [ 'a', 'd' ],
+  [ 'a' ],
+  [ 'e', 0 ],
+  [ 'e', 1 ],
+  [ 'e' ],
+  []
+]
+```
+<br /><br />
+
+### function walkReducePath()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReducePath.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
+<p>Walk reduce the specific path using the given reducer function</p>
+<p>NOTE: This method will resolve values during the walk before walking them. However, the unresolved value will be delivered to the iteratee.</p>
+
+**Params**
+<p><code>path</code>: <code>&ast;</code> - The specific path to walk</p>
+<p><code>fn</code>: <code>Function</code> - The iterator function. Receives three values, the accumulator and the current element from the walk and the current set of keys from the entire depth of the walk.</p>
+<p><code>accum</code>: <code>&ast;</code> - The accumulator value.</p>
+<p><code>collection</code>: <code>&ast;</code> - The collection to walk.</p>
+
+**Returns**
+<br /><p><code>&ast;</code> - The final, accumulated value.</p>
+
+**Example**
+```js
+walkReducePath(
+  (accum, value, keys) => {
+    return accum.push(keys)
+  },
+  'a.c.d'
+  [],
+  {
+    a: {
+      b: 'b',
+      c: {
+        d: 'd'
+      }
+    },
+    e: [ 'e', 'f' ]
+  }
+)
+//=> [
+//   [],
+//   ['a'],
+//   ['a', 'c'],
+//   ['a', 'c', 'd']
+// ]
+```
+<br /><br />
+
+## lang.classes
 
 ### **private** function _Array()
 
@@ -903,61 +1055,6 @@ Boolean(false)
 
 ```
 <br /><br />
-
-### class Seq
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Seq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
-<p>Seq describes a lazy operation, allowing them to efficiently chain use of all the higher-order collection methods (such as map and filter) by not creating intermediate collections.</p>
-<pre><code>type Seq&lt;K, V&gt; extends Collection&lt;K, V&gt;
-</code></pre>
-<p>Seq is immutable — Once a Seq is created, it cannot be changed, appended to, rearranged or otherwise modified. Instead, any mutative method called on a Seq will return a new Seq.</p>
-<p>Seq is lazy — Seq does as little work as necessary to respond to any method call. Values are often created during iteration, including implicit iteration when reducing or converting to a concrete data structure such as a List or JavaScript Array.</p>
-<p>For example, the following performs no work, because the resulting Seq's values are never iterated:</p>
-<pre><code>const { Seq } = require('immutable')
-const oddSquares = Seq([ 1, 2, 3, 4, 5, 6, 7, 8 ])
-  .filter(x =&gt; x % 2 !== 0)
-  .map(x =&gt; x * x)
-</code></pre>
-<p>Once the Seq is used, it performs only the work necessary. In this example, no intermediate arrays are ever created, filter is called three times, and map is only called once:</p>
-<pre><code>oddSquares.get(1)
-//=&gt; 9
-</code></pre>
-<p>Any collection can be converted to a lazy Seq with Seq().</p>
-<pre><code>const { Map } = require('immutable')
-const map = Map({ a: 1, b: 2, c: 3 }
-const lazySeq = Seq(map)
-</code></pre>
-<p>Seq allows for the efficient chaining of operations, allowing for the expression of logic that can otherwise be very tedious:</p>
-<pre><code>lazySeq
-  .flip()
-  .map(key =&gt; key.toUpperCase())
-  .flip()
-//=&gt; Seq { A: 1, B: 1, C: 1 }
-</code></pre>
-<p>As well as expressing logic that would otherwise seem memory or time limited, for example Range is a special kind of Lazy sequence.</p>
-<pre><code>const { Range } = require('immutable')
-Range(1, Infinity)
-  .skip(1000)
-  .map(n =&gt; -n)
-  .filter(n =&gt; n % 2 === 0)
-  .take(2)
-  .reduce((r, n) =&gt; r * n, 1)
-//=&gt; 1006008
-</code></pre>
-<p>Seq is often used to provide a rich collection API to JavaScript Object.</p>
-<pre><code>Seq({ x: 0, y: 1, z: 2 }).map(v =&gt; v * 2).toObject();
-//=&gt; { x: 0, y: 2, z: 4 }
-</code></pre>
-
-**Class**: `Seq`
-
-**Example**
-```js
-
-```
-<br /><br />
-
-## lang.classes
 
 ### class ImmutableList
 
@@ -1070,189 +1167,56 @@ Range(1, Infinity)
 
 <br /><br />
 
-## data
+### class Seq
 
-### function compact()
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/classes/Seq.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+<p>Seq describes a lazy operation, allowing them to efficiently chain use of all the higher-order collection methods (such as map and filter) by not creating intermediate collections.</p>
+<pre><code>type Seq&lt;K, V&gt; extends Collection&lt;K, V&gt;
+</code></pre>
+<p>Seq is immutable — Once a Seq is created, it cannot be changed, appended to, rearranged or otherwise modified. Instead, any mutative method called on a Seq will return a new Seq.</p>
+<p>Seq is lazy — Seq does as little work as necessary to respond to any method call. Values are often created during iteration, including implicit iteration when reducing or converting to a concrete data structure such as a List or JavaScript Array.</p>
+<p>For example, the following performs no work, because the resulting Seq's values are never iterated:</p>
+<pre><code>const { Seq } = require('immutable')
+const oddSquares = Seq([ 1, 2, 3, 4, 5, 6, 7, 8 ])
+  .filter(x =&gt; x % 2 !== 0)
+  .map(x =&gt; x * x)
+</code></pre>
+<p>Once the Seq is used, it performs only the work necessary. In this example, no intermediate arrays are ever created, filter is called three times, and map is only called once:</p>
+<pre><code>oddSquares.get(1)
+//=&gt; 9
+</code></pre>
+<p>Any collection can be converted to a lazy Seq with Seq().</p>
+<pre><code>const { Map } = require('immutable')
+const map = Map({ a: 1, b: 2, c: 3 }
+const lazySeq = Seq(map)
+</code></pre>
+<p>Seq allows for the efficient chaining of operations, allowing for the expression of logic that can otherwise be very tedious:</p>
+<pre><code>lazySeq
+  .flip()
+  .map(key =&gt; key.toUpperCase())
+  .flip()
+//=&gt; Seq { A: 1, B: 1, C: 1 }
+</code></pre>
+<p>As well as expressing logic that would otherwise seem memory or time limited, for example Range is a special kind of Lazy sequence.</p>
+<pre><code>const { Range } = require('immutable')
+Range(1, Infinity)
+  .skip(1000)
+  .map(n =&gt; -n)
+  .filter(n =&gt; n % 2 === 0)
+  .take(2)
+  .reduce((r, n) =&gt; r * n, 1)
+//=&gt; 1006008
+</code></pre>
+<p>Seq is often used to provide a rich collection API to JavaScript Object.</p>
+<pre><code>Seq({ x: 0, y: 1, z: 2 }).map(v =&gt; v * 2).toObject();
+//=&gt; { x: 0, y: 2, z: 4 }
+</code></pre>
 
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/compact.js#L5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.10
-<p>Creates an array with all nil values removed.</p>
-
-**Params**
-<p><code>array</code>: <code>Array</code> - The array to compact.</p>
-
-**Returns**
-<br /><p><code>Array</code> - Returns the new array of filtered values.</p>
-
-**Example**
-```js
-compact([0, 1, false, 2, null, '', 3, undefined])
-// => [0, 1, false, 2, null, '', 3]
-```
-<br /><br />
-
-### function get()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/get.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.3
-<p>Retrieve the value at a given path.</p>
-<p>Paths can be defined by a string an array. The path parameter also accepts a function that will be used as a selector against the data.</p>
-
-**Params**
-<p><code>path</code>: <code>Array|string|number|Function</code> - The path to use.</p>
-<p><code>value</code>: <code>Object</code> - The value to retrieve the nested property from.</p>
-
-**Returns**
-<br /><p><code>&ast;</code> - The data at `path`.</p>
-
-**Example**
-```js
-get(['a', 'b'], {a: {b: 2}})
-//=> 2
-
-get(['a', 'b'], {c: {b: 2}})
-//=> undefined
-
-get('a', {a: {b: 2}})
-//=> { b: 2 }
-
-get('a.b', {a: {b: 2}})
-//=> 2
-
-get('a[0]', {a: [ 1, 2 ]})
-//=> 1
-
-get('[0]', [ 1, 2 ])
-//=> 1
-```
-<br /><br />
-
-### function getParentPath()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/getParentPath.js#L7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.3.0
-<p>Retrieve the parent value from a given path. The parent value is the value immediately before the last path part.</p>
-
-**Params**
-<p><code>path</code>: <code>Array</code> - The path to use.</p>
-<p><code>value</code>: <code>&ast;</code> - The value to retrieve the nested property from.</p>
-
-**Returns**
-<br /><p><code>&ast;</code> - The data at `path`.</p>
+**Class**: `Seq`
 
 **Example**
 ```js
-getParentPath(['a', 'b'], {a: {b: 2}}); //=> {b: 2}
-getParentPath(['a', 'b'], {c: {b: 2}}); //=> undefined
-```
-<br /><br />
 
-### function init()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/init.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.5
-<p>Returns all but the last element of the given list or string.</p>
-
-**Params**
-<p><code>list</code>: <code>&ast;</code> - The list to select from</p>
-
-**Returns**
-<br /><p><code>&ast;</code> - A new array or string of all but the last element in the list</p>
-
-**Example**
-```js
-init([1, 2, 3])  //=> [1, 2]
-init([1, 2])     //=> [1]
-init([1])        //=> []
-init([]);         //=> []
-
-init('abc')  //=> 'ab'
-init('ab')   //=> 'a'
-init('a')    //=> ''
-init('')     //=> ''
-```
-<br /><br />
-
-### function walkReduceDepthFirst()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReduceDepthFirst.js#L33)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
-<p>Walk depth first and reduce using the given reducer function</p>
-<p>NOTE: This method will resolve values during the walk before iterating and walking them.</p>
-
-**Params**
-<p><code>iteratee</code>: <code>Function</code> - The iterator function. Receives three values, the accumulator and the current element from the walk and the current set of keys from the entire depth of the walk.</p>
-<p><code>accum</code>: <code>&ast;</code> - The accumulator value.</p>
-<p><code>collection</code>: <code>&ast;</code> - The collection to walk.</p>
-
-**Returns**
-<br /><p><code>&ast;</code> - The final, accumulated value.</p>
-
-**Example**
-```js
-walkReduceDepthFirst(
-  (accum, value, keys) => {
-    accum.push(keys)
-    return accum
-  },
-  [],
-  {
-    a: {
-      b: {
-        c: 'c'
-      },
-      d: 'd',
-    },
-    e: [ 'e', 'f' ]
-  }
-)
-//=> [
-  [ 'a', 'b', 'c' ],
-  [ 'a', 'b' ],
-  [ 'a', 'd' ],
-  [ 'a' ],
-  [ 'e', 0 ],
-  [ 'e', 1 ],
-  [ 'e' ],
-  []
-]
-```
-<br /><br />
-
-### function walkReducePath()
-
-[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/walkReducePath.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
-<p>Walk reduce the specific path using the given reducer function</p>
-<p>NOTE: This method will resolve values during the walk before walking them. However, the unresolved value will be delivered to the iteratee.</p>
-
-**Params**
-<p><code>path</code>: <code>&ast;</code> - The specific path to walk</p>
-<p><code>fn</code>: <code>Function</code> - The iterator function. Receives three values, the accumulator and the current element from the walk and the current set of keys from the entire depth of the walk.</p>
-<p><code>accum</code>: <code>&ast;</code> - The accumulator value.</p>
-<p><code>collection</code>: <code>&ast;</code> - The collection to walk.</p>
-
-**Returns**
-<br /><p><code>&ast;</code> - The final, accumulated value.</p>
-
-**Example**
-```js
-walkReducePath(
-  (accum, value, keys) => {
-    return accum.push(keys)
-  },
-  'a.c.d'
-  [],
-  {
-    a: {
-      b: 'b',
-      c: {
-        d: 'd'
-      }
-    },
-    e: [ 'e', 'f' ]
-  }
-)
-//=> [
-//   [],
-//   ['a'],
-//   ['a', 'c'],
-//   ['a', 'c', 'd']
-// ]
 ```
 <br /><br />
 
@@ -2528,6 +2492,33 @@ anyIsString(1)
 ```
 <br /><br />
 
+### **private** function anyIsSymbol()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsSymbol.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+<p>Checks if <code>any</code> is classified as a <code>Symbol</code> primitive or object.</p>
+
+**Params**
+<p><code>any</code>: <code>&ast;</code> - The value to check.</p>
+
+**Returns**
+<br /><p><code>boolean</code> - Returns `true` if `any` is a symbol, else `false`.</p>
+
+**Example**
+```js
+anyIsSymbol(Symbol.iterator)
+// => true
+
+anyIsSymbol(Symbol('abc'))
+// => true
+
+anyIsSymbol(Symbol.for('abc'))
+// => true
+
+anyIsSymbol('abc')
+// => false
+```
+<br /><br />
+
 ### **private** function anyIsUndefined()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.0/src/lang/util/anyIsUndefined.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
@@ -3596,20 +3587,23 @@ objectCopy === object
 <p><code>descriptor</code>: <code>object</code> - The descriptor for the property being defined or modified.</p>
 
 **Returns**
-<br /><p><code>object} The object that was passed to the function.<br />
-<br />
-const object1 = {}<br />
-<br />
-objectDefineProperty(object1, &#39;property1&#39;, {<br />
-  value: 42,<br />
-  writable: false</code> - )<br />
-<br />
-object1.property1 = 77<br />
-// throws an error in strict mode<br />
-<br />
-object1.property1<br />
-//=&gt; 42</p>
+<br /><p><code>object</code> - The object that was passed to the function.</p>
 
+**Example**
+```js
+const object1 = {}
+
+objectDefineProperty(object1, 'property1', {
+  value: 42,
+  writable: false
+})
+
+object1.property1 = 77
+// throws an error in strict mode
+
+object1.property1
+//=> 42
+```
 <br /><br />
 
 ### **private** function objectDeleteProperty()
@@ -3624,17 +3618,22 @@ Property removed.</p>
 <p><code>prop</code>: <code>String</code> - The name or Symbol of the property to be deleted.</p>
 
 **Returns**
-<br /><p><code>Object} A copy of the Object that was passed to the function.<br />
-<br />
-const object = {<br />
-  foo: 1,<br />
-  bar: 2</code> - const result = objectDeleteProperty(object, &#39;foo&#39;)<br />
-<br />
-result.foo<br />
-//=&gt; undefined<br />
-object.foo<br />
-//=&gt; 1</p>
+<br /><p><code>Object</code> - A copy of the Object that was passed to the function.</p>
 
+**Example**
+```js
+const object = {
+  foo: 1,
+  bar: 2
+}
+
+const result = objectDeleteProperty(object, 'foo')
+
+result.foo
+//=> undefined
+object.foo
+//=> 1
+```
 <br /><br />
 
 ### **private** function objectGetOwnPropertyDescriptor()
@@ -3679,19 +3678,22 @@ objectGetOwnPropertyDescriptor(object, 'foo')
 <p><code>object</code>: <code>Object</code> - The object whose symbol properties are to be returned.</p>
 
 **Returns**
-<br /><p><code>Array} An array of all symbol properties found directly upon the given object.<br />
-<br />
-const object1 = {</code> - const a = Symbol(&#39;a&#39;)<br />
-const b = Symbol.for(&#39;b&#39;)<br />
-<br />
-object1[a] = &#39;localSymbol&#39;<br />
-object1[b] = &#39;globalSymbol&#39;<br />
-<br />
-const objectSymbols = objectGetOwnPropertySymbols(object1)<br />
-<br />
-console.log(objectSymbols.length)<br />
-//=&gt;  2</p>
+<br /><p><code>Array</code> - An array of all symbol properties found directly upon the given object.</p>
 
+**Example**
+```js
+const object1 = {}
+const a = Symbol('a')
+const b = Symbol.for('b')
+
+object1[a] = 'localSymbol'
+object1[b] = 'globalSymbol'
+
+const objectSymbols = objectGetOwnPropertySymbols(object1)
+
+console.log(objectSymbols.length)
+//=>  2
+```
 <br /><br />
 
 ### **private** function objectGetProperty()
@@ -3704,14 +3706,18 @@ console.log(objectSymbols.length)<br />
 <p><code>property</code>: <code>Property</code> - The Property to get.</p>
 
 **Returns**
-<br /><p><code>Any} The value at the specified property. Undefined if the Object does not have the property.<br />
-<br />
-const object = { foo: 42</code> - objectGetProperty(object, &#39;foo&#39;)<br />
-//=&gt; 42<br />
-<br />
-objectGetProperty(object, &#39;bar&#39;)<br />
-//=&gt; undefined</p>
+<br /><p><code>Any</code> - The value at the specified property. Undefined if the Object does not have the property.</p>
 
+**Example**
+```js
+const object = { foo: 42 }
+
+objectGetProperty(object, 'foo')
+//=> 42
+
+objectGetProperty(object, 'bar')
+//=> undefined
+```
 <br /><br />
 
 ### **private** function objectHasOwnProperty()
@@ -3725,20 +3731,22 @@ objectGetProperty(object, &#39;bar&#39;)<br />
 <p><code>property</code>: <code>Property</code> - The String name or symbol of the property to test.</p>
 
 **Returns**
-<br /><p><code>Boolean</code> - A boolean indicating whether or not the object has the specified property as own property.<br />
-<br />
-const object = new Object()<br />
-object.property1 = 42<br />
-<br />
-objectHasOwnProperty(object, &#39;property1&#39;)<br />
-//=&gt; true<br />
-<br />
-objectHasOwnProperty(object, &#39;toString&#39;)<br />
-//=&gt; false<br />
-<br />
-objectHasOwnProperty(object, &#39;hasOwnProperty&#39;)<br />
-//=&gt; false</p>
+<br /><p><code>Boolean</code> - A boolean indicating whether or not the object has the specified property as own property.</p>
 
+**Example**
+```js
+const object = new Object()
+object.property1 = 42
+
+objectHasOwnProperty(object, 'property1')
+//=> true
+
+objectHasOwnProperty(object, 'toString')
+//=> false
+
+objectHasOwnProperty(object, 'hasOwnProperty')
+//=> false
+```
 <br /><br />
 
 ### **private** function objectKeys()
@@ -3772,17 +3780,22 @@ objectKeys({a: 1, b: 2, c: 3})
 <p><code>prop</code>: <code>String</code> - The name or Symbol of the property to be deleted.</p>
 
 **Returns**
-<br /><p><code>Object} The original Object that was passed to the function.<br />
-<br />
-const object = {<br />
-  foo: 1,<br />
-  bar: 2</code> - const result = objectMutateDeleteProperty(object, &#39;foo&#39;)<br />
-<br />
-result.foo<br />
-//=&gt; undefined<br />
-object.foo<br />
-//=&gt; 1</p>
+<br /><p><code>Object</code> - The original Object that was passed to the function.</p>
 
+**Example**
+```js
+const object = {
+  foo: 1,
+  bar: 2
+}
+
+const result = objectMutateDeleteProperty(object, 'foo')
+
+result.foo
+//=> undefined
+object.foo
+//=> 1
+```
 <br /><br />
 
 ### **private** function objectMutateSetProperty()
