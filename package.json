@@ -27,7 +27,9 @@
     "./process": "./src/process/index.js",
     "./request": "./src/request/index.js",
     "./schema": "./src/schema/index.js",
+    "./string": "./src/string/index.js",
     "./test": "./src/test/index.js",
+    "./url": "./src/url/index.js",
     "./zip": "./src/zip/index.js",
     "./package.json": "./package.json"
   },
