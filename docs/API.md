@@ -24,8 +24,11 @@
   * [function get()](#function-get)
   * [function getParent()](#function-getparent)
   * [function getParentPath()](#function-getparentpath)
+  * [function getPath()](#function-getpath)
+  * [function hasPath()](#function-haspath)
   * [function init()](#function-init)
   * [function isPlainFunction()](#function-isplainfunction)
+  * [function isSymbol()](#function-issymbol)
   * [function nArySpread()](#function-naryspread)
   * [function nth()](#function-nth)
   * [function op()](#function-op)
@@ -38,6 +41,8 @@
   * [function walk()](#function-walk)
   * [function walkReduceDepthFirst()](#function-walkreducedepthfirst)
   * [function walkReducePath()](#function-walkreducepath)
+  * [function where()](#function-where)
+  * [function whereEquals()](#function-whereequals)
 - [lang.classes](#langclasses)
   * [**private** function _Array()](#private-function-_array)
   * [class _Boolean](#class-_boolean)
@@ -601,6 +606,62 @@ getParentPath(['a', 'b'], {c: {b: 2}}); //=> undefined
 ```
 <br /><br />
 
+### function getPath()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/getPath.js#L9)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.3
+<p>Retrieve the value at a given selector</p>
+
+**Params**
+<p><code>path</code>: <code>Array|ImmutableList|String</code> - The path to use.</p>
+<p><code>object</code>: <code>Object</code> - The object to get the path in.</p>
+
+**Returns**
+<br /><p><code>Any</code> - The value that exists at the path or undefined.</p>
+
+**Example**
+```js
+get(['a', 'b'], { a: { b: 2 } })
+// => 2
+
+get(['a', 'b'], { c: { b: 2 } })
+// => undefined
+
+get('a', { a: { b: 2 } })
+// => { b: 2 }
+
+get('a.b', { a: { b: 2 } })
+// => 2
+
+get('a[0]', { a: [1, 2] })
+// => 1
+
+get('[0]', [1, 2])
+// => 1
+```
+<br /><br />
+
+### function hasPath()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/hasPath.js#L11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.3
+<p>Returns whether or not a path exists in an object. Only the object's<br />
+own properties are checked.</p>
+
+**Params**
+<p><code>path</code>: <code>Array|ImmutableList|String</code> - The path to use.</p>
+<p><code>object</code>: <code>Object</code> - The object to check the path in.</p>
+
+**Returns**
+<br /><p><code>Boolean</code> - Whether the path exists.</p>
+
+**Example**
+```js
+hasPath(['a', 'b'], {a: {b: 2}})         // => true
+     hasPath(['a', 'b'], {a: {b: undefined}}) // => true
+     hasPath(['a', 'b'], {a: {c: 2}})         // => false
+     hasPath(['a', 'b'], {})                  // => false
+```
+<br /><br />
+
 ### function init()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/init.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.5
@@ -649,6 +710,33 @@ isPlainFunction(async function() {})
 // => false
 
 isPlainFunction(function* () {})
+// => false
+```
+<br /><br />
+
+### function isSymbol()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/isSymbol.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+<p>Checks if <code>value</code> is classified as a <code>Symbol</code> primitive or object.</p>
+
+**Params**
+<p><code>value</code>: <code>&ast;</code> - The value to check.</p>
+
+**Returns**
+<br /><p><code>boolean</code> - Returns `true` if `value` is a symbol, else `false`.</p>
+
+**Example**
+```js
+isSymbol(Symbol.iterator)
+// => true
+
+isSymbol(Symbol('abc'))
+// => true
+
+isSymbol(Symbol.for('abc'))
+// => true
+
+isSymbol('abc')
 // => false
 ```
 <br /><br />
@@ -1007,6 +1095,70 @@ walkReducePath(
 //   ['a', 'c'],
 //   ['a', 'c', 'd']
 // ]
+```
+<br /><br />
+
+### function where()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/where.js#L8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.3
+<p>Takes a spec object and a test object; returns true if the test satisfies<br />
+the spec. Each of the spec's own properties must be a predicate function.<br />
+Each predicate is applied to the value of the corresponding property of the<br />
+test object. <code>where</code> returns true if all the predicates return true, false<br />
+otherwise.</p>
+<p><code>where</code> is well suited to declaratively expressing constraints for other<br />
+functions such as <a href="#filter"><code>filter</code></a> and <a href="#find"><code>find</code></a>.</p>
+
+**Params**
+<p><code>spec</code>: <code>Object</code> - </p>
+<p><code>value</code>: <code>Any</code> - </p>
+
+**Returns**
+<br /><p><code>Boolean</code> - </p>
+
+**Example**
+```js
+// pred :: Object -> Boolean
+     const pred = where({
+       a: equals('foo'),
+       b: complement(equals('bar')),
+       x: gt(__, 10),
+       y: lt(__, 20)
+     });
+
+     pred({a: 'foo', b: 'xxx', x: 11, y: 19}); //=> true
+     pred({a: 'xxx', b: 'xxx', x: 11, y: 19}); //=> false
+     pred({a: 'foo', b: 'bar', x: 11, y: 19}); //=> false
+     pred({a: 'foo', b: 'xxx', x: 10, y: 19}); //=> false
+     pred({a: 'foo', b: 'xxx', x: 11, y: 20}); //=> false
+```
+<br /><br />
+
+### function whereEquals()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.2/src/lang/whereEquals.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.4.3
+<p>Takes a spec object and a test object; returns true if the test satisfies<br />
+the spec, false otherwise. An object satisfies the spec if, for each of the<br />
+spec's own properties, accessing that property of the object gives the same<br />
+value (in <a href="#equals"><code>equals</code></a> terms) as accessing that property of the<br />
+spec.</p>
+
+**Params**
+<p><code>spec</code>: <code>Object</code> - </p>
+<p><code>value</code>: <code>Any</code> - </p>
+
+**Returns**
+<br /><p><code>Boolean</code> - </p>
+
+**Example**
+```js
+// pred :: Object -> Boolean
+     const pred = R.whereEq({a: 1, b: 2});
+
+     pred({a: 1});              //=> false
+     pred({a: 1, b: 2});        //=> true
+     pred({a: 1, b: 2, c: 3});  //=> true
+     pred({a: 1, b: 1});        //=> false
 ```
 <br /><br />
 
