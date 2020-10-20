@@ -9,6 +9,8 @@
 - [config.util](#configutil)
   * [**private** function evaluate()](#private-function-evaluate)
   * [**private** function matchVariable()](#private-function-matchvariable)
+- [fs](#fs)
+  * [function checkParentPaths()](#function-checkparentpaths)
 - [lang](#lang)
   * [function all()](#function-all)
   * [function allWith()](#function-allwith)
@@ -163,6 +165,8 @@
   * [**private** function stringSubstring()](#private-function-stringsubstring)
   * [**private** function unresolvedResolveToGenerator()](#private-function-unresolvedresolvetogenerator)
   * [**private** function unresolvedResolveWith()](#private-function-unresolvedresolvewith)
+- [path](#path)
+  * [function isPathSubdir()](#function-ispathsubdir)
 - [request](#request)
   * [function fetch()](#function-fetch)
 - [url](#url)
@@ -218,6 +222,25 @@ evaluate({
   expression: string, // the matching variable expression<br />
   exact: boolean // whether or not this match was exact<br />
 }</code> - </p>
+
+<br /><br />
+
+## fs
+
+### function checkParentPaths()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.3/src/fs/checkParentPaths.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.5.0
+<p>recursively check if dest parent is a subdirectory of src.<br />
+It works for all file types including symlinks since it<br />
+checks the src and dest inodes. It starts from the deepest<br />
+parent and stops once it reaches the src parent or the root path.</p>
+
+**Params**
+<p><code>src</code>: <code>string</code> - The src path</p>
+<p><code>dest</code>: <code>string</code> - The dest path</p>
+
+**Returns**
+<br /><p><code>undefined</code> - </p>
 
 <br /><br />
 
@@ -4171,6 +4194,23 @@ await unresolvedResolveWith(
 )
 //=> 'bar'
 ```
+<br /><br />
+
+## path
+
+### function isPathSubdir()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.4.3/src/path/isPathSubdir.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.5.0
+<p>return true if <code>dest</code> is a subdir of <code>path</code>, otherwise false.<br />
+NOTE: It only checks the path strings.</p>
+
+**Params**
+<p><code>path</code>: <code>String</code> - The path to check</p>
+<p><code>dest</code>: <code>String</code> - The destination path to compare against</p>
+
+**Returns**
+<br /><p><code>Boolean</code> - returns true if `dest` is a subdir of `path`</p>
+
 <br /><br />
 
 ## request

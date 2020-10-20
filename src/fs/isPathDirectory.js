@@ -1,7 +1,7 @@
-import pathStat from './pathStat'
+import statPath from './statPath'
 
 const isPathDirectory = async (path) => {
-  const stat = await pathStat(path)
+  const stat = await statPath(path)
   return stat.isDirectory()
 }
 
