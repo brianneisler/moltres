@@ -1,5 +1,6 @@
 export { default as isJsonPath } from './isJsonPath'
 export { default as isPathAbsolute } from './isPathAbsolute'
+export { default as isPathSubdir } from './isPathSubdir'
 export { default as isYamlPath } from './isYamlPath'
 export { default as pathBasename } from './pathBasename'
 export { default as pathDirname } from './pathDirname'

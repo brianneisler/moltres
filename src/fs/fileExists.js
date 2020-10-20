@@ -1,6 +1,6 @@
 import { defn } from '../lang'
 
-import lstat from './lstat'
+import { lstat } from './util'
 
 const fileExists = defn('fileExists', async (filePath) => {
   try {

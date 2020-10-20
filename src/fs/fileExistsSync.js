@@ -1,6 +1,6 @@
 import { defn } from '../lang'
 
-import lstatSync from './lstatSync'
+import { lstatSync } from './util'
 
 const fileExistsSync = defn('fileExistsSync', (filePath) => {
   try {
