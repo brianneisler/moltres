@@ -1,13 +1,7 @@
 import { symlink as memSymlink } from 'memfs'
 
-const symlink = async (target, path, type) =>
-  new Promise((resolve, reject) => {
-    memSymlink(target, path, type, (error) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve()
-    })
-  })
+import { promisfy } from '../../lang'
+
+const symlink = promisfy(memSymlink)
 
 export default symlink

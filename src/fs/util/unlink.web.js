@@ -1,13 +1,7 @@
 import { unlink as memUnlink } from 'memfs'
 
-const unlink = async (path) =>
-  new Promise((resolve, reject) => {
-    memUnlink(path, (error) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve()
-    })
-  })
+import { promisfy } from '../../lang'
+
+const unlink = promisfy(memUnlink)
 
 export default unlink

@@ -1,13 +1,7 @@
 import { futimes as memFutimes } from 'memfs'
 
-const futimes = async (fd, atime, mtime) =>
-  new Promise((resolve, reject) => {
-    memFutimes(fd, atime, mtime, (error) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve()
-    })
-  })
+import { promisfy } from '../../lang'
+
+const futimes = promisfy(memFutimes)
 
 export default futimes

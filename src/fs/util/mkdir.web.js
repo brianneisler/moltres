@@ -1,13 +1,7 @@
 import { mkdir as memMkdir } from 'memfs'
 
-const mkdir = async (path, options) =>
-  new Promise((resolve, reject) => {
-    memMkdir(path, options, (error, result) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve(result)
-    })
-  })
+import { promisfy } from '../../lang'
+
+const mkdir = promisfy(memMkdir)
 
 export default mkdir

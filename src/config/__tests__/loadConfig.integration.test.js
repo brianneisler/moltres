@@ -29,7 +29,7 @@ describe('loadConfig', () => {
       // the code based on the extension overrides. This means that when we're
       // testing the .web.js extensions these methods will wrtie out to the
       // memfs system. Otherwise they'll write to disk.
-      cwd = path.resolve(tmpDirectory(), 'test', uuidv4())
+      cwd = path.resolve(tmpDirectory(), 'tests', uuidv4())
       await outputFile(
         path.resolve(cwd, 'stages', 'test', 'config.yaml'),
         config
@@ -233,7 +233,7 @@ describe('loadConfig', () => {
       // the code based on the extension overrides. This means that when we're
       // testing the .web.js extensions these methods will wrtie out to the
       // memfs system. Otherwise they'll write to disk.
-      cwd = path.resolve(tmpDirectory(), 'test', uuidv4())
+      cwd = path.resolve(tmpDirectory(), 'tests', uuidv4())
       await outputFile(
         path.resolve(cwd, 'stages', 'sensitive', 'config.yaml'),
         config

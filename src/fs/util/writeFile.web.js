@@ -1,13 +1,7 @@
 import { writeFile as memWriteFile } from 'memfs'
 
-const writeFile = async (file, data, options) =>
-  new Promise((resolve, reject) => {
-    memWriteFile(file, data, options, (error) => {
-      if (error) {
-        return reject(error)
-      }
-      return resolve()
-    })
-  })
+import { promisfy } from '../../lang'
+
+const writeFile = promisfy(memWriteFile)
 
 export default writeFile
