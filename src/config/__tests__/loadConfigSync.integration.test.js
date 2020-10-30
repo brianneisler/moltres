@@ -75,7 +75,9 @@ describe('loadConfigSync', () => {
           bar: 'barred',
           baz: 'bopity'
         },
-        ping: 'pong'
+        ping: 'pong',
+        stage: 'test',
+        target: 'cli'
       })
     })
 
@@ -132,7 +134,10 @@ describe('loadConfigSync', () => {
         target: 'cli'
       })
 
-      expect(result).toEqual({})
+      expect(result).toEqual({
+        stage: 'dne',
+        target: 'cli'
+      })
     })
 
     it('should drop sensitive values when dropSensitive is true', () => {
@@ -150,7 +155,9 @@ describe('loadConfigSync', () => {
         foo: {
           bar: 'barred',
           baz: 'bopity'
-        }
+        },
+        stage: 'test',
+        target: 'cli'
       })
     })
 
@@ -175,7 +182,9 @@ describe('loadConfigSync', () => {
           bar: 'barred',
           baz: 'bopity'
         },
-        ping: 'pong'
+        ping: 'pong',
+        stage: 'test',
+        target: 'cli'
       })
     })
 
@@ -203,7 +212,66 @@ describe('loadConfigSync', () => {
           bar: 'barred',
           baz: 'bopity'
         },
-        ping: 'pong'
+        ping: 'pong',
+        stage: 'test',
+        target: 'cli'
+      })
+    })
+  })
+
+  describe('stage:sensitive', () => {
+    let cwd
+    let config
+    beforeAll(async () => {
+      config = await readFile(
+        path.resolve(__dirname, 'stages', 'sensitive', 'config.yaml'),
+        'utf8'
+      )
+    })
+    beforeEach(async () => {
+      // NOTE BRN: These methods import from our own methods which will redirect
+      // the code based on the extension overrides. This means that when we're
+      // testing the .web.js extensions these methods will wrtie out to the
+      // memfs system. Otherwise they'll write to disk.
+      cwd = path.resolve(tmpDirectory(), 'tests', uuidv4())
+      await outputFile(
+        path.resolve(cwd, 'stages', 'sensitive', 'config.yaml'),
+        config
+      )
+    })
+
+    it('should drop all sensitive values when dropSensitive is true including nested values', () => {
+      const result = loadConfigSync({
+        cwd,
+        dropSensitive: true,
+        stage: 'sensitive',
+        target: 'cli'
+      })
+
+      expect(result).toEqual({
+        foo: 'bar',
+        stage: 'sensitive',
+        target: 'cli'
+      })
+    })
+
+    it('should retain all sensitive values when dropSensitive is false', async () => {
+      const result = loadConfigSync({
+        cwd,
+        dropSensitive: false,
+        stage: 'sensitive',
+        target: 'cli'
+      })
+
+      expect(result).toEqual({
+        ding: {
+          dong: 'bong',
+          ring: 'wrong'
+        },
+        foo: 'bar',
+        ping: 'pong',
+        stage: 'sensitive',
+        target: 'cli'
       })
     })
   })

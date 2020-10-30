@@ -1,15 +1,18 @@
 // TODO: Split this function into different versions based on ios, android and web
 // import env from 'react-native-config'
-import { mergeDeepRight } from '../lang'
+import { merge, mergeDeepRight } from '../lang'
 
 import evaluateConfigAndEnv from './util/evaluateConfigAndEnv'
+import getStage from './util/getStage'
 import getTarget from './util/getTarget'
 import updateEnv from './util/updateEnv'
 import validateConfig from './util/validateConfig'
 
 const loadConfigSync = (options = {}, initialConfig = {}, context = {}) => {
+  const stage = getStage(options)
   const target = getTarget(options)
 
+  initialConfig = merge({ stage, target }, initialConfig)
   let config
   let env
   if (target === 'web') {
@@ -27,19 +30,20 @@ const loadConfigSync = (options = {}, initialConfig = {}, context = {}) => {
 
     env = loadDotEnvSync(options)
     config = loadConfigFileSync(options)
+
+    const cwd = options.cwd || process.cwd()
+    // Load raw config and env and then resolve their values against
+    // each other since they can cross reference each other
+
+    ;({ config, env } = evaluateConfigAndEnv(
+      {
+        config: mergeDeepRight(initialConfig, config || {}),
+        env
+      },
+      options,
+      mergeDeepRight({ project: { dir: cwd } }, context)
+    ))
   }
-
-  // Load raw config and env and then resolve their values against
-  // each other since they can cross reference each other
-
-  ;({ config, env } = evaluateConfigAndEnv(
-    {
-      config: mergeDeepRight(initialConfig, config),
-      env
-    },
-    options,
-    context
-  ))
 
   const { modules } = options
   if (modules) {
