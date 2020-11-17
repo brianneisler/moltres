@@ -103,9 +103,6 @@ const evaluateData = (data, context) => {
 }
 
 const evaluateConfigAndEnv = (data, options = {}, context = {}) => {
-  const cwd = getCwd(options)
-  const stage = getStage(options)
-  const target = getTarget(options)
   const enhancedData = enhanceData(data, options)
 
   return pick(
@@ -117,9 +114,6 @@ const evaluateConfigAndEnv = (data, options = {}, context = {}) => {
       },
       {
         ...UTIL_METHODS,
-        cwd,
-        stage,
-        target,
         ...context
       }
     )
