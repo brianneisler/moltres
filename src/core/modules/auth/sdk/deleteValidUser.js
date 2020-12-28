@@ -1,5 +1,4 @@
-import { map, values } from 'moltres/lang'
-
+import { map, values } from '../../../../lang'
 import { deleteUser } from '../../user'
 import {
   deleteUserPhoneNumber,

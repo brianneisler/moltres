@@ -1,7 +1,7 @@
 import { Object, String } from '../../core/schemas'
 
 const Index = {
-  collectionName: 'Indexes',
+  collectionName: 'Index',
   name: 'Index',
   schema: Object.schema.keys({
     value: String.schema.required()

@@ -1,4 +1,4 @@
-import { SET } from '../../../../constants/EntityChangeType'
+import { EntityChangeType } from '../../../../constants'
 import {
   batchSetDocument,
   batchSetIndexes,
@@ -25,7 +25,7 @@ const batchSetEntity = curry(
         context,
         batch,
         entityChangedAction(context, {
-          changeType: SET,
+          changeType: EntityChangeType.SET,
           data,
           entityId: ref.id,
           entityPath: ref.path,

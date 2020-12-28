@@ -3,6 +3,7 @@ import * as BrowserType from './BrowserType'
 import * as Code from './Code'
 import * as DeviceType from './DeviceType'
 import * as EngineState from './EngineState'
+import * as EntityChangeType from './EntityChangeType'
 import * as OSType from './OSType'
 import * as PhoneNumberCountries from './PhoneNumberCountries'
 import * as PlatformType from './PlatformType'
@@ -17,6 +18,7 @@ export {
   Code,
   DeviceType,
   EngineState,
+  EntityChangeType,
   OSType,
   PhoneNumberCountries,
   PlatformType,

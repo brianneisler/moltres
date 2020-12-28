@@ -1,4 +1,5 @@
 import curry from './curry'
+import isReduced from './isReduced'
 import iterateRight from './iterateRight'
 import pipe from './pipe'
 
@@ -49,6 +50,13 @@ const reduceRight = curry((iteratee, accumulator, collection) => {
         },
         (nextAccum) => {
           accum = nextAccum
+          if (isReduced(accum)) {
+            return {
+              ...next,
+              done: true,
+              value: accum.value
+            }
+          }
           if (next.done) {
             return {
               ...next,

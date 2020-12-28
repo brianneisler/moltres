@@ -1,21 +1,21 @@
-import { readFile } from '../fs'
-import { uuidv4 } from '../lang'
+// import { readFile } from '../fs'
+// import { uuidv4 } from '../lang'
 
-import getFrameworkConfigPath from './getFrameworkConfigPath'
+// import getFrameworkConfigPath from './getFrameworkConfigPath'
 
-const createConfig = async () => {
+const createFrameworkConfig = async () => {
   // const createdAt = Math.round(Date.now() / 1000),
   // const config = {
-  //   frameworkId: uuid.v1(),
+  //   frameworkId: uuidv4(),
   //   meta: {
   //     createdAt,
   //     updatedAt: createdAt
-  //   },
-  //   trackingDisabled: false,
-  //   userId: null
+  //   }
   // }
-  // writeFileAtomic.sync(getServerlessrcPath(), JSON.stringify(config, null, 2))
-  // return JSON.parse(await readFile(getServerlessrcPath()))
+  // TODO BRN:
+  // - lock framework config file
+  // - create framework config file
+  // - unlock framework config file
 }
 
-export default createConfig
+export default createFrameworkConfig

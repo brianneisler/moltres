@@ -1,0 +1,67 @@
+// Index methods
+// -----------------------------
+
+function getIndexAfter(path) {
+  return getAfter(/$(databasePath())/Index/$(path))
+}
+
+function buildAndGetIndexAfter(entityType, fieldsKey, fieldsValue) {
+  return getIndexAfter(
+    /$(pluralize(entityType))/$(fieldsKey)/$(fieldsValue)
+  )
+}
+
+function buildAndGetIndexAfterWithFieldValues(entityType, fields, fieldValues) {
+  return buildAndGetIndexAfter(
+    entityType,
+    join('_', fields),
+    join('_', fieldValues)
+  )
+}
+
+function getIndexBefore(path) {
+  return get(/$(databasePath())/Index/$(path))
+}
+
+function indexExistsAfter(path) {
+  return existsAfter(/$(databasePath())/Index/$(path))
+}
+
+function indexExistsBefore(path) {
+  return exists(/$(databasePath())/Index/$(path))
+}
+
+function indexEqualsId(index, id) {
+  return index.data.value == id
+}
+
+function indexedIdMatchesAfterWithEntityData(entityType, entityData, fields, id) {
+  return indexEqualsId(
+    buildAndGetIndexAfterWithFieldValues(entityType, fields, props(fields, entityData)),
+    id
+  )
+}
+
+function indexedIdMatchesAfter(entityType, fields, id) {
+  return indexedIdMatchesAfterWithEntityData(
+    entityType,
+    getEntityAfter(entityType, id).data,
+    fields,
+    id
+  )
+}
+
+function indexedValuesMatchAfterWithEntityData(entityData, fields, fieldValues) {
+  return props(fields, entityData) == fieldValues
+}
+
+function indexedValueMatchesAfter(entityType, fieldsKey, fieldsValue) {
+  return indexedValuesMatchAfterWithEntityData(
+    getEntityAfter(
+      entityType,
+      buildAndGetIndexAfter(entityType, fieldsKey, fieldsValue).data.value
+    ).data,
+    split('_', fieldsKey),
+    split('_', fieldsValue)
+  )
+}

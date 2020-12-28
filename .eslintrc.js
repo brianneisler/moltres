@@ -7,6 +7,7 @@ module.exports = {
   },
   extends: ['prettier'],
   globals: {
+    TEST_TARGET: 'readable',
     example: 'readonly'
   },
   parser: 'babel-eslint',

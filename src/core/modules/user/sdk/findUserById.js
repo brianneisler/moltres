@@ -1,4 +1,4 @@
-import { findDocumentById } from 'moltres/db'
+import { findDocumentById } from '../../../../db'
 import { User } from '../schemas'
 
 const findUserById = findDocumentById(User)

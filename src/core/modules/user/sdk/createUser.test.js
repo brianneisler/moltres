@@ -3,7 +3,7 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from 'moltres/test'
+} from '../../../../test'
 
 import createUser from './createUser'
 import deleteUser from './deleteUser'

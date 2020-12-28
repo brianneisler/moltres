@@ -21,6 +21,7 @@ describe('constants index', () => {
       },
       Symbol: {
         ITERATOR: expect.anything(),
+        REDUCED: expect.anything(),
         TO_STRING_TAG: expect.anything()
       }
     })

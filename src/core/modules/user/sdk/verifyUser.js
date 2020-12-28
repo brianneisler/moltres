@@ -1,4 +1,4 @@
-import { expected } from 'moltres/error'
+import { expected } from '../../../../error'
 
 const verifyUser = (user, { id, statusCode }) => {
   if (!user) {

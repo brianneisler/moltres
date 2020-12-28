@@ -1,10 +1,4 @@
-import {
-  compact,
-  flatten,
-  getProperty,
-  keys,
-  map
-} from '../../../../lang'
+import { compact, flatten, getProperty, keys, map } from '../../../../lang'
 import { all, call } from '../../../../redux'
 
 import runModule from './runModule'

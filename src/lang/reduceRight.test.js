@@ -1,4 +1,5 @@
 import reduceRight from './reduceRight'
+import reduced from './reduced'
 
 describe('reduceRight', () => {
   test('reduces array right to left', () => {
@@ -24,6 +25,15 @@ describe('reduceRight', () => {
     expect(reducer).toHaveBeenNthCalledWith(2, '', 'bar', 1)
     expect(reducer).toHaveBeenNthCalledWith(3, '', 'foo', 0)
     expect(result).toBe('')
+  })
+
+  test('exits early when reduced is returned', () => {
+    const values = ['foo', 'bar', 'baz']
+    const reducer = jest.fn(() => reduced('bop'))
+    const result = reduceRight(reducer, '', values)
+    expect(reducer).toHaveBeenNthCalledWith(1, '', 'baz', 2)
+    expect(reducer).toHaveBeenCalledTimes(1)
+    expect(result).toEqual('bop')
   })
 
   test('reduces object right to left', () => {

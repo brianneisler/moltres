@@ -10,19 +10,28 @@ module.exports = {
     {
       ...defaults,
       displayName: 'base',
+      globals: {
+        TEST_TARGET: 'function'
+      },
       moduleFileExtensions: ['js', 'json'],
       testEnvironment: 'node'
     },
-    {
-      ...defaults,
-      displayName: 'web',
-      moduleFileExtensions: ['web.js', 'js', 'json'],
-      testEnvironment: 'jsdom',
-      testURL: 'http://localhost'
-    },
+    // {
+    //   ...defaults,
+    //   displayName: 'web',
+    //   globals: {
+    //     TEST_TARGET: 'web'
+    //   },
+    //   moduleFileExtensions: ['web.js', 'js', 'json'],
+    //   testEnvironment: 'jsdom',
+    //   testURL: 'http://localhost'
+    // },
     {
       ...defaults,
       displayName: 'ssr',
+      globals: {
+        TEST_TARGET: 'ssr'
+      },
       moduleFileExtensions: ['ssr.js', 'web.js', 'js', 'json'],
       testEnvironment: 'node'
     }

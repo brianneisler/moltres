@@ -1,4 +1,4 @@
-import { REMOVE } from '../../../../constants/EntityChangeType'
+import { EntityChangeType } from '../../../../constants'
 import {
   batchRemoveDocument,
   cleanseData,
@@ -33,7 +33,7 @@ const batchRemoveEntity = curry(
 
     if (!options.noChangeActions) {
       const action = entityChangedAction(context, {
-        changeType: REMOVE,
+        changeType: EntityChangeType.REMOVE,
         data: cleanseData(Schema, data),
         entityId: ref.id,
         entityPath: ref.path,

@@ -1,4 +1,4 @@
-import { UPDATE } from '../../../../constants/EntityChangeType'
+import { EntityChangeType } from '../../../../constants'
 import {
   batchUpdateDocument,
   batchUpdateIndexes,
@@ -33,7 +33,7 @@ const batchUpdateEntity = curry(
         context,
         batch,
         entityChangedAction(context, {
-          changeType: UPDATE,
+          changeType: EntityChangeType.UPDATE,
           data: cleanseData(Schema, data),
           entityId: ref.id,
           entityPath: ref.path,

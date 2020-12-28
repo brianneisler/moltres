@@ -1,8 +1,7 @@
-import { StatusCode } from 'moltres/constants'
-import { buildBatch, commitBatch, getFromRef } from 'moltres/db'
-import { expected } from 'moltres/error'
-import { all } from 'moltres/lang'
-
+import { StatusCode } from '../../../../constants'
+import { buildBatch, commitBatch, getFromRef } from '../../../../db'
+import { expected } from '../../../../error'
+import { all } from '../../../../lang'
 import {
   batchCreatePhoneNumber,
   findPhoneNumberByPhoneNumber

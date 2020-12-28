@@ -4,6 +4,8 @@ import { createAdminContext, createBaseContext } from '../context'
 import { uuidv4 } from '../lang'
 import { processCwd } from '../process'
 
+// TODO BRN: This should load authentication for the moltres platform from
+// global config. It should also try to load project config
 const setupCliContexts = async (modules) => {
   const config = await loadProjectConfig({
     cwd: processCwd(),

@@ -1,4 +1,4 @@
-import { deleteServiceAccount } from '../modules/service_account'
+import { deleteServiceAccount } from '../core/modules/service_account'
 
 const tearDownTestAdminContext = async (adminContext) => {
   await deleteServiceAccount(adminContext, adminContext.serviceAccount.id)

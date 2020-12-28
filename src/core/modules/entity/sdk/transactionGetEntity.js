@@ -1,4 +1,4 @@
-import { CREATE } from '../../../../constants/EntityChangeType'
+import { EntityChangeType } from '../../../../constants'
 import {
   batchCreateDocument,
   batchCreateIndexes,
@@ -18,7 +18,7 @@ const batchCreateEntity = curry(
 
     if (!options.noChangeActions) {
       const action = entityChangedAction(context, {
-        changeType: CREATE,
+        changeType: EntityChangeType.CREATE,
         data,
         entityId: ref.id,
         entityPath: ref.path,

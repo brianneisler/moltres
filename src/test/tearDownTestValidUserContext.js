@@ -1,13 +1,12 @@
-import { getPoperty } from 'moltres'
-
-import { deleteValidUser } from '../modules/auth'
+import { deleteValidUser } from '../core/modules/auth'
+import { getProperty } from '../lang'
 
 const tearDownTestValidUserContext = async (testContext, userContext) => {
   try {
     if (userContext.currentUser) {
       await deleteValidUser(
         testContext,
-        getPoperty('id', userContext.currentUser)
+        getProperty('id', userContext.currentUser)
       )
     }
   } catch (error) {

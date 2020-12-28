@@ -1,9 +1,5 @@
-import { DELETE } from '../../../../constants/EntityChangeType'
-import {
-  batchDeleteDocument,
-  batchDeleteIndexes,
-  refGet
-} from '../../../../db'
+import { EntityChangeType } from '../../../../constants'
+import { batchDeleteDocument, batchDeleteIndexes, refGet } from '../../../../db'
 import { curry } from '../../../../lang'
 import { entityChangedAction } from '../actions'
 
@@ -18,7 +14,7 @@ const batchDeleteEntity = curry(
     batchDeleteIndexes(Schema, context, batch, prevData)
     if (!options.noChangeActions) {
       const action = entityChangedAction(context, {
-        changeType: DELETE,
+        changeType: EntityChangeType.DELETE,
         data: null,
         entityId: ref.id,
         entityPath: ref.path,

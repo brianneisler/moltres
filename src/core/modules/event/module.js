@@ -27,12 +27,12 @@ const createEventMiddleware = () => (store) => (next) => (action) => {
   return next(action)
 }
 
-const handleEventRequest = (context, request, response) => {
-  // TODO: Look for cloud event headers and process as a cloud event
-}
+// const handleEventRequest = (context, request, response) => {
+//   // TODO: Look for cloud event headers and process as a cloud event
+// }
 
 const mod = () => ({
-  handleEventRequest,
+  // handleEventRequest,
   middleware: [createEventMiddleware()],
   schemas,
   sdk
