@@ -1,0 +1,50 @@
+import isContext from './isContext'
+
+describe('isContext', () => {
+  test('Returns true for an object with a an isContext property set to true', () => {
+    expect(
+      isContext({
+        isContext: true
+      })
+    ).toBe(true)
+  })
+
+  test('returns false for all other values', () => {
+    expect(isContext(undefined)).toBe(false)
+    expect(isContext(null)).toBe(false)
+    expect(isContext('')).toBe(false)
+    expect(isContext('abc')).toBe(false)
+    expect(isContext(false)).toBe(false)
+    expect(isContext(true)).toBe(false)
+    expect(isContext(0)).toBe(false)
+    expect(isContext(-1)).toBe(false)
+    expect(isContext(1)).toBe(false)
+    expect(isContext(NaN)).toBe(false)
+    expect(isContext(Infinity)).toBe(false)
+    expect(isContext(-Infinity)).toBe(false)
+    expect(isContext([])).toBe(false)
+    expect(isContext(new Array(0))).toBe(false)
+    expect(isContext([0])).toBe(false)
+    expect(isContext({})).toBe(false)
+    expect(isContext(/abc/)).toBe(false)
+    expect(isContext(async () => {})).toBe(false)
+    expect(isContext(() => {})).toBe(false)
+    expect(isContext(function () {})).toBe(false)
+    expect(isContext((function* () {})())).toBe(false)
+    expect(isContext(new ArrayBuffer(2))).toBe(false)
+    expect(isContext(new Boolean(false))).toBe(false)
+    expect(isContext(new Boolean(true))).toBe(false)
+    expect(isContext(new Date())).toBe(false)
+    expect(isContext(new Error())).toBe(false)
+    expect(isContext(new Map())).toBe(false)
+    expect(isContext(new Number(1))).toBe(false)
+    expect(isContext(new Promise(() => {}))).toBe(false)
+    expect(isContext(new Proxy({}, {}))).toBe(false)
+    expect(isContext(new Set())).toBe(false)
+    expect(isContext(new String('abc'))).toBe(false)
+    expect(isContext(Symbol('abc'))).toBe(false)
+    expect(isContext(Symbol.for('def'))).toBe(false)
+    expect(isContext(new WeakMap())).toBe(false)
+    expect(isContext(new WeakSet())).toBe(false)
+  })
+})
