@@ -32,6 +32,7 @@
   * [function isPlainFunction()](#function-isplainfunction)
   * [function isSymbol()](#function-issymbol)
   * [function nArySpread()](#function-naryspread)
+  * [function nArySpread()](#function-naryspread-1)
   * [function nth()](#function-nth)
   * [function op()](#function-op)
   * [function pipe()](#function-pipe)
@@ -761,6 +762,37 @@ isSymbol(Symbol.for('abc'))
 
 isSymbol('abc')
 // => false
+```
+<br /><br />
+
+### function nArySpread()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.5.2/src/lang/nArySpread.chrome-extension.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+<p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
+
+**Params**
+<p><code>n</code>: <code>Number</code> - The desired arity of the new function.</p>
+<p><code>fn</code>: <code>Function</code> - The function to wrap.</p>
+
+**Returns**
+<br /><p><code>Function</code> - A new function wrapping `fn`. The new function is guaranteed to be of parameter length `n`.</p>
+
+**Example**
+```js
+const takesNArgs = (...args) => [ ...args ]
+
+takesNArgs.length //=> 0
+takesNArgs(1, 2) //=> [1, 2]
+
+const takesTwoArgs = nArySpread(2, takesNArgs)
+takesTwoArgs.length //=> 2
+// All arguments are passed to the wrapped function
+takesTwoArgs(1, 2, 3) //=> [1, 2, 3]
+
+const curriedTakesTwoArgs = curry(takesTwoArgs)
+// auto currying works as expected
+const takesAtLeastOneMoreArg = curriedTakesTwoArgs(3)
+takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
 ```
 <br /><br />
 
