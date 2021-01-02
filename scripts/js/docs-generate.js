@@ -4,27 +4,38 @@ import dox from 'dox'
 import fs from 'fs-extra'
 import glob from 'glob'
 import markdownMagic from 'markdown-magic'
+
+import pack from '../../package.json'
+import * as cliModules from '../../src/cli/modules'
+import { setupCliCommands } from '../../src/cli/modules/cli/util'
+import setupCliContexts from '../../src/cli/setupCliContexts'
+import tearDownCliContexts from '../../src/cli/tearDownCliContexts'
+import { EngineState } from '../../src/constants'
+import { generateEngine } from '../../src/core'
 import {
   append,
   assoc,
   filter,
   find,
   forEach,
+  getProperty,
   isEmpty,
   map,
-  prop,
   reduce
-} from 'ramda'
+} from '../../src/lang'
 
-import pack from '../../package.json'
-
-import { reduceObjIndexed } from './utils'
-
-const GIT_URL = pack.repository.url.replace('.git', '')
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
-const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
+const CLI_COMMANDS_README_PATH = path.resolve(
+  __dirname,
+  '..',
+  '..',
+  'docs',
+  'CLI.md'
+)
+const SRC_PATH = path.resolve(__dirname, '..', '..', 'src/utils/lang')
+
 const CURRENT_VERSION = pack.version
-const GITHUB_TAG_URL = `${GIT_URL}/tree/v${CURRENT_VERSION}`
+const GITHUB_TAG_URL = `https://github.com/FitPath/fitpath/tree/v${CURRENT_VERSION}`
 const REGEX_RETURN_TYPE = /\{.*\}/s
 const REGEX_PARAM = /(\{.*\})\s*([a-zA-Z0-9$_]*)/s
 
@@ -104,7 +115,7 @@ const findSrcFiles = () =>
 
 const findCategory = (tags) => {
   const categoryTag = find((tag) => tag.type === 'category', tags)
-  return prop('string', categoryTag)
+  return getProperty('string', categoryTag)
 }
 
 const findExample = (tags) => {
@@ -127,16 +138,12 @@ const findReturns = (tags) => {
 
 const findSince = (tags) => {
   const sinceTag = find((tag) => tag.type === 'since', tags)
-  return prop('string', sinceTag)
+  return getProperty('string', sinceTag)
 }
 
-const findFunction = (tags) => find((tag) => tag.type === 'function', tags)
-
-const findClass = (tags) => find((tag) => tag.type === 'class', tags)
-
-const findPrivate = (tags) => {
-  const privateTag = find((tag) => tag.type === 'private', tags)
-  return privateTag
+const findFunction = (tags) => {
+  const functionTag = find((tag) => tag.type === 'function', tags)
+  return functionTag
 }
 
 const findType = (tags) => {
@@ -182,43 +189,59 @@ const renderExampleMarkdown = (example) => {
   return markdown
 }
 
+const renderCommandMarkdown = (command) => {
+  let markdown = `**Command**\n`
+  if (command) {
+    markdown += `<p><code>${command}</code></p>\n`
+    markdown += `\n`
+  }
+  return markdown
+}
+
+const renderCommandExampleMarkdown = (example) => {
+  let markdown = ''
+  if (example) {
+    markdown += `**Example**\n`
+    markdown += '```shell\n'
+    markdown += `${example.trim()}\n`
+    markdown += '```\n'
+  }
+  return markdown
+}
+
+const renderOptionsMarkdown = (options) => {
+  let markdown = `**Options**\n`
+  if (!isEmpty(options)) {
+    forEach((option) => {
+      markdown += `<p><code>${option.option}</code>${option.description}\n ${
+        option.required ? ' - required' : ''
+      }
+        </p >\n`
+    }, options)
+    markdown += `\n`
+  } else {
+    markdown += `None\n\n`
+  }
+  return markdown
+}
+
 const renderFunctionMarkdown = ({
   description,
   example,
   line,
   name,
   params,
-  private: _private,
   returns,
   since,
   srcFile
 }) => {
-  let markdown = `### ${_private ? '**private** ' : ''}function ${name}()\n\n`
+  let markdown = `### ${name} () \n\n`
   // console.log('meta:', JSON.stringify(data, null, 2))
-  markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
-  markdown += `${description}\n\n`
+  markdown += `[source](${GITHUB_TAG_URL} / src / ${srcFile}#L${line}) & nbsp;& nbsp;& nbsp;& nbsp;& nbsp; since ${since} \n`
+  markdown += `${description} \n\n`
 
   markdown += renderParamsMarkdown(params)
   markdown += renderReturnsMarkdown(returns)
-  markdown += renderExampleMarkdown(example)
-  markdown += '<br /><br />\n\n'
-  return markdown
-}
-
-const renderClassMarkdown = ({
-  description,
-  example,
-  line,
-  name,
-  private: _private,
-  since,
-  srcFile
-}) => {
-  let markdown = `### ${_private ? '**private** ' : ''}class ${name}\n\n`
-  markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
-  markdown += `${description}\n\n`
-
-  markdown += `**Class**: \`${name}\`\n\n`
   markdown += renderExampleMarkdown(example)
   markdown += '<br /><br />\n\n'
   return markdown
@@ -229,16 +252,15 @@ const renderValueMarkdown = ({
   example,
   line,
   name,
-  private: _private,
   since,
   srcFile,
   type
 }) => {
-  let markdown = `### ${_private ? '**private** ' : ''}${name}\n\n`
-  markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
-  markdown += `${description}\n\n`
+  let markdown = `### ${name} \n\n`
+  markdown += `[source](${GITHUB_TAG_URL} / src / ${srcFile}#L${line}) & nbsp;& nbsp;& nbsp;& nbsp;& nbsp; since ${since} \n`
+  markdown += `${description} \n\n`
 
-  markdown += `**Type**: \`${type}\`\n\n`
+  markdown += `** Type **: \`${type}\`\n\n`
   markdown += renderExampleMarkdown(example)
   markdown += '<br /><br />\n\n'
   return markdown
@@ -252,13 +274,6 @@ const renderCategoryMarkdown = (category) => {
     },
     markdown,
     category.functions
-  )
-  markdown = reduce(
-    (accMarkdown, _class) => {
-      return accMarkdown + renderClassMarkdown(_class)
-    },
-    markdown,
-    category.classes
   )
   return reduce(
     (accMarkdown, value) => {
@@ -293,7 +308,6 @@ const generateReturns = (tags) => {
 }
 
 const generateFunctionDocs = (meta, srcFile) => {
-  const _private = findPrivate(meta.tags)
   const category = findCategory(meta.tags)
   if (!category) {
     throw new Error(`Source file ${srcFile} did not declare a @category tag`)
@@ -309,31 +323,7 @@ const generateFunctionDocs = (meta, srcFile) => {
     line: meta.line,
     name: meta.ctx.name,
     params: generateParams(meta.tags),
-    private: _private,
     returns: generateReturns(meta.tags),
-    since,
-    srcFile
-  }
-}
-
-const generateClassDocs = (meta, srcFile) => {
-  // console.log('meta:', meta)
-  const category = findCategory(meta.tags)
-  if (!category) {
-    throw new Error(`Source file ${srcFile} did not declare a @category tag`)
-  }
-  const since = findSince(meta.tags)
-  if (!since) {
-    throw new Error(`Source file ${srcFile} did not declare a @since tag`)
-  }
-  return {
-    category,
-    class: true,
-    description: meta.description.full,
-    example: findExample(meta.tags),
-    extends: meta.ctx.extends,
-    line: meta.line,
-    name: meta.ctx.name,
     since,
     srcFile
   }
@@ -366,10 +356,6 @@ const getType = (tags) => {
   if (functionTag) {
     return 'function'
   }
-  const classTag = findClass(tags)
-  if (classTag) {
-    return 'class'
-  }
   const typeTag = findType(tags)
   if (typeTag) {
     return typeTag.string
@@ -378,10 +364,9 @@ const getType = (tags) => {
 }
 
 const getCategory = (name, categories) => {
-  let category = prop(name, categories)
+  let category = getProperty(name, categories)
   if (!category) {
     category = {
-      classes: [],
       functions: [],
       name,
       values: []
@@ -398,7 +383,7 @@ const generateCategoryDocs = (srcData) =>
           const type = getType(meta.tags)
           if (!type) {
             throw new Error(
-              `Source file ${data.srcFile} did not declare a @function, @class tag or a @type tag`
+              `Source file ${data.srcFile} did not declare a @function tag or a @type tag`
             )
           }
 
@@ -411,15 +396,6 @@ const generateCategoryDocs = (srcData) =>
               category
             )
             categories = assoc(fnDocs.category, category, categories)
-          } else if (type === 'class') {
-            const classDocs = generateClassDocs(meta, data.srcFile)
-            let category = getCategory(classDocs.category, categories)
-            category = assoc(
-              'classes',
-              append(classDocs, category.classes),
-              category
-            )
-            categories = assoc(classDocs.category, category, categories)
           } else {
             const valueDocs = generateValueDocs(meta, data.srcFile)
             let category = getCategory(valueDocs.category, categories)
@@ -443,7 +419,7 @@ const generateAPIDocs = (srcData) =>
       transforms: {
         METHODS() {
           const categories = generateCategoryDocs(srcData)
-          return reduceObjIndexed(
+          return reduce(
             (markdown, category) => {
               return markdown + renderCategoryMarkdown(category)
             },
@@ -461,7 +437,65 @@ const generateAPIDocs = (srcData) =>
         return reject(error)
       }
       // eslint-disable-next-line no-console
-      console.log('🎉 Docs updated!')
+      console.log('🎉 API Docs updated!')
+      resolve()
+    })
+  })
+
+const renderCliCommandMarkdown = ({
+  command,
+  description,
+  example,
+  options,
+  since,
+  srcFile
+}) => {
+  let markdown = `### ${command}\n\n`
+  // console.log('meta:', JSON.stringify(data, null, 2))
+  markdown += `[source](${GITHUB_TAG_URL}/${srcFile})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n\n`
+  markdown += `${description}\n\n`
+
+  markdown += renderCommandMarkdown(command)
+  if (options) {
+    markdown += renderOptionsMarkdown(options)
+  }
+  markdown += renderCommandExampleMarkdown(example)
+  markdown += '<br /><br />\n\n'
+  return markdown
+}
+
+const generateCLIDocs = (srcData) =>
+  new Promise((resolve, reject) => {
+    const magicConfig = {
+      transforms: {
+        CLI() {
+          let markdown = `## Auto-generated CLI Commands Docs\n\n`
+          markdown = reduce(
+            (md, data) => md + renderCliCommandMarkdown(data),
+            markdown,
+            srcData
+          )
+          return markdown
+          // const categories = generateCategoryDocs(srcData)
+          // return reduceObjectIndexed(
+          //   (markdown, category) => {
+          //     return markdown + renderCategoryMarkdown(category)
+          //   },
+          //   '',
+          //   categories
+          // )
+        }
+      }
+    }
+
+    markdownMagic([CLI_COMMANDS_README_PATH], magicConfig, (error) => {
+      if (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error while generating docs')
+        return reject(error)
+      }
+      // eslint-disable-next-line no-console
+      console.log('🎉 CLI Docs updated!')
       resolve()
     })
   })
@@ -470,6 +504,26 @@ const exec = async () => {
   const srcFiles = await findSrcFiles()
   const srcData = await parseSrcFiles(srcFiles)
   await generateAPIDocs(srcData)
+
+  // TODO BRN: Update this to be a utility and bring in the project modules here...
+  const modules = {
+    ...cliModules
+  }
+  const contexts = await setupCliContexts()
+  const { context } = contexts
+
+  const engine = generateEngine(
+    modules,
+    context.config,
+    context,
+    undefined,
+    EngineState.SETUP
+  )
+  const cliMods = await setupCliCommands(engine)
+  const docs = await generateCLIDocs(cliMods)
+
+  await tearDownCliContexts(contexts)
+  return docs
 }
 
 exec().catch((error) => {

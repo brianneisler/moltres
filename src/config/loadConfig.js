@@ -2,11 +2,14 @@
 // import env from 'react-native-config'
 import { merge, mergeDeepRight } from '../lang'
 
-import evaluateConfigAndEnv from './util/evaluateConfigAndEnv'
-import getStage from './util/getStage'
-import getTarget from './util/getTarget'
-import updateEnv from './util/updateEnv'
-import validateConfig from './util/validateConfig'
+import {
+  evaluateConfigAndEnv,
+  getCwd,
+  getStage,
+  getTarget,
+  updateEnv,
+  validateConfig
+} from './util'
 
 const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
   const stage = getStage(options)
@@ -28,11 +31,11 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
   } else {
     // NOTE BRN: dynamically require the needed modules here so that we avoid
     // loading node specific modules in the web environment
-    const { loadConfigFile, loadDotEnv } = require('./util')
+    const { loadDotEnv, loadProjectConfigFile } = require('./util')
 
     env = await loadDotEnv(options)
-    config = await loadConfigFile(options)
-    const cwd = options.cwd || process.cwd()
+    config = await loadProjectConfigFile(options)
+    const cwd = getCwd(options)
     // Load raw config and env and then resolve their values against
     // each other since they can cross reference each other
 
@@ -42,7 +45,15 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
         env
       },
       options,
-      mergeDeepRight({ project: { dir: cwd } }, context)
+      mergeDeepRight(
+        {
+          cwd,
+          project: { dir: cwd },
+          stage,
+          target
+        },
+        context
+      )
     ))
   }
 

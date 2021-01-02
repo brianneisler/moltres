@@ -1,4 +1,5 @@
 import curry from './curry'
+import isReduced from './isReduced'
 import iterate from './iterate'
 import pipe from './pipe'
 
@@ -15,6 +16,13 @@ const reduce = curry((iteratee, accumulator, iterable) => {
         },
         (nextAccum) => {
           accum = nextAccum
+          if (isReduced(accum)) {
+            return {
+              ...next,
+              done: true,
+              value: accum.value
+            }
+          }
           if (next.done) {
             return {
               ...next,

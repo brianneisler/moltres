@@ -30,8 +30,12 @@ npm-debug.log
 
 # development
 .cache
+.env
+.env*
+.firebase
 tmp
 dist
+stages
 yarn.lock
 
 *.sample

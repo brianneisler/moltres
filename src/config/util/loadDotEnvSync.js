@@ -4,12 +4,15 @@ import { readFileSync } from '../../fs'
 import { defn } from '../../lang'
 import { pathResolve } from '../../path'
 
-import resolveStagePath from './resolveStagePath'
+import resolveProjectStagePath from './resolveProjectStagePath'
 
 const FILE_NAME_ENV = '.env'
 
 const loadDotEnvSync = defn('loadDotEnvSync', (options) => {
-  const envFilePath = pathResolve(resolveStagePath(options), FILE_NAME_ENV)
+  const envFilePath = pathResolve(
+    resolveProjectStagePath(options),
+    FILE_NAME_ENV
+  )
   let loadedEnv = {}
   try {
     const data = readFileSync(envFilePath, 'utf8')

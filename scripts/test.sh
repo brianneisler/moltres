@@ -1,9 +1,24 @@
 #!/usr/bin/env bash
-set -e
+nvm-guard
+if [ $? -eq 1 ]; then
+  exit 1
+fi
 
-echo "testing..."
+export NODE_ENV=development
 
-jest $@ --expand
+if [ "$TEST_INTEGRATION" = "true" ]; then
+  echo "running integration tests on '${STAGE}'"
+  firebase use "${STAGE}" --token "${FIREBASE_TOKEN}"
+  npm run test:run -- $@
+else
+  firebase emulators:exec --project local --token "${FIREBASE_TOKEN}" "npm run test:run -- $@"
+fi
 
-echo "test complete!"
-
+if [ $? -eq 0 ]
+then
+  echo "Tests successful."
+  exit 0
+else
+  echo "Tests failed." >&2
+  exit 1
+fi
