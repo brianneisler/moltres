@@ -12,6 +12,7 @@
 - [fs](#fs)
   * [function checkParentPaths()](#function-checkparentpaths)
 - [lang](#lang)
+  * [function add()](#function-add)
   * [function all()](#function-all)
   * [function allWith()](#function-allwith)
   * [function assoc()](#function-assoc)
@@ -33,6 +34,7 @@
   * [function isSymbol()](#function-issymbol)
   * [function nArySpread()](#function-naryspread)
   * [function nArySpread()](#function-naryspread-1)
+  * [function nArySpread()](#function-naryspread-2)
   * [function nth()](#function-nth)
   * [function op()](#function-op)
   * [function pipe()](#function-pipe)
@@ -246,6 +248,34 @@ parent and stops once it reaches the src parent or the root path.</p>
 <br /><br />
 
 ## lang
+
+### function add()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.5.4/src/lang/add.js#L4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.6.0
+<p>Converts two values into Numbers and then adds them together.</p>
+
+**Params**
+<p><code>valueA</code>: <code>&ast;</code> - The first value</p>
+<p><code>valueB</code>: <code>&ast;</code> - the second value to add to the first</p>
+
+**Returns**
+<br /><p><code>Number</code> - The sum of valueA and valueB</p>
+
+**Example**
+```js
+add(2, 3)
+//=>  5
+
+add(7)(10)
+//=> 17
+
+add(2.2, 3.2)
+// => 5.4
+
+add('2', '3')
+// => 5
+```
+<br /><br />
 
 ### function all()
 
@@ -799,6 +829,37 @@ takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
 ### function nArySpread()
 
 [source](https://github.com/brianneisler/moltres/tree/v0.5.4/src/lang/nArySpread.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
+<p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
+
+**Params**
+<p><code>n</code>: <code>Number</code> - The desired arity of the new function.</p>
+<p><code>fn</code>: <code>Function</code> - The function to wrap.</p>
+
+**Returns**
+<br /><p><code>Function</code> - A new function wrapping `fn`. The new function is guaranteed to be of parameter length `n`.</p>
+
+**Example**
+```js
+const takesNArgs = (...args) => [ ...args ]
+
+takesNArgs.length //=> 0
+takesNArgs(1, 2) //=> [1, 2]
+
+const takesTwoArgs = nArySpread(2, takesNArgs)
+takesTwoArgs.length //=> 2
+// All arguments are passed to the wrapped function
+takesTwoArgs(1, 2, 3) //=> [1, 2, 3]
+
+const curriedTakesTwoArgs = curry(takesTwoArgs)
+// auto currying works as expected
+const takesAtLeastOneMoreArg = curriedTakesTwoArgs(3)
+takesAtLeastOneMoreArg(1, 2) // => [3, 1, 2]
+```
+<br /><br />
+
+### function nArySpread()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.5.4/src/lang/nArySpread.widget.js#L3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.4
 <p>Wraps a function of any arity (including nullary) in a function that accepts exactly <code>n</code> parameters. Any extraneous parameters are spread and then reapplied on execution. This is useful when you want to ensure a function's paramter length is exactly <code>n</code> but still passes all arguments through.</p>
 
 **Params**
