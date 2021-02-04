@@ -18,6 +18,7 @@ const listPromise = (values = []) => {
     return Promise.resolve(all(this.promises))
       .then((results) => {
         resolve(results)
+        return promise
       })
       .catch((error) => reject(error))
   }

@@ -90,4 +90,23 @@ describe('listPromise', () => {
     expect(resolve1).toHaveBeenCalledWith('abc')
     expect(resolve2).toHaveBeenCalledWith('def')
   })
+
+  test('Resolve call returns the promise which can be awaited for the result', async () => {
+    const promise = listPromise()
+    let resolve1
+
+    const laterPromise1 = new Promise((resolve) => {
+      resolve1 = jest.fn((value) => resolve(value))
+      setTimeout(() => {
+        resolve1('abc')
+      }, 1000)
+    })
+
+    promise.push(laterPromise1)
+
+    const result = await promise.resolve()
+
+    expect(result).toEqual(['abc'])
+    expect(resolve1).toHaveBeenCalledWith('abc')
+  })
 })
