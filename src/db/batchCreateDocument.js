@@ -8,6 +8,9 @@ import collection from './collection'
  * the given data. Returns the DocumentReference of the document to be created
  * when the batch is commited.
  *
+ * @function
+ * @since v0.5.7
+ * @category db
  * @param {Schema} Schema
  * @param {Context} context
  * @param {WriteBatch} batch

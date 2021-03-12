@@ -8,6 +8,7 @@ import { forEach } from '../lang'
  *
  * @function
  * @since v0.6.0
+ * @category zip
  * @param {*} directory
  * @param {*} outputFilePath
  */

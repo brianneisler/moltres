@@ -12,6 +12,10 @@ import collection from './collection'
 import getSchemaLineage from './getSchemaLineage'
 
 /**
+ * Reference a document by id
+ * @function
+ * @since v0.5.7
+ * @category db
  * @param {Schema} schema
  * @param {Context} context
  * @param {string|Array} ids
