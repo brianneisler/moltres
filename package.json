@@ -59,7 +59,7 @@
   "dependencies": {
     "acorn": "^8.0.4",
     "acorn-walk": "^8.0.0",
-    "adm-zip": "^0.4.16",
+    "adm-zip": "^0.5.4",
     "archiver": "^5.3.0",
     "bluebird": "^3.7.2",
     "commander": "^6.1.0",
