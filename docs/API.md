@@ -180,7 +180,8 @@
 - [url](#url)
   * [function formatURL()](#function-formaturl)
 - [zip](#zip)
-  * [function zipDirectory()](#function-zipdirectory)
+  * [function zipDirectoryToFilePath()](#function-zipdirectorytofilepath)
+  * [function zipDirectoryToFilePath()](#function-zipdirectorytofilepath-1)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (METHODS) -->
@@ -4442,9 +4443,23 @@ Else urlObject.hash is not a string and is not undefined then Error is thrown.</
 
 ## zip
 
-### function zipDirectory()
+### function zipDirectoryToFilePath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.5.7/src/zip/zipDirectory.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.6.0
+[source](https://github.com/brianneisler/moltres/tree/v0.5.7/src/zip/zipDirectoryToFilePath.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.6.0
+<p>Zips up a target directory and outputs it to the given file path.</p>
+
+**Params**
+<p><code>directory</code>: <code>&ast;</code> - </p>
+<p><code>outputFilePath</code>: <code>&ast;</code> - </p>
+
+**Returns**
+<br /><code>undefined</code>
+
+<br /><br />
+
+### function zipDirectoryToFilePath()
+
+[source](https://github.com/brianneisler/moltres/tree/v0.5.7/src/zip/zipDirectoryToFilePath.web.js#L1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.6.0
 <p>Zips up a target directory and outputs it to the given file path.</p>
 
 **Params**

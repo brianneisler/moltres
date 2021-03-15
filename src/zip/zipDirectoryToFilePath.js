@@ -12,7 +12,7 @@ import { forEach } from '../lang'
  * @param {*} directory
  * @param {*} outputFilePath
  */
-const zipDirectory = async (
+const zipDirectoryToFilePath = async (
   directory,
   outputFilePath,
   { include = ['*'] } = {}
@@ -48,4 +48,4 @@ const zipDirectory = async (
     archive.finalize()
   })
 
-export default zipDirectory
+export default zipDirectoryToFilePath
