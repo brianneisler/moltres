@@ -4,8 +4,9 @@ describe('listPromise', () => {
   test('listPromise is synchronously resolved when not awaiting anything', async () => {
     const promise = listPromise()
 
-    promise.resolve()
+    const result = promise.resolve()
 
+    expect(result).toBe(promise)
     expect(promise.isPending()).toBe(false)
     expect(promise.isFulfilled()).toBe(true)
     expect(promise.value()).toEqual([])
@@ -108,5 +109,24 @@ describe('listPromise', () => {
 
     expect(result).toEqual(['abc'])
     expect(resolve1).toHaveBeenCalledWith('abc')
+  })
+
+  test('Resolve call returns the promise which errors can be caught from', async () => {
+    const promise = listPromise([
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('error')
+        }, 0)
+      })
+    ])
+
+    let err
+    try {
+      await promise.resolve()
+    } catch (error) {
+      err = error
+    }
+
+    expect(err).toBe('error')
   })
 })

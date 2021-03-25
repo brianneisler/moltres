@@ -13,14 +13,11 @@ const listPromise = (values = []) => {
 
   promise.resolve = function () {
     if (this.promises.length === 0) {
-      return resolve(this.promises)
+      resolve(this.promises)
+    } else {
+      Promise.resolve(all(this.promises)).then(resolve).catch(reject)
     }
-    return Promise.resolve(all(this.promises))
-      .then((results) => {
-        resolve(results)
-        return promise
-      })
-      .catch((error) => reject(error))
+    return promise
   }
   return promise
 }
