@@ -1,12 +1,19 @@
 import listPromise from './listPromise'
 
 describe('listPromise', () => {
-  test('listPromise is synchronously resolved when not awaiting anything', async () => {
+  test('listPromise returns the original promise instance from resolve', async () => {
     const promise = listPromise()
 
     const result = promise.resolve()
 
     expect(result).toBe(promise)
+  })
+
+  test('listPromise is synchronously resolved when not awaiting anything', async () => {
+    const promise = listPromise()
+
+    promise.resolve()
+
     expect(promise.isPending()).toBe(false)
     expect(promise.isFulfilled()).toBe(true)
     expect(promise.value()).toEqual([])
