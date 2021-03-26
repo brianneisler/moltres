@@ -11,7 +11,7 @@ class RingBuffer {
   flush() {
     const items = []
     while (this.length) {
-      items.push(this.take())
+      items.push(this.take()[0])
     }
     return items
   }
@@ -44,10 +44,11 @@ class RingBuffer {
   // TODO BRN: Update this to return a Sequence
   take(number = 1) {
     const values = []
-    while (number > 0 && this.length != 0) {
+    while (number > 0 && this.length !== 0) {
       const value = this.array[this.popIndex]
-      this.array[this.popIndex] = null
-      this.length--
+      this.array[this.popIndex] = undefined
+      this.length -= 1
+      number -= 1
       this.popIndex = (this, this.popIndex + 1) % this.limit
       values.push(value)
     }
