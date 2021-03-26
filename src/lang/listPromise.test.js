@@ -1,6 +1,14 @@
 import listPromise from './listPromise'
 
 describe('listPromise', () => {
+  test('listPromise returns the original promise instance from resolve', async () => {
+    const promise = listPromise()
+
+    const result = promise.resolve()
+
+    expect(result).toBe(promise)
+  })
+
   test('listPromise is synchronously resolved when not awaiting anything', async () => {
     const promise = listPromise()
 
@@ -108,5 +116,24 @@ describe('listPromise', () => {
 
     expect(result).toEqual(['abc'])
     expect(resolve1).toHaveBeenCalledWith('abc')
+  })
+
+  test('Resolve call returns the promise which errors can be caught from', async () => {
+    const promise = listPromise([
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('error')
+        }, 0)
+      })
+    ])
+
+    let err
+    try {
+      await promise.resolve()
+    } catch (error) {
+      err = error
+    }
+
+    expect(err).toBe('error')
   })
 })
