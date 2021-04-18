@@ -8,7 +8,7 @@ class Expected extends Throwable {
     message = 'An expected error occurred',
     name = 'Expected',
     statusCode = 400
-  }) {
+  } = {}) {
     super({
       causes,
       code,

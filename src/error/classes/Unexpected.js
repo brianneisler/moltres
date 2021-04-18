@@ -6,9 +6,9 @@ class Unexpected extends Throwable {
     code = 'UNEXPECTED',
     data,
     message = 'An unexpected error occurred',
-    name = 'Unxpected',
+    name = 'Unexpected',
     statusCode = 500
-  }) {
+  } = {}) {
     super({
       causes,
       code,
