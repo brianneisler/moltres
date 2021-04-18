@@ -1,1 +1,1 @@
-export * from '../src/lang'
+export * from '../dist/lang'

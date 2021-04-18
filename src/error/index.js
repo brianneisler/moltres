@@ -1,2 +1,6 @@
+export { default as capture } from './capture'
 export { default as expected } from './expected'
+export { default as isExpected } from './isExpected'
+export { default as isThrowable } from './isThrowable'
+export { default as isUnexpected } from './isUnexpected'
 export { default as unexpected } from './unexpected'

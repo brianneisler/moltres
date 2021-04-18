@@ -1,1 +1,1 @@
-export * from '../src/zip'
+export * from '../dist/zip'

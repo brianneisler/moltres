@@ -1,1 +1,1 @@
-export * from '../src/fs'
+export * from '../dist/fs'

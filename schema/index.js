@@ -1,1 +1,1 @@
-export * from '../src/schema'
+export * from '../dist/schema'
