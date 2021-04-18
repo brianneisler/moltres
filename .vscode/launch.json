@@ -11,7 +11,13 @@
       "cwd": "${workspaceFolder}",
       "outputCapture": "std",
       "runtimeExecutable": "${workspaceRoot}/scripts/nvm.sh",
-      "runtimeArgs": ["npm", "run-script", "test:debug", "--", "${relativeFile}"]
+      "runtimeArgs": [
+        "npm",
+        "run-script",
+        "test:debug",
+        "--",
+        "${relativeFile}"
+      ]
     }
   ]
 }

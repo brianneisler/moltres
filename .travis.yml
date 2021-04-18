@@ -1,50 +1,44 @@
 language: node_js
 sudo: false
-
 node_js:
-- 14
-- 12
-- 10
-
+  - 14
+  - 12
+  - 10
 os:
-- linux
-- osx
-- windows
-
+  - linux
+  - osx
+  - windows
 install:
-- npm run setup
-
+  - npm run setup
 script:
-- npm run test:ci
-
+  - npm run test:ci
 stages:
-- audit
-- lint
-- test
-- name: deploy
-  if: tag=~^v AND repo=brianneisler/moltres
-
+  - audit
+  - lint
+  - test
+  - name: deploy
+    if: tag=~^v AND repo=brianneisler/moltres
 jobs:
   include:
-  - stage: audit
-    node_js: 14
-    os: linux
-    script: npm run security:audit
-  - stage: lint
-    node_js: 14
-    os: linux
-    script: npm run lint
-  - stage: deploy
-    node_js: 14
-    os: linux
-    script: echo "Deploying to npm ..."
-    deploy:
-      provider: npm
-      skip_cleanup: true
-      email: me@brianneisler.com
-      api_key: $NPM_API_KEY
-      on:
-        tags: true
+    - stage: audit
+      node_js: 14
+      os: linux
+      script: npm run security:audit
+    - stage: lint
+      node_js: 14
+      os: linux
+      script: npm run lint
+    - stage: deploy
+      node_js: 14
+      os: linux
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        skip_cleanup: true
+        email: me@brianneisler.com
+        api_key: '$NPM_API_KEY'
+        on:
+          tags: true
 env:
   global:
-    secure: lYNGNxyxz3NpvR/rUlI+TCYwCXbn2gfVw4kPZ0NEbFmm2ElFPDgbD3XhI/3HI7gzDyQgA37fSWj5sjRnSRgSxYqm8neIQfSyWZ4o8DsPAeC0U0EdP+Q+ckqPV678Hfwse04PQPTN9RowKZd1LmHO5JtWLL4NumBa22DNyuOcnS8VNPYo9rWYmFQbgPNh5XRY3VHI8xWc0U+0NNtRRFVlPkbm0Ji0P9Jn7DY/yFnHmIditSFTixWaIvg3ZqS/XhykgzEDu/WKs8+o1Ynsq9qhbL5TPbClQ7mPjNCbMSdMNturup8Tloadv2rz5Mp1A3PSNSpae8K+rDTYF7VptAkptmOdQ7djfu7fjB/4XBj5a/YEmr12B0dme4hdlLOUYReSUtvpQJxPKIMgR7xRLenZlkIHvuEKFKFGojIvK54v8ILVAxeiSCa8/05QZUElSib5LyOQdkysdG7nLsFAnkaCHtmMJrWi0jqPqWft80FhiESa1/kN9VQxSQuGUFQ9iKelS1OJ7FWP8qwhuJShrRIf3+5RwBQLY1YKBm0B3BuNjBvvGw7IpriXiiMFKcskVlag8r+d2dGUobhlBFQOgixNx+xugHXppTE5niDWMF7IiqYi5gT+tZ3mHbKsvvp2nbU5VpcrJpmrsAYL8iegZOABCUX4MPZyCiLTzRfd8wcx19Y=
+    secure: ViGfZQiZHT3C/JzgkcRMt7RI/xqp1Tj6hvEUH1a0KIH5hT0vTlZFV7A0xB8ALk3ejQsIii6JUhaLgUDwSIDpnhhQw6L2wVwYp7d7KreD9UPuWk7qFQQQZ0WNPPUGSDOI/MYmQ1Z6AQ+OQApchQ8/To9VTsxTvC+FDriedlHI1XsENuFmkfzVFo7X2KUcq4o2MtIHLmxsZIsd1wF69JKmmMg5JGyXqJDKDLcb9MPM8njh7MgrP6vQAm3Re3QUNpeI+p+yXu4S4XPIHTOPdSwatnGscIh2NMrVVS6HKiwBOvOx1jZx3NcLBfTSXA9wjU10W0OYfv0Szaxlf9WszAFrN6/TUCv2pbBifbg6kXUl4deP1ISQ+v2zvzV+S+eE/NC3S9GVRm6DL3viwe+icN6uWaEmq/Rxg404h+7lsirFHypOgFQOvQKrnS1WU6AYk6RtXQWLTwTpZCABFX0mat03toJMlDEutO7YlVTevPOW1EH2imCibW82qicmitfHbkDYSKPqmOHuqnug1CzfFLChRduRPUq0MyMtvV41Nrj0O2bsAodmRmKhKIZmYUhxOaUVanmRLXNdgY4XoB98DuZYqOVh0E/v8q9h7rx2gt2q40z6FiwuZO6pqMI1hBfxVDf82/YqAl+gmw5X/ZMm/LQqlckxKPP47kWtHIG7FP5/TfU=

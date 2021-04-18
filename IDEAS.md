@@ -1,4 +1,5 @@
 ## Smart Keywords
+
 - detect misspelled keywords and notify developer of issue.
   - offer quick fix
   - potentially map misuses of keywords to actual keywords and auto recover.
@@ -6,13 +7,11 @@
 - [ ] errors with markdown in them
   - this gives us a more convenient way of linking text in errors to useful
     things like documentation
-  
-
 
 ## Argument Feed
 
 Feed functions values that represent the arguments so that we can product what
-  the resultant shape of a function looks like and reduce it down further
+the resultant shape of a function looks like and reduce it down further
 
 ```js
 const strNum = fn([String, Number], (str, num) => foo(str, num))
@@ -45,14 +44,15 @@ const numStr = fn([Number, String], (num, str) => strNum())
 strNum(Argument('str', String), Argument('num', Number))
 //=> List [foo, Argument(str), Argument(num)]
 ```
+
 Using these results, we can now collapse the `numStr` method into a simpler
 method that directly calls `foo`
+
 ```js
-// TODO BRN: This gets the gist across but need to think through how a more complex example would work with multiple function calls. 
+// TODO BRN: This gets the gist across but need to think through how a more complex example would work with multiple function calls.
 const build = (func) => (arg1, arg2) => func(arg1, arg2)
 const strNum = build(foo)
 ```
-
 
 ## Type identification
 
@@ -73,22 +73,25 @@ value meets the criteria to be that type.
 
 **Technical Challenges**
 This poses some interesting technical challenges.
+
 - A value can be of any number of types simply based on it's value. There's no
   definitive heirarchy.
 
 Solutions
-- heirarchies for reducing the number of checks performed 
-- memoization of type identification for values. 
+
+- heirarchies for reducing the number of checks performed
+- memoization of type identification for values.
 - have `fn` methods wrap arguments in objects. This will enable us to attach
   known types to a value as it is passed around. This also enables us to take
   advantage of weak memoization to help with memory issues
 
 Summary
-- Values do not have "types". There are underlying JS types but we use those as
-  the core data format 
 
+- Values do not have "types". There are underlying JS types but we use those as
+  the core data format
 
 NOTES: for the following code
+
 - if the next methods were replaced with generators and all methods were
   generator functions instead, this would provide a method for debugging and
   "stepping" through the code.
@@ -126,7 +129,7 @@ const _if = (predicate, branch1, branch2) => (next) => {
     return bNext2(context)
   })
   return pNext
-} 
+}
 
 const not = (value) => (next) => {
   if (isSymbol(value)) {
@@ -137,8 +140,6 @@ const not = (value) => (next) => {
 
 const noop = () => (next) => next
 
-
-
 const f1 = (value) => {
   if (!value) {
     console.log(value)
@@ -146,31 +147,23 @@ const f1 = (value) => {
   return 'foo'
 }
 
-const f2Next = _if(
-  not($('value')),
-  log($('value')),
-  noop()
-)(() =>'foo')
-const f2 = (value) => f2Next({[$('value')]: value})
+const f2Next = _if(not($('value')), log($('value')), noop())(() => 'foo')
+const f2 = (value) => f2Next({ [$('value')]: value })
 ```
-
-
 
 ## Determining difference between code that should execute NOW and code that is defining a statement
 
 - usage of variables indicates that we are not executing this function now.
   Instead it is interpreted when the whole code block is executed.
-```js
-add(1, 2)  // the add is executed immediately
 
-_let([$.x, 5], 
-  add($.x, 2)) // The add in this case returns a function for execution since it depends upong the let statement. The `let` statement is executed immediately though
+```js
+add(1, 2) // the add is executed immediately
+
+_let([$.x, 5], add($.x, 2)) // The add in this case returns a function for execution since it depends upong the let statement. The `let` statement is executed immediately though
 ```
 
 question: should code declared with `fn` even be allowed to use js functions?
 instead, it would simply declare code using clojure syntax
-
-
 
 ## Using a Proxy as a function wrapper to allow for dot syntax piping
 
@@ -181,25 +174,29 @@ any function to pipe the methods together.
 An example of what would be nice.
 
 Usually we'd write a function like this....
+
 ```js
-defn('transform', [$.person(Object)],
+defn(
+  'transform',
+  [$.person(Object)],
   update(assoc($.person, 'hair-color', 'gray'), 'age', inc)
 )
 ```
 
 and then use it like this
+
 ```js
-transform({name: 'Socrates', age: 39})
+transform({ name: 'Socrates', age: 39 })
 //=> { name: 'Socrates', age: 40, hair-color: 'gray' }
 ```
 
 It's easier to read this function if we can use dot syntax chaining
 
 ```js
-defn('transform', [$.person(Object)],
-  $.person
-    .assoc('hair-color', 'gray')
-    .update('age', inc)
+defn(
+  'transform',
+  [$.person(Object)],
+  $.person.assoc('hair-color', 'gray').update('age', inc)
 )
 ```
 
@@ -209,12 +206,11 @@ handles identifying where the value makes the most sense based upon type, we mig
 avoid having to worry about thread first vs last and just leave it up to the
 currying to figure out.
 
-
-
 **Implementation**
 We can implement this feature using a javascript Proxy. The Proxy will enable us
 to accept any prop by any name. We can then use this to look up a method by the
-name of the prop from the current context of the current file. 
+name of the prop from the current context of the current file.
+
 ```js
 // context holds all namespaces and named values for this method
 const context = {
@@ -236,7 +232,7 @@ const handler = {
   }
 }
 
-const func = () => 
+const func = () =>
 const pFunc = new Proxy(func, handler)
 
 pFunc
@@ -245,9 +241,8 @@ pFunc
 pFunc()
 ```
 
-
 ## Completely stateless functions
+
 All functions should be completely stateless. Any state should be supplied as a
 parameter to the function (absolutely NO hardcoded values within the code). Providing state to a function is essentially
-selecting a version of the function we'd like to use. 
-
+selecting a version of the function we'd like to use.
