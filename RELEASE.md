@@ -54,17 +54,24 @@ npm run test
 npm run docs:generate
 ```
 
-- generate the change log
-
-```sh
-git log --pretty="- %s" --no-merges release/vX.X.X..release/vX.X.X >> CHANGELOG.md
-```
-
 - Commit files changes with new version numbers. Replace Xs with new version number.
 
 ```sh
 git add -A
 git commit -m"Release vX.X.X"
+```
+
+- generate the change log
+
+```sh
+git log --pretty="- %s" --no-merges origin/release/vX.X.X..release/vX.X.X >> CHANGELOG.md
+```
+
+- Commit the changelog. Replace Xs with new version number.
+
+```sh
+git add -A
+git commit -m"update changelog"
 git push origin release/vX.X.X
 ```
 
