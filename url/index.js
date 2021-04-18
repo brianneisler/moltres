@@ -1,1 +1,1 @@
-export * from '../src/url'
+export * from '../dist/url'

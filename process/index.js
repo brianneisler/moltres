@@ -1,1 +1,1 @@
-export * from '../src/process'
+export * from '../dist/process'
