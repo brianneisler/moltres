@@ -1,10 +1,11 @@
+import invariant from '../lang/invariant'
+
 const capture = (context, throwable) => {
-  if (!context.error || !context.error.reporter) {
-    throw new Error(
-      'context must have error module defined and must have a reporter configured to capture a throwable value'
-    )
-  }
-  context.error.reporter.capture(throwable)
+  invariant(
+    context.reporter,
+    'context must have a reporter configured to capture a throwable value'
+  )
+  context.reporter.capture(context, throwable)
 }
 
 export default capture
