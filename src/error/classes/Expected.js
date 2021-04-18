@@ -1,18 +1,26 @@
-class Expected extends Error {
+import Throwable from './Throwable'
+
+class Expected extends Throwable {
   constructor({
-    causes = [],
+    causes,
     code = 'EXPECTED',
     data,
     message = 'An expected error occurred',
     name = 'Expected',
     statusCode = 400
   }) {
-    super(message)
-    this.causes = causes
-    this.code = code
-    this.data = data
-    this.name = name
+    super({
+      causes,
+      code,
+      data,
+      message,
+      name
+    })
     this.statusCode = statusCode
+  }
+
+  isExpected() {
+    return true
   }
 }
 
