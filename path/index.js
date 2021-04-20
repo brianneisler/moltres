@@ -1,1 +1,1 @@
-export * from '../dist/path'
+export * from '../src/path'

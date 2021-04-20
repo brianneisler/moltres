@@ -1,1 +1,1 @@
-export * from '../../dist/lang/classes'
+export * from '../../src/lang/classes'
