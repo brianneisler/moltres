@@ -16,3 +16,7 @@
 - Add name property to Expected and Unexpected
 - Bump y18n from 4.0.0 to 4.0.1
 - Add changelog and update release readme
+
+### Release v0.5.11
+- Change export folders back to using src instead of dist
+- Prettify .md, .yml and .json files. Update npm token on travis.
