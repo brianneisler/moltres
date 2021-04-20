@@ -1,1 +1,1 @@
-export * from '../../dist/lang/constants'
+export * from '../../src/lang/constants'

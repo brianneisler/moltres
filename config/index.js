@@ -1,1 +1,1 @@
-export * from '../dist/config'
+export * from '../src/config'

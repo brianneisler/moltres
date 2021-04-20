@@ -1,1 +1,1 @@
-export * from '../dist/error'
+export * from '../src/error'

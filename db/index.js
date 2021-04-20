@@ -1,1 +1,1 @@
-export * from '../dist/db'
+export * from '../src/db'
