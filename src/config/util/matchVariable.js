@@ -26,7 +26,7 @@ const matchVariable = (string) => {
   return {
     exact,
     expression,
-    match
+    match,
   }
 }
 

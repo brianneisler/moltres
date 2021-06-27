@@ -5,7 +5,7 @@ describe('matchVariable', () => {
     expect(matchVariable('${abc}')).toEqual({
       exact: true,
       expression: 'abc',
-      match: '${abc}'
+      match: '${abc}',
     })
   })
 
@@ -13,7 +13,7 @@ describe('matchVariable', () => {
     expect(matchVariable('abc')).toEqual({
       exact: undefined,
       expression: undefined,
-      match: undefined
+      match: undefined,
     })
   })
 
@@ -21,7 +21,7 @@ describe('matchVariable', () => {
     expect(matchVariable('${{abc}')).toEqual({
       exact: true,
       expression: '{abc',
-      match: '${{abc}'
+      match: '${{abc}',
     })
   })
 
@@ -29,7 +29,7 @@ describe('matchVariable', () => {
     expect(matchVariable('hello ${abc} dude')).toEqual({
       exact: false,
       expression: 'abc',
-      match: '${abc}'
+      match: '${abc}',
     })
   })
 
@@ -37,7 +37,7 @@ describe('matchVariable', () => {
     expect(matchVariable("${abc || 'world'}")).toEqual({
       exact: true,
       expression: "abc || 'world'",
-      match: "${abc || 'world'}"
+      match: "${abc || 'world'}",
     })
   })
 
@@ -45,7 +45,7 @@ describe('matchVariable', () => {
     expect(matchVariable("hello ${abc || 'world'}")).toEqual({
       exact: false,
       expression: "abc || 'world'",
-      match: "${abc || 'world'}"
+      match: "${abc || 'world'}",
     })
   })
 })
