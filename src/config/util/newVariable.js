@@ -9,9 +9,9 @@ const expectedBadVariableEvaluation = (variable, evalError) =>
     code: 'BadVariableEvaluation',
     data: {
       error: evalError,
-      variable
+      variable,
     },
-    message: `An error occurred while evaluating the variable '${variable.variableString}'.\n\n"${evalError.message}"\n\n`
+    message: `An error occurred while evaluating the variable '${variable.variableString}'.\n\n"${evalError.message}"\n\n`,
   })
 
 const newVariable = (variableString) => {
@@ -24,7 +24,7 @@ const newVariable = (variableString) => {
         throw expectedBadVariableEvaluation(variable, error)
       }
     },
-    variableString
+    variableString,
   }
   return variable
 }
