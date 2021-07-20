@@ -45,9 +45,7 @@ const assocPath = (path, value, collection) => {
     path = createPath(path)
   }
   if (!isPath(path)) {
-    throw new TypeError(
-      `setPath expected 'path' parameter to be a Path. Instead received ${path}`
-    )
+    throw new TypeError(`setPath expected 'path' parameter to be a Path. Instead received ${path}`)
   }
   if (size(path) === 0) {
     return value

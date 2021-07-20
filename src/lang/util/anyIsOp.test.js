@@ -10,7 +10,7 @@ describe('anyIsOp', () => {
   test('returns true for redux saga op', () => {
     expect(
       anyIsOp({
-        ['@@redux-saga/IO']: 'op'
+        ['@@redux-saga/IO']: 'op',
       })
     ).toBe(true)
   })

@@ -4,7 +4,7 @@ describe('isContext', () => {
   test('Returns true for an object with a an isContext property set to true', () => {
     expect(
       isContext({
-        isContext: true
+        isContext: true,
       })
     ).toBe(true)
   })

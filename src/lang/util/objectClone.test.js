@@ -5,13 +5,13 @@ describe('objectClone', () => {
     const object = {
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     }
     const result = objectClone(object)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     })
     expect(result).not.toBe(object)
   })

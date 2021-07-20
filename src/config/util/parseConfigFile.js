@@ -7,10 +7,7 @@ const parseConfigFile = curry((filePath, contents, options = {}) => {
   if (isJsonPath(filePath)) {
     return JSON.parse(contents)
   } else if (isYamlPath(filePath)) {
-    return YAML.load(
-      contents.toString(),
-      merge(options, { filename: filePath })
-    )
+    return YAML.load(contents.toString(), merge(options, { filename: filePath }))
   }
   return contents.toString().trim()
 })

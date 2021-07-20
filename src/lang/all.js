@@ -52,7 +52,7 @@ const all = curry(
       if (next.done) {
         return {
           ...next,
-          value: result
+          value: result,
         }
       }
       return resolveWith((nextValue) => {

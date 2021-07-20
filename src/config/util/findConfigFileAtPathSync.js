@@ -4,16 +4,11 @@ import { pathJoin } from '../../path'
 
 const CONFIG_FILE_NAMES = ['config.js', 'config.yaml', 'config.json']
 
-const findConfigFileAtPathSync = defn(
-  'findConfigFileAtPathSync',
-  (absolutePath) =>
-    find(
-      fileExistsSync,
-      map(
-        (configFileName) => pathJoin(absolutePath, configFileName),
-        CONFIG_FILE_NAMES
-      )
-    )
+const findConfigFileAtPathSync = defn('findConfigFileAtPathSync', (absolutePath) =>
+  find(
+    fileExistsSync,
+    map((configFileName) => pathJoin(absolutePath, configFileName), CONFIG_FILE_NAMES)
+  )
 )
 
 export default findConfigFileAtPathSync

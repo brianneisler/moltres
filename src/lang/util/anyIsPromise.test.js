@@ -8,7 +8,7 @@ describe('anyIsPromise', () => {
   test('returns true for object with then method', () => {
     expect(
       anyIsPromise({
-        then: () => {}
+        then: () => {},
       })
     ).toBe(true)
   })

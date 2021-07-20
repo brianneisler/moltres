@@ -27,7 +27,7 @@ import isString from './isString'
  * set([ 'c', 'd' ], 3, {a: 1, b: 2}) //=> {a: 1, b: 2, c: { d: 3 }}
  */
 // NOTE BRN: We use curry here instead of defn because there are data
-// implementations where we don't want to directly dispatch to .set. The Sutter
+// implementations where we don't want to directly dispatch to .set. The Stutter
 // implementation will fix this once we can switch to that
 const set = curry((selector, value, collection) =>
   allWith(

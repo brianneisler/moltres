@@ -7,14 +7,14 @@ class Unexpected extends Throwable {
     data,
     message = 'An unexpected error occurred',
     name = 'Unexpected',
-    statusCode = 500
+    statusCode = 500,
   } = {}) {
     super({
       causes,
       code,
       data,
       message,
-      name
+      name,
     })
     this.statusCode = statusCode
   }

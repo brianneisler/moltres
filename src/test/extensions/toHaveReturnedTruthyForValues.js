@@ -2,7 +2,7 @@ function toHaveReturnedTruthyForValues(func, values) {
   const options = {
     comment: 'Checks for a return of `true` from multiple values',
     isNot: this.isNot,
-    promise: this.promise
+    promise: this.promise,
   }
 
   let idx = 0
@@ -17,12 +17,7 @@ function toHaveReturnedTruthyForValues(func, values) {
   }
 
   const message = () =>
-    this.utils.matcherHint(
-      'toHaveReturnedTruthyForValues',
-      undefined,
-      undefined,
-      options
-    ) +
+    this.utils.matcherHint('toHaveReturnedTruthyForValues', undefined, undefined, options) +
     '\n\n' +
     `Expected: ${this.utils.printExpected(expected)}\n` +
     `Received: ${this.utils.printReceived(received)}`
@@ -30,7 +25,7 @@ function toHaveReturnedTruthyForValues(func, values) {
   return {
     actual: received,
     message,
-    pass
+    pass,
   }
 }
 

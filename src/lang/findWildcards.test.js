@@ -16,8 +16,8 @@ describe('findWildcards', () => {
       ImmutableMap({
         ':bar': ImmutableMap({
           basePath: ImmutableList(['foo']),
-          name: ':bar'
-        })
+          name: ':bar',
+        }),
       })
     )
   })
@@ -29,12 +29,12 @@ describe('findWildcards', () => {
       ImmutableMap({
         ':bar': ImmutableMap({
           basePath: ImmutableList(['foo']),
-          name: ':bar'
+          name: ':bar',
         }),
         ':baz': ImmutableMap({
           basePath: ImmutableList(['foo', ':bar']),
-          name: ':baz'
-        })
+          name: ':baz',
+        }),
       })
     )
   })
@@ -46,12 +46,12 @@ describe('findWildcards', () => {
       ImmutableMap({
         ':bar': ImmutableMap({
           basePath: ImmutableList(['foo1']),
-          name: ':bar'
+          name: ':bar',
         }),
         ':baz': ImmutableMap({
           basePath: ImmutableList(['foo2']),
-          name: ':baz'
-        })
+          name: ':baz',
+        }),
       })
     )
   })

@@ -10,7 +10,7 @@ describe('createRingBuffer', () => {
     expect(result).toBeInstanceOf(RingBuffer)
     expect(result).toMatchObject({
       limit,
-      overflowHandler
+      overflowHandler,
     })
   })
 })

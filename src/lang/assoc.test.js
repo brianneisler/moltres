@@ -3,22 +3,22 @@ import assoc from './assoc'
 describe('assoc', () => {
   test('assoc to an object using a single existing key', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(assoc('foo', 'baz', collection)).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
     expect(assoc(['foo'], 'baz', collection)).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
   })
 
   test('assoc to an object using a single existing key with dots', () => {
     const collection = {
-      'foo.bar': 'baz'
+      'foo.bar': 'baz',
     }
     expect(assoc('foo.bar', 'fum', collection)).toEqual({
-      'foo.bar': 'fum'
+      'foo.bar': 'fum',
     })
   })
 
@@ -30,22 +30,20 @@ describe('assoc', () => {
 
   test('assoc to a Map using a single existing key', () => {
     const collection = new Map([['foo', 'bar']])
-    expect([...assoc('foo', 'baz', collection).entries()]).toEqual([
-      ['foo', 'baz']
-    ])
+    expect([...assoc('foo', 'baz', collection).entries()]).toEqual([['foo', 'baz']])
   })
 
   test('assoc to an object using a single non existing key', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(assoc('bim', 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(assoc(['bim'], 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
@@ -59,7 +57,7 @@ describe('assoc', () => {
     const collection = new Map([['foo', 'bar']])
     expect([...assoc('bim', 'bop', collection).entries()]).toEqual([
       ['foo', 'bar'],
-      ['bim', 'bop']
+      ['bim', 'bop'],
     ])
   })
 
@@ -68,46 +66,46 @@ describe('assoc', () => {
       assoc: (key, value) => {
         return {
           foo: 'bar',
-          [key]: value
+          [key]: value,
         }
-      }
+      },
     }
 
     expect(assoc('bim', 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
   test('automatically upgrades to async when the collection is a Promise', async () => {
     const collection = Promise.resolve({
-      foo: 'bar'
+      foo: 'bar',
     })
     const result = assoc('foo', 'baz', collection)
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
   })
 
   test('automatically upgrades to async when the key is a Promise', async () => {
     const key = Promise.resolve('foo')
     const result = assoc(key, 'baz', {
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
   })
 
   test('does NOT automatically upgrade to async when the value is a Promise', async () => {
     const value = Promise.resolve('baz')
     const result = assoc('foo', value, {
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(result).toEqual({
-      foo: Promise.resolve('baz')
+      foo: Promise.resolve('baz'),
     })
   })
 
@@ -116,16 +114,16 @@ describe('assoc', () => {
       assoc: (key, value) => {
         return {
           foo: 'bar',
-          [key]: value
+          [key]: value,
         }
-      }
+      },
     })
 
     const result = assoc('bim', 'bop', collection)
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 })

@@ -13,8 +13,8 @@ describe('isKeyedIterator', () => {
       anyIsKeyedIterator({
         getKey: () => {},
         next: () => ({
-          done: true
-        })
+          done: true,
+        }),
       })
     ).toBe(true)
   })

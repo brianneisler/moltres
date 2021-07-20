@@ -5,17 +5,7 @@ import formatProtocol from './formatProtocol'
 import formatSearch from './formatSearch'
 
 const formatHref = (location) => {
-  const {
-    hash,
-    host,
-    hostname,
-    port,
-    protocol,
-    query,
-    search,
-    slashes,
-    username
-  } = location
+  const { hash, host, hostname, port, protocol, query, search, slashes, username } = location
 
   let href = ''
   if (protocol) {

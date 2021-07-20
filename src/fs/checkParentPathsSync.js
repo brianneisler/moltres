@@ -19,9 +19,7 @@ const checkParentPathsSync = (src, srcStat, dest, funcName) => {
     throw err
   }
   if (identicalPathStats(srcStat, destStat)) {
-    throw new Error(
-      `Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`
-    )
+    throw new Error(`Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`)
   }
   return checkParentPathsSync(src, srcStat, destParent, funcName)
 }

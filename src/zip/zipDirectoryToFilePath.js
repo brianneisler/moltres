@@ -12,16 +12,12 @@ import { forEach } from '../lang'
  * @param {*} directory
  * @param {*} outputFilePath
  */
-const zipDirectoryToFilePath = async (
-  directory,
-  outputFilePath,
-  { include = ['*'] } = {}
-) =>
+const zipDirectoryToFilePath = async (directory, outputFilePath, { include = ['*'] } = {}) =>
   new Promise((resolve, reject) => {
     // create a file to stream archive data to.
     const output = createWriteStream(outputFilePath)
     const archive = archiver('zip', {
-      zlib: { level: 9 } // Sets the compression level.
+      zlib: { level: 9 }, // Sets the compression level.
     })
 
     // listen for all archive data to be written

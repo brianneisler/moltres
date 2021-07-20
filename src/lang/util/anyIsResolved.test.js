@@ -4,7 +4,7 @@ describe('anyIsResolved', () => {
   test('returns false for Op', () => {
     expect(
       anyIsResolved({
-        ['@@redux-saga/IO']: 'op'
+        ['@@redux-saga/IO']: 'op',
       })
     ).toBe(false)
   })

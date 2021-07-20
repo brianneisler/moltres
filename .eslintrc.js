@@ -3,19 +3,19 @@ module.exports = {
     browser: true,
     es6: true,
     jest: true,
-    node: true
+    node: true,
   },
   extends: ['prettier'],
   globals: {
-    example: 'readonly'
+    example: 'readonly',
   },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2020,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['import', 'prettier', 'sort-destructure-keys', 'sort-keys-fix'],
   root: true,
@@ -25,12 +25,12 @@ module.exports = {
       'never',
       {
         arraysInArrays: false,
-        objectsInArrays: false
-      }
+        objectsInArrays: false,
+      },
     ],
     'arrow-parens': ['error', 'always'],
     'arrow-spacing': ['error', { after: true, before: true }],
-    'comma-dangle': ['error', 'never'],
+    'comma-dangle': ['error', 'only-multiline'],
     curly: 'error',
     'eol-last': 'error',
     'for-direction': 'error',
@@ -42,8 +42,8 @@ module.exports = {
         exceptions: ['e', 'i', 'n', 't', 'x', 'y', 'z', '_', '$'],
         max: 50,
         min: 2,
-        properties: 'never'
-      }
+        properties: 'never',
+      },
     ],
     'import/default': 'error',
     'import/export': 'error',
@@ -52,8 +52,8 @@ module.exports = {
       'error',
       'never',
       {
-        json: 'always'
-      }
+        json: 'always',
+      },
     ],
     'import/first': 'error',
     'import/named': 'error',
@@ -71,16 +71,16 @@ module.exports = {
     'import/no-unresolved': [
       'error',
       {
-        ignore: ['react-native']
-      }
+        ignore: ['react-native'],
+      },
     ],
     'import/no-useless-path-segments': 'error',
     'import/order': [
       'error',
       {
         alphabetize: { caseInsensitive: false, order: 'asc' },
-        'newlines-between': 'always'
-      }
+        'newlines-between': 'always',
+      },
     ],
     'no-alert': 'error',
     'no-async-promise-executor': 'error',
@@ -126,8 +126,8 @@ module.exports = {
       'single',
       {
         allowTemplateLiterals: true,
-        avoidEscape: true
-      }
+        avoidEscape: true,
+      },
     ],
     semi: ['error', 'never'],
     'sort-destructure-keys/sort-destructure-keys': 'error',
@@ -138,11 +138,11 @@ module.exports = {
         ignoreCase: false,
         ignoreDeclarationSort: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
-      }
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+      },
     ],
     'sort-keys-fix/sort-keys-fix': 'error',
     'spaced-comment': 'error',
-    strict: ['error', 'never']
-  }
+    strict: ['error', 'never'],
+  },
 }

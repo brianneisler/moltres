@@ -5,12 +5,12 @@ describe('objectMutateDeleteProperty', () => {
     const object = {
       bar: 1,
       baz: 2,
-      foo: 3
+      foo: 3,
     }
     const result = objectMutateDeleteProperty(object, 'foo')
     expect(result).toEqual({
       bar: 1,
-      baz: 2
+      baz: 2,
     })
     expect(result.hasOwnProperty('foo')).toBe(false)
     expect(result).toBe(object)

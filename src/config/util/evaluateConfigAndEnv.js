@@ -11,7 +11,7 @@ import {
   map,
   pick,
   reject,
-  walkReduceDepthFirst
+  walkReduceDepthFirst,
 } from '../../lang'
 import * as lang from '../../lang'
 import * as path from '../../path'
@@ -26,7 +26,7 @@ import newVariable from './newVariable'
 
 const UTIL_METHODS = {
   ...lang,
-  ...path
+  ...path,
 }
 
 // NOTE BRN: This step converts variable strings into variable objects.
@@ -113,14 +113,14 @@ const evaluateConfigAndEnv = (data, options = {}, context = {}) => {
     evaluateData(
       {
         ...enhancedData,
-        this: enhancedData.config
+        this: enhancedData.config,
       },
       {
         ...UTIL_METHODS,
         cwd,
         stage,
         target,
-        ...context
+        ...context,
       }
     )
   )

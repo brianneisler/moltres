@@ -26,9 +26,7 @@ const checkParentPaths = async (src, srcStat, dest, funcName) => {
   try {
     const destStat = await stat(destParent, { bigint: true })
     if (identicalPathStats(srcStat, destStat)) {
-      throw new Error(
-        `Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`
-      )
+      throw new Error(`Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`)
     }
     return checkParentPaths(src, srcStat, destParent, funcName)
   } catch (error) {

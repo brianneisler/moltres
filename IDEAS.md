@@ -176,11 +176,7 @@ An example of what would be nice.
 Usually we'd write a function like this....
 
 ```js
-defn(
-  'transform',
-  [$.person(Object)],
-  update(assoc($.person, 'hair-color', 'gray'), 'age', inc)
-)
+defn('transform', [$.person(Object)], update(assoc($.person, 'hair-color', 'gray'), 'age', inc))
 ```
 
 and then use it like this
@@ -193,11 +189,7 @@ transform({ name: 'Socrates', age: 39 })
 It's easier to read this function if we can use dot syntax chaining
 
 ```js
-defn(
-  'transform',
-  [$.person(Object)],
-  $.person.assoc('hair-color', 'gray').update('age', inc)
-)
+defn('transform', [$.person(Object)], $.person.assoc('hair-color', 'gray').update('age', inc))
 ```
 
 **Note** this kind of chaining should probably be thread first by default (value

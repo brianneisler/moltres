@@ -5,7 +5,7 @@ describe('isAction', () => {
     expect(
       isAction({
         payload: null,
-        type: 'foo'
+        type: 'foo',
       })
     ).toBe(true)
   })
@@ -14,7 +14,7 @@ describe('isAction', () => {
     expect(
       isAction({
         payload: undefined,
-        type: 'foo'
+        type: 'foo',
       })
     ).toBe(true)
   })

@@ -7,18 +7,18 @@ describe('arrayKeys', () => {
     expect(result.next).toBeInstanceOf(Function)
     expect(result.next()).toEqual({
       done: false,
-      value: 0
+      value: 0,
     })
     expect(result.next()).toEqual({
       done: false,
-      value: 1
+      value: 1,
     })
     expect(result.next()).toEqual({
       done: false,
-      value: 2
+      value: 2,
     })
     expect(result.next()).toEqual({
-      done: true
+      done: true,
     })
   })
 })

@@ -26,8 +26,8 @@ describe('anyIsIterator', () => {
     expect(
       anyIsIterator({
         next: () => ({
-          done: true
-        })
+          done: true,
+        }),
       })
     ).toBe(true)
   })
@@ -36,8 +36,8 @@ describe('anyIsIterator', () => {
     expect(
       anyIsIterator({
         next: async () => ({
-          done: true
-        })
+          done: true,
+        }),
       })
     ).toBe(true)
   })

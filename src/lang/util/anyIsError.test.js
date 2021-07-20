@@ -9,8 +9,6 @@ describe('anyIsError', () => {
   })
 
   test('returns false for all other values', () => {
-    expect(anyIsError).toHaveReturnedFalsyForValues(
-      arrayDifference(testValues(), errors())
-    )
+    expect(anyIsError).toHaveReturnedFalsyForValues(arrayDifference(testValues(), errors()))
   })
 })

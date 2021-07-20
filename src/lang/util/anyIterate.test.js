@@ -9,7 +9,7 @@ describe('anyIterate', () => {
       return {
         ...next,
         done: !next.value,
-        value: acc
+        value: acc,
       }
     })
     expect(result).toEqual([
@@ -18,7 +18,7 @@ describe('anyIterate', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'a'
+        value: 'a',
       },
       {
         done: false,
@@ -28,9 +28,9 @@ describe('anyIterate', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'a'
+          value: 'a',
         },
-        value: 'b'
+        value: 'b',
       },
       {
         done: false,
@@ -40,9 +40,9 @@ describe('anyIterate', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'b'
+          value: 'b',
         },
-        value: 'c'
+        value: 'c',
       },
       {
         done: false,
@@ -52,9 +52,9 @@ describe('anyIterate', () => {
           done: false,
           index: 2,
           kdx: 2,
-          value: 'c'
+          value: 'c',
         },
-        value: 'd'
+        value: 'd',
       },
       {
         done: false,
@@ -64,10 +64,10 @@ describe('anyIterate', () => {
           done: false,
           index: 3,
           kdx: 3,
-          value: 'd'
+          value: 'd',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   })
 
@@ -83,7 +83,7 @@ describe('anyIterate', () => {
             resolve({
               ...next,
               done: !next.value,
-              value: acc
+              value: acc,
             })
           }, 2000 - next.kdx * 500) // NOTE BRN: delay first using greatest time to test order of iteration
         })
@@ -96,7 +96,7 @@ describe('anyIterate', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'a'
+        value: 'a',
       },
       {
         done: false,
@@ -106,9 +106,9 @@ describe('anyIterate', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'a'
+          value: 'a',
         },
-        value: 'b'
+        value: 'b',
       },
       {
         done: false,
@@ -118,9 +118,9 @@ describe('anyIterate', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'b'
+          value: 'b',
         },
-        value: 'c'
+        value: 'c',
       },
       {
         done: false,
@@ -130,9 +130,9 @@ describe('anyIterate', () => {
           done: false,
           index: 2,
           kdx: 2,
-          value: 'c'
+          value: 'c',
         },
-        value: 'd'
+        value: 'd',
       },
       {
         done: false,
@@ -142,10 +142,10 @@ describe('anyIterate', () => {
           done: false,
           index: 3,
           kdx: 3,
-          value: 'd'
+          value: 'd',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   }, 10000)
 
@@ -159,17 +159,17 @@ describe('anyIterate', () => {
           setTimeout(() => {
             if (idx >= values.length) {
               return resolve({
-                done: true
+                done: true,
               })
             }
             return resolve({
               done: false,
               index: idx,
               kdx: idx,
-              value: values[idx]
+              value: values[idx],
             })
           }, 0)
-        })
+        }),
     }
     const acc = []
     const result = anyIterate(iterator, (next) => {
@@ -177,7 +177,7 @@ describe('anyIterate', () => {
       return {
         ...next,
         done: !next.value,
-        value: acc
+        value: acc,
       }
     })
     expect(result).toBeInstanceOf(Promise)
@@ -188,7 +188,7 @@ describe('anyIterate', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'a'
+        value: 'a',
       },
       {
         done: false,
@@ -198,9 +198,9 @@ describe('anyIterate', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'a'
+          value: 'a',
         },
-        value: 'b'
+        value: 'b',
       },
       {
         done: false,
@@ -210,9 +210,9 @@ describe('anyIterate', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'b'
+          value: 'b',
         },
-        value: 'c'
+        value: 'c',
       },
       {
         done: false,
@@ -222,9 +222,9 @@ describe('anyIterate', () => {
           done: false,
           index: 2,
           kdx: 2,
-          value: 'c'
+          value: 'c',
         },
-        value: 'd'
+        value: 'd',
       },
       {
         done: false,
@@ -234,10 +234,10 @@ describe('anyIterate', () => {
           done: false,
           index: 3,
           kdx: 3,
-          value: 'd'
+          value: 'd',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   })
 
@@ -249,7 +249,7 @@ describe('anyIterate', () => {
       return {
         ...next,
         done: !next.value,
-        value: acc
+        value: acc,
       }
     })
     expect(result).toEqual(['a', 'b', 'c', 'd', undefined])

@@ -30,7 +30,7 @@ describe('listPromise', () => {
         setTimeout(() => {
           resolve(123)
         }, 0)
-      })
+      }),
     ])
     const handler = jest.fn()
 
@@ -53,7 +53,7 @@ describe('listPromise', () => {
         setTimeout(() => {
           reject('error')
         }, 0)
-      })
+      }),
     ])
     const catcher = jest.fn()
 
@@ -124,7 +124,7 @@ describe('listPromise', () => {
         setTimeout(() => {
           reject('error')
         }, 0)
-      })
+      }),
     ])
 
     let err

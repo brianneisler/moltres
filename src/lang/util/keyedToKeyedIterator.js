@@ -9,7 +9,7 @@ const keyedToKeyedIterator = (keyed, start = START) => {
     ...next,
     kdx: next.value,
     key: next.value,
-    value: keyedGetKey(keyed, next.value)
+    value: keyedGetKey(keyed, next.value),
   }))
 }
 

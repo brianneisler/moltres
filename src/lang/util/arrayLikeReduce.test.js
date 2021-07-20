@@ -36,7 +36,7 @@ describe('arrayLikeReduce', () => {
     expect(result).toEqual([
       ['a', 0],
       ['b', 1],
-      ['c', 2]
+      ['c', 2],
     ])
   })
 })

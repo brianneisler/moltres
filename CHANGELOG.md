@@ -18,5 +18,6 @@
 - Add changelog and update release readme
 
 ### Release v0.5.11
+
 - Change export folders back to using src instead of dist
 - Prettify .md, .yml and .json files. Update npm token on travis.

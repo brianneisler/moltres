@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 set -e
-lint-staged
+
+echo "linting staged files..."
+
+eslint --fix --cache --ext ts,tsx,js,jsx $@
+
+echo "lint complete!"

@@ -71,10 +71,8 @@ const reduceWalkee = () => {
  *   []
  * ]
  */
-const walkReduceDepthFirst = defn(
-  'walkReduceDepthFirst',
-  (iteratee, accum, collection) =>
-    walk(reduceWalkee(), iteratee, accum, collection, [])
+const walkReduceDepthFirst = defn('walkReduceDepthFirst', (iteratee, accum, collection) =>
+  walk(reduceWalkee(), iteratee, accum, collection, [])
 )
 
 export default walkReduceDepthFirst

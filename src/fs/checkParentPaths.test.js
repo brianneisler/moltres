@@ -12,12 +12,7 @@ describe('checkParentPaths', () => {
   let testDir
 
   beforeEach(async () => {
-    testDir = path.resolve(
-      tmpDirectory(),
-      'tests',
-      uuidv4(),
-      'checkParentPaths'
-    )
+    testDir = path.resolve(tmpDirectory(), 'tests', uuidv4(), 'checkParentPaths')
     await ensureDirectory(testDir)
   })
 

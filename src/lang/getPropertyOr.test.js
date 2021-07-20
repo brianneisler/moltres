@@ -3,7 +3,7 @@ import getPropertyOr from './getPropertyOr'
 describe('getPropertyOr', () => {
   test('get using a string', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(getPropertyOr('bar', 'foo', value)).toEqual('bar')
   })

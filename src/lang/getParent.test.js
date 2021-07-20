@@ -3,7 +3,7 @@ import getParent from './getParent'
 describe('getParent', () => {
   test('getParent using a single key returns the original value', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(getParent('foo', value)).toBe(value)
     expect(getParent(['foo'], value)).toBe(value)
@@ -42,13 +42,13 @@ describe('getParent', () => {
         [
           'bar',
           {
-            bim: 'bop'
-          }
-        ]
-      ])
+            bim: 'bop',
+          },
+        ],
+      ]),
     }
     expect(getParent('foo.bar.bim', value)).toEqual({
-      bim: 'bop'
+      bim: 'bop',
     })
   })
 
@@ -56,15 +56,15 @@ describe('getParent', () => {
     const foo = {
       data: {
         bar: {
-          bim: 'bop'
-        }
+          bim: 'bop',
+        },
       },
       get(prop) {
         return this.data[prop]
-      }
+      },
     }
     const value = {
-      foo
+      foo,
     }
     expect(getParent('foo.bar.bim', value)).toBe(foo.data.bar)
   })
@@ -72,29 +72,29 @@ describe('getParent', () => {
   test('converts dot props to paths and gets parent', () => {
     const value = {
       foo: {
-        bar: 'foobar'
-      }
+        bar: 'foobar',
+      },
     }
     expect(getParent('foo.bar', value)).toBe(value.foo)
   })
 
   test('works with props that have dots', () => {
     const value = {
-      'foo.bar': 'foobar'
+      'foo.bar': 'foobar',
     }
     expect(getParent(['foo.bar'], value)).toBe(value)
   })
 
   test('supports array syntax', () => {
     const value = {
-      foo: ['foobar']
+      foo: ['foobar'],
     }
     expect(getParent('foo[0]', value)).toBe(value.foo)
   })
 
   test('curries the getParent method', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     const getParentFoo = getParent('foo')
     expect(getParentFoo(value)).toBe(value)
@@ -106,8 +106,8 @@ describe('getParent', () => {
         return getParent(path, this.props)
       },
       props: {
-        foo: 'bar'
-      }
+        foo: 'bar',
+      },
     }
     expect(getParent('foo', value)).toEqual({ foo: 'bar' })
   })
@@ -119,9 +119,9 @@ describe('getParent', () => {
       }),
       props: {
         foo: {
-          bar: 'baz'
-        }
-      }
+          bar: 'baz',
+        },
+      },
     }
     const getParentFooBar = getParent('foo.bar')
     expect(getParentFooBar(value)).toBe(value.props.foo)

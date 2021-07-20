@@ -9,7 +9,7 @@ const values = [
   _Object(-1.1),
   _Object(Infinity),
   _Object(-Infinity),
-  _Object(NaN)
+  _Object(NaN),
 ]
 
 const numberObjects = () => values

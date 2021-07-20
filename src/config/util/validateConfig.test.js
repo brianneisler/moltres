@@ -8,15 +8,15 @@ describe('validateConfig', () => {
       foo: {
         configSchema: {
           schema: Joi.object().keys({
-            bar: Joi.string().required()
-          })
-        }
-      }
+            bar: Joi.string().required(),
+          }),
+        },
+      },
     }
     const config = {
       foo: {
-        bar: 'baz'
-      }
+        bar: 'baz',
+      },
     }
     validateConfig(modules, config)
   })
@@ -26,17 +26,17 @@ describe('validateConfig', () => {
       foo: {
         configSchema: {
           schema: Joi.object().keys({
-            bar: Joi.string().required()
-          })
-        }
-      }
+            bar: Joi.string().required(),
+          }),
+        },
+      },
     }
     const config = {
-      foo: {}
+      foo: {},
     }
     expect(() => validateConfig(modules, config)).toThrow(
       expect.objectContaining({
-        code: 'ConfigMissing'
+        code: 'ConfigMissing',
       })
     )
   })

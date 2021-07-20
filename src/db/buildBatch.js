@@ -15,7 +15,7 @@ const buildBatch = async (context, builder) => {
       throw expected({
         causes: [error],
         code: ACCESS_DENIED,
-        message: error.message
+        message: error.message,
       })
     }
     throw error

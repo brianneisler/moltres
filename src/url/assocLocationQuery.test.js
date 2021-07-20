@@ -8,7 +8,7 @@ describe('assocLocationQuery', () => {
         'foo',
         'bar',
         buildLocation({
-          pathname: '/baz'
+          pathname: '/baz',
         })
       )
     ).toEqual({
@@ -23,11 +23,11 @@ describe('assocLocationQuery', () => {
       port: '',
       protocol: '',
       query: {
-        foo: 'bar'
+        foo: 'bar',
       },
       search: '?foo=bar',
       slashes: false,
-      username: ''
+      username: '',
     })
   })
 
@@ -39,8 +39,8 @@ describe('assocLocationQuery', () => {
         buildLocation({
           pathname: '/baz',
           query: {
-            foo: 'bar'
-          }
+            foo: 'bar',
+          },
         })
       )
     ).toEqual({
@@ -55,11 +55,11 @@ describe('assocLocationQuery', () => {
       port: '',
       protocol: '',
       query: {
-        foo: 'bip'
+        foo: 'bip',
       },
       search: '?foo=bip',
       slashes: false,
-      username: ''
+      username: '',
     })
   })
 
@@ -71,8 +71,8 @@ describe('assocLocationQuery', () => {
         buildLocation({
           pathname: '/baz',
           query: {
-            foo: 'bar'
-          }
+            foo: 'bar',
+          },
         })
       )
     ).toEqual({
@@ -88,11 +88,11 @@ describe('assocLocationQuery', () => {
       protocol: '',
       query: {
         bar: 'baz',
-        foo: 'bar'
+        foo: 'bar',
       },
       search: '?foo=bar&bar=baz',
       slashes: false,
-      username: ''
+      username: '',
     })
   })
 })

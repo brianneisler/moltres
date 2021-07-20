@@ -5,7 +5,7 @@ describe('objectHasOwnProperty', () => {
     expect(
       objectHasOwnProperty(
         {
-          foo: 'bar'
+          foo: 'bar',
         },
         'foo'
       )

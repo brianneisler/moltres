@@ -7,7 +7,7 @@ describe('arrayLikeToIterator', () => {
     expect(arrayLikeToIterator([])).toEqual({
       getIndex: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -15,7 +15,7 @@ describe('arrayLikeToIterator', () => {
     expect(arrayLikeToIterator('abc')).toEqual({
       getIndex: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -23,7 +23,7 @@ describe('arrayLikeToIterator', () => {
     expect(arrayLikeToIterator({ length: 0 })).toEqual({
       getIndex: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -31,7 +31,7 @@ describe('arrayLikeToIterator', () => {
     const iterator = arrayLikeToIterator([])
     expect(iterator.next()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -39,7 +39,7 @@ describe('arrayLikeToIterator', () => {
     const iterator = arrayLikeToIterator([])
     expect(iterator.previous()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -74,7 +74,7 @@ describe('arrayLikeToIterator', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: false,
@@ -84,9 +84,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -94,9 +94,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -117,9 +117,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -127,9 +127,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -144,8 +144,8 @@ describe('arrayLikeToIterator', () => {
     expect(accum).toEqual([
       {
         done: true,
-        prev: { done: false, index: 1, kdx: 1, value: 'bar' }
-      }
+        prev: { done: false, index: 1, kdx: 1, value: 'bar' },
+      },
     ])
   })
 
@@ -160,8 +160,8 @@ describe('arrayLikeToIterator', () => {
     expect(accum).toEqual([
       {
         done: true,
-        prev: { done: false, index: 1, kdx: 1, value: 'bar' }
-      }
+        prev: { done: false, index: 1, kdx: 1, value: 'bar' },
+      },
     ])
   })
 
@@ -182,9 +182,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -192,9 +192,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -212,7 +212,7 @@ describe('arrayLikeToIterator', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: false,
@@ -222,9 +222,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -232,9 +232,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -245,7 +245,7 @@ describe('arrayLikeToIterator', () => {
       index: 0,
       kdx: 0,
       prev: undefined,
-      value: 'foo'
+      value: 'foo',
     })
     expect(iterator.previous()).toEqual({
       done: false,
@@ -255,9 +255,9 @@ describe('arrayLikeToIterator', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'bar'
+        value: 'bar',
       },
-      value: 'foo'
+      value: 'foo',
     })
   })
 
@@ -275,7 +275,7 @@ describe('arrayLikeToIterator', () => {
         index: 1,
         kdx: 1,
         prev: undefined,
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: false,
@@ -285,9 +285,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
+          value: 'bar',
         },
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: true,
@@ -295,9 +295,9 @@ describe('arrayLikeToIterator', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
-        }
-      }
+          value: 'foo',
+        },
+      },
     ])
   })
 
@@ -309,8 +309,8 @@ describe('arrayLikeToIterator', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'bar'
-      }
+        value: 'bar',
+      },
     })
     expect(iterator.next()).toEqual({
       done: true,
@@ -318,8 +318,8 @@ describe('arrayLikeToIterator', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'bar'
-      }
+        value: 'bar',
+      },
     })
   })
 })

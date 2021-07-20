@@ -7,14 +7,14 @@ class Expected extends Throwable {
     data,
     message = 'An expected error occurred',
     name = 'Expected',
-    statusCode = 400
+    statusCode = 400,
   } = {}) {
     super({
       causes,
       code,
       data,
       message,
-      name
+      name,
     })
     this.statusCode = statusCode
   }

@@ -6,7 +6,7 @@ const addTimestamps = (context, data) => {
     createdAt: now,
     removedAt: null, // This is added when removed
     updatedAt: now,
-    ...data
+    ...data,
   }
 }
 

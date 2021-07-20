@@ -2,8 +2,8 @@
 set -e
 nvm-guard
 
-echo "prettifying..."
+echo "making files pretty..."
 
 prettier --write "**/*.{json,md,yml}"
 
-echo "prettier complete!"
+echo "files are now pretty!"

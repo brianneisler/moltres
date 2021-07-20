@@ -16,7 +16,7 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: true,
-      username: ''
+      username: '',
     })
   })
 
@@ -35,7 +35,7 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: true,
-      username: ''
+      username: '',
     })
   })
 
@@ -55,14 +55,12 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: true,
-      username: 'duck'
+      username: 'duck',
     })
   })
 
   test('buildLocation from string url', () => {
-    const location = buildLocation(
-      'https://wat-dev.com/wat/xbRf7k4euvo1QirancLP'
-    )
+    const location = buildLocation('https://wat-dev.com/wat/xbRf7k4euvo1QirancLP')
     expect(location).toEqual({
       auth: '',
       hash: '',
@@ -77,14 +75,12 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: true,
-      username: ''
+      username: '',
     })
   })
 
   test('buildLocation from function url', () => {
-    const builder = buildLocation(
-      () => 'https://wat-dev.com/wat/xbRf7k4euvo1QirancLP'
-    )
+    const builder = buildLocation(() => 'https://wat-dev.com/wat/xbRf7k4euvo1QirancLP')
     expect(builder()).toEqual({
       auth: '',
       hash: '',
@@ -99,7 +95,7 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: true,
-      username: ''
+      username: '',
     })
   })
 
@@ -109,8 +105,8 @@ describe('buildLocation', () => {
       pathname: '/wat/xbRf7k4euvo1QirancLP',
       protocol: 'https:',
       query: {
-        foo: 'bar'
-      }
+        foo: 'bar',
+      },
     })
     expect(location).toEqual({
       auth: '',
@@ -124,17 +120,17 @@ describe('buildLocation', () => {
       port: '',
       protocol: 'https:',
       query: {
-        foo: 'bar'
+        foo: 'bar',
       },
       search: '?foo=bar',
       slashes: true,
-      username: ''
+      username: '',
     })
   })
 
   test('buildLocation with just pathname ', () => {
     const location = buildLocation({
-      pathname: '/foo'
+      pathname: '/foo',
     })
     expect(location).toEqual({
       auth: '',
@@ -150,7 +146,7 @@ describe('buildLocation', () => {
       query: {},
       search: '',
       slashes: false,
-      username: ''
+      username: '',
     })
   })
 
@@ -158,8 +154,8 @@ describe('buildLocation', () => {
     const location = buildLocation({
       pathname: '/foo',
       state: {
-        foo: 'bar'
-      }
+        foo: 'bar',
+      },
     })
     expect(location).toEqual({
       auth: '',
@@ -176,9 +172,9 @@ describe('buildLocation', () => {
       search: '',
       slashes: false,
       state: {
-        foo: 'bar'
+        foo: 'bar',
       },
-      username: ''
+      username: '',
     })
   })
 })

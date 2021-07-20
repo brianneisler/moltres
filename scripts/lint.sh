@@ -3,6 +3,7 @@ set -e
 
 echo "linting..."
 
-eslint . --fix --cache
+npm run prettier
+eslint . --fix --cache --ext ts,tsx,js,jsx
 
 echo "lint complete!"

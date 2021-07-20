@@ -7,16 +7,7 @@ import copyDirectory from './copyDirectory'
 import copyLink from './copyLink'
 import ensureDirectory from './ensureDirectory'
 import pathExists from './pathExists'
-import {
-  chmod,
-  copyFile,
-  lstat,
-  mkdir,
-  readlink,
-  stat,
-  symlink,
-  unlink
-} from './util'
+import { chmod, copyFile, lstat, mkdir, readlink, stat, symlink, unlink } from './util'
 
 const mayCopyFile = async (srcStat, src, dest, options) => {
   if (options.overwrite) {
@@ -46,16 +37,10 @@ const getStats = async (destStat, src, dest, options) => {
       return mkDirAndCopy(srcStat.mode, src, dest, options)
     }
     if (destStat && !destStat.isDirectory()) {
-      throw new Error(
-        `Cannot overwrite non-directory '${dest}' with directory '${src}'.`
-      )
+      throw new Error(`Cannot overwrite non-directory '${dest}' with directory '${src}'.`)
     }
     return copyDirectory(src, dest, options)
-  } else if (
-    srcStat.isFile() ||
-    srcStat.isCharacterDevice() ||
-    srcStat.isBlockDevice()
-  ) {
+  } else if (srcStat.isFile() || srcStat.isCharacterDevice() || srcStat.isBlockDevice()) {
     if (!destStat) {
       return copyFile(srcStat, src, dest, options)
     }
@@ -85,9 +70,7 @@ const getStats = async (destStat, src, dest, options) => {
       // dest in this case would result in removing src contents
       // and therefore a broken symlink would be created.
       if (destStat.isDirectory() && isPathSubdir(resolvedDest, resolvedSrc)) {
-        throw new Error(
-          `Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`
-        )
+        throw new Error(`Cannot overwrite '${resolvedDest}' with '${resolvedSrc}'.`)
       }
       return copyLink(resolvedSrc, dest)
     } catch (error) {

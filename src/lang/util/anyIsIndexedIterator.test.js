@@ -14,8 +14,8 @@ describe('anyIsIndexedIterator', () => {
       anyIsIndexedIterator({
         getIndex: () => {},
         next: () => ({
-          done: true
-        })
+          done: true,
+        }),
       })
     ).toBe(true)
   })

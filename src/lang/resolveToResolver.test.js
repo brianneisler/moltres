@@ -14,7 +14,7 @@ describe('resolveToResolver', () => {
     const resolver = resolveToResolver('foo')
     expect(resolver.next()).toEqual({
       done: true,
-      value: 'foo'
+      value: 'foo',
     })
     const result = await resolver.promise
     expect(result).toBe('foo')

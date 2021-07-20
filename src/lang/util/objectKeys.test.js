@@ -5,7 +5,7 @@ describe('objectKeys', () => {
     expect(
       objectKeys({
         bim: 'bop',
-        foo: 'bar'
+        foo: 'bar',
       })
     ).toEqual(['bim', 'foo'])
   })
@@ -21,7 +21,7 @@ describe('objectKeys', () => {
     expect(
       objectKeys({
         propertyIsEnumerable: 'bop',
-        toString: 'bar'
+        toString: 'bar',
       })
     ).toEqual(['propertyIsEnumerable', 'toString'])
   })

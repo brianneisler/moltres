@@ -5,7 +5,7 @@ describe('selectWildcards', () => {
   test('returns empty ImmutableList for selector with no wildcards', () => {
     const selector = ['foo']
     const state = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(selectWildcards(selector, state)).toEqual(ImmutableList([]))
   })
@@ -16,20 +16,20 @@ describe('selectWildcards', () => {
       foo: {
         id1: 'bar1',
         id2: 'bar2',
-        id3: 'bar3'
-      }
+        id3: 'bar3',
+      },
     }
     expect(selectWildcards(selector, state)).toEqual(
       ImmutableList([
         ImmutableMap({
-          ':bar': 'id1'
+          ':bar': 'id1',
         }),
         ImmutableMap({
-          ':bar': 'id2'
+          ':bar': 'id2',
         }),
         ImmutableMap({
-          ':bar': 'id3'
-        })
+          ':bar': 'id3',
+        }),
       ])
     )
   })
@@ -40,32 +40,32 @@ describe('selectWildcards', () => {
       foo: {
         bar1: {
           baz1: 'val1',
-          baz2: 'val2'
+          baz2: 'val2',
         },
         bar2: {
           baz3: 'val3',
-          baz4: 'val4'
-        }
-      }
+          baz4: 'val4',
+        },
+      },
     }
     expect(selectWildcards(selector, state)).toEqual(
       ImmutableList([
         ImmutableMap({
           ':bar': 'bar1',
-          ':baz': 'baz1'
+          ':baz': 'baz1',
         }),
         ImmutableMap({
           ':bar': 'bar1',
-          ':baz': 'baz2'
+          ':baz': 'baz2',
         }),
         ImmutableMap({
           ':bar': 'bar2',
-          ':baz': 'baz3'
+          ':baz': 'baz3',
         }),
         ImmutableMap({
           ':bar': 'bar2',
-          ':baz': 'baz4'
-        })
+          ':baz': 'baz4',
+        }),
       ])
     )
   })

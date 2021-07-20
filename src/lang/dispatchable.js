@@ -33,12 +33,7 @@ const dispatchable = (name, fn) => {
       return fn.apply(this)
     }
     const obj = args[args.length - 1]
-    if (
-      !isArray(obj) &&
-      isObject(obj) &&
-      isFunction(obj[name]) &&
-      obj !== this
-    ) {
+    if (!isArray(obj) && isObject(obj) && isFunction(obj[name]) && obj !== this) {
       return obj[name](...args)
     }
     return fn.apply(this, args)

@@ -7,7 +7,7 @@ describe('objectProperties', () => {
     expect(
       objectProperties({
         bim: 'bop',
-        foo: 'bar'
+        foo: 'bar',
       })
     ).toEqual(['bim', 'foo'])
   })
@@ -23,7 +23,7 @@ describe('objectProperties', () => {
     expect(
       objectProperties({
         propertyIsEnumerable: 'bop',
-        toString: 'bar'
+        toString: 'bar',
       })
     ).toEqual(['propertyIsEnumerable', 'toString'])
   })
@@ -36,7 +36,7 @@ describe('objectProperties', () => {
     const fooSym = Symbol('foo')
     expect(
       objectProperties({
-        [fooSym]: 'bar'
+        [fooSym]: 'bar',
       })
     ).toEqual([fooSym])
   })

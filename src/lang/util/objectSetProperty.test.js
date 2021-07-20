@@ -7,52 +7,52 @@ describe('objectSetProperty', () => {
     const object = {
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     }
     const result = objectSetProperty(object, 'foo', 4)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 4
+      foo: 4,
     })
     expect(object).toEqual({
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     })
   })
 
   test('setting a Property that does not exist on an Object sets the Property', () => {
     const object = {
       bar: 2,
-      baz: 3
+      baz: 3,
     }
     const result = objectSetProperty(object, 'foo', 4)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 4
+      foo: 4,
     })
     expect(object).toEqual({
       bar: 2,
-      baz: 3
+      baz: 3,
     })
   })
 
   test('setting a Property that does not exist on an Object to undefined sets the Property on the Object', () => {
     const object = {
       bar: 2,
-      baz: 3
+      baz: 3,
     }
     const result = objectSetProperty(object, 'foo', undefined)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: undefined
+      foo: undefined,
     })
     expect(object).toEqual({
       bar: 2,
-      baz: 3
+      baz: 3,
     })
     expect(result).not.toBe(object)
   })

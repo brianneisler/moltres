@@ -5,18 +5,18 @@ describe('objectDeleteProperty', () => {
     const object = {
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     }
     const result = objectDeleteProperty(object, 'foo')
     expect(result).toEqual({
       bar: 2,
-      baz: 3
+      baz: 3,
     })
     expect(result.hasOwnProperty('foo')).toBe(false)
     expect(object).toEqual({
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     })
   })
 
@@ -24,13 +24,13 @@ describe('objectDeleteProperty', () => {
     const object = {
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     }
     const result = objectDeleteProperty(object, 'dne')
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     })
     expect(result).toBe(object)
   })

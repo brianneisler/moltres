@@ -45,14 +45,14 @@ const where = curry((spec, value) => {
     if (next.done) {
       return {
         ...next,
-        value: true
+        value: true,
       }
     }
     if (!hasPath(next.kdx, value)) {
       return {
         ...next,
         done: true,
-        value: false
+        value: false,
       }
     }
     return resolveWith((nextValue) => {
@@ -60,7 +60,7 @@ const where = curry((spec, value) => {
         return {
           ...next,
           done: true,
-          value: false
+          value: false,
         }
       }
       return next

@@ -7,12 +7,12 @@ import arrayForEach from './arrayForEach'
 
 const makeCacheChain = () => ({
   strongMap: new ImmutableMap(),
-  weakMap: new WeakMap()
+  weakMap: new WeakMap(),
 })
 
 const makeCacheLink = () => ({
   cacheChain: makeCacheChain(),
-  ref: {}
+  ref: {},
 })
 
 const isWeakKey = (value) => anyIsObject(value) && !anyIsImmutable(value)

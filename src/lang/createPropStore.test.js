@@ -18,10 +18,10 @@ describe('createPropStore', () => {
     propStore.put({
       error: { foo: 'bar' },
       key: '$',
-      type: 'error'
+      type: 'error',
     })
     expect(propStore.getProps()).toEqual({
-      error: { foo: 'bar' }
+      error: { foo: 'bar' },
     })
   })
 
@@ -30,10 +30,10 @@ describe('createPropStore', () => {
     propStore.put({
       key: '$',
       type: 'assoc',
-      value: { foo: 'bar' }
+      value: { foo: 'bar' },
     })
     expect(propStore.getProps()).toEqual({
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
@@ -42,16 +42,16 @@ describe('createPropStore', () => {
     propStore.put({
       key: '$',
       type: 'assoc',
-      value: { foo: 'bar' }
+      value: { foo: 'bar' },
     })
     propStore.put({
       error: { bar: 'baz' },
       key: '$',
-      type: 'error'
+      type: 'error',
     })
 
     expect(propStore.getProps()).toEqual({
-      error: { bar: 'baz' }
+      error: { bar: 'baz' },
     })
   })
 
@@ -62,14 +62,14 @@ describe('createPropStore', () => {
     propStore.put({
       key: '$',
       type: 'assoc',
-      value: 'foo'
+      value: 'foo',
     })
 
     const result = await new Promise((resolve, reject) => {
       propStore.next({
         complete: reject,
         error: reject,
-        next: resolve
+        next: resolve,
       })
     })
 
@@ -86,19 +86,19 @@ describe('createPropStore', () => {
     propStore.put({
       error: error1,
       key: '$',
-      type: 'error'
+      type: 'error',
     })
     propStore.put({
       error: error2,
       key: '$',
-      type: 'error'
+      type: 'error',
     })
 
     const result = await new Promise((resolve, reject) => {
       channel.next({
         complete: reject,
         error: reject,
-        next: resolve
+        next: resolve,
       })
     })
     const result2 = await Promise.race([
@@ -106,12 +106,12 @@ describe('createPropStore', () => {
         channel.next({
           complete: reject,
           error: reject,
-          next: resolve
+          next: resolve,
         })
       }),
       new Promise((resolve) => {
         setTimeout(() => resolve({ timeout: true }), 1000)
-      })
+      }),
     ])
 
     expect(result).toEqual([{ type: 'refresh' }])

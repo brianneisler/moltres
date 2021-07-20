@@ -3,7 +3,7 @@ import { last, map } from '../lang'
 const nextPage = async (builder, { cursor, limit }) => {
   const ref = builder({
     cursor,
-    limit
+    limit,
   })
   return ref.get()
 }

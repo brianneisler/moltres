@@ -18,7 +18,7 @@ const reduce = curry((iteratee, accumulator, iterable) => {
           if (next.done) {
             return {
               ...next,
-              value: accum
+              value: accum,
             }
           }
           return next

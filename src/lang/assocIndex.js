@@ -6,9 +6,7 @@ import { arraySetIndex, stringSetIndex } from './util'
 
 const assocIndex = curry((index, value, collection) => {
   if (!satisfiesIndexed(collection)) {
-    throw new Error(
-      `collection must be an Indexed value. Instead was given ${collection}`
-    )
+    throw new Error(`collection must be an Indexed value. Instead was given ${collection}`)
   }
   if (isArray(collection)) {
     return arraySetIndex(collection, index, value)

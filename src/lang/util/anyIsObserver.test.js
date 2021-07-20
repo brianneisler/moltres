@@ -6,7 +6,7 @@ describe('anyIsObserver', () => {
       anyIsObserver({
         complete: () => {},
         error: () => {},
-        next: () => {}
+        next: () => {},
       })
     ).toBe(true)
   })

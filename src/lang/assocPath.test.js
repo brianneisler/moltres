@@ -5,25 +5,25 @@ import assocPath from './assocPath'
 describe('assocPath', () => {
   test('assocPath to a nested Immutable Map', () => {
     const value = {
-      foo: new Map()
+      foo: new Map(),
     }
     expect(assocPath(['foo', 'bar', 'bim'], 'bop', value)).toEqual({
-      foo: new Map([['bar', new Map([['bim', 'bop']])]])
+      foo: new Map([['bar', new Map([['bim', 'bop']])]]),
     })
   })
 
   test('assocPath to an existing property', () => {
     const value = {
       foo: {
-        bar: 'foo'
-      }
+        bar: 'foo',
+      },
     }
     expect(assocPath(['foo', 'bar', 'bim'], 'bop', value)).toEqual({
       foo: {
         bar: {
-          bim: 'bop'
-        }
-      }
+          bim: 'bop',
+        },
+      },
     })
   })
 

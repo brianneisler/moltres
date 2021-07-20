@@ -14,14 +14,8 @@ describe('loadConfig', () => {
     let env
 
     beforeAll(async () => {
-      config = await readFile(
-        path.resolve(__dirname, 'stages', 'test', 'config.yaml'),
-        'utf8'
-      )
-      env = await readFile(
-        path.resolve(__dirname, 'stages', 'test', '.env'),
-        'utf8'
-      )
+      config = await readFile(path.resolve(__dirname, 'stages', 'test', 'config.yaml'), 'utf8')
+      env = await readFile(path.resolve(__dirname, 'stages', 'test', '.env'), 'utf8')
     })
 
     beforeEach(async () => {
@@ -30,10 +24,7 @@ describe('loadConfig', () => {
       // testing the .web.js extensions these methods will wrtie out to the
       // memfs system. Otherwise they'll write to disk.
       cwd = path.resolve(tmpDirectory(), 'tests', uuidv4())
-      await outputFile(
-        path.resolve(cwd, 'stages', 'test', 'config.yaml'),
-        config
-      )
+      await outputFile(path.resolve(cwd, 'stages', 'test', 'config.yaml'), config)
       await outputFile(path.resolve(cwd, 'stages', 'test', '.env'), env)
     })
 
@@ -43,41 +34,41 @@ describe('loadConfig', () => {
           configSchema: {
             schema: Joi.object()
               .keys({
-                bop: Joi.string().required()
+                bop: Joi.string().required(),
               })
-              .required()
-          }
+              .required(),
+          },
         },
         foo: {
           configSchema: {
             schema: Joi.object()
               .keys({
                 bar: Joi.string().required(),
-                baz: Joi.string().required()
+                baz: Joi.string().required(),
               })
-              .required()
-          }
-        }
+              .required(),
+          },
+        },
       }
 
       const result = await loadConfig({
         cwd,
         modules,
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
 
       expect(result).toEqual({
         bim: {
-          bop: 'bopity'
+          bop: 'bopity',
         },
         foo: {
           bar: 'barred',
-          baz: 'bopity'
+          baz: 'bopity',
         },
         ping: 'pong',
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
     })
 
@@ -87,30 +78,30 @@ describe('loadConfig', () => {
           configSchema: {
             schema: Joi.object()
               .keys({
-                bop: Joi.string().required()
+                bop: Joi.string().required(),
               })
-              .required()
-          }
+              .required(),
+          },
         },
         foo: {
           configSchema: {
             schema: Joi.object()
               .keys({
                 bar: Joi.string().required(),
-                baz: Joi.string().required()
+                baz: Joi.string().required(),
               })
-              .required()
-          }
+              .required(),
+          },
         },
         missing: {
           configSchema: {
             schema: Joi.object()
               .keys({
-                missing: Joi.string().required()
+                missing: Joi.string().required(),
               })
-              .required()
-          }
-        }
+              .required(),
+          },
+        },
       }
 
       await expect(
@@ -118,11 +109,11 @@ describe('loadConfig', () => {
           cwd,
           modules,
           stage: 'test',
-          target: 'cli'
+          target: 'cli',
         })
       ).rejects.toEqual(
         expect.objectContaining({
-          code: 'ConfigMissing'
+          code: 'ConfigMissing',
         })
       )
     })
@@ -131,12 +122,12 @@ describe('loadConfig', () => {
       const result = await loadConfig({
         cwd,
         stage: 'dne',
-        target: 'cli'
+        target: 'cli',
       })
 
       expect(result).toEqual({
         stage: 'dne',
-        target: 'cli'
+        target: 'cli',
       })
     })
 
@@ -145,19 +136,19 @@ describe('loadConfig', () => {
         cwd,
         dropSensitive: true,
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
 
       expect(result).toEqual({
         bim: {
-          bop: 'bopity'
+          bop: 'bopity',
         },
         foo: {
           bar: 'barred',
-          baz: 'bopity'
+          baz: 'bopity',
         },
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
     })
 
@@ -166,25 +157,25 @@ describe('loadConfig', () => {
         {
           cwd,
           stage: 'test',
-          target: 'cli'
+          target: 'cli',
         },
         {
-          baz: 'bazzer'
+          baz: 'bazzer',
         }
       )
 
       expect(result).toEqual({
         baz: 'bazzer',
         bim: {
-          bop: 'bopity'
+          bop: 'bopity',
         },
         foo: {
           bar: 'barred',
-          baz: 'bopity'
+          baz: 'bopity',
         },
         ping: 'pong',
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
     })
 
@@ -193,28 +184,28 @@ describe('loadConfig', () => {
         {
           cwd,
           stage: 'test',
-          target: 'cli'
+          target: 'cli',
         },
         {
-          baz: '${blop}'
+          baz: '${blop}',
         },
         {
-          blop: 'blip'
+          blop: 'blip',
         }
       )
 
       expect(result).toEqual({
         baz: 'blip',
         bim: {
-          bop: 'bopity'
+          bop: 'bopity',
         },
         foo: {
           bar: 'barred',
-          baz: 'bopity'
+          baz: 'bopity',
         },
         ping: 'pong',
         stage: 'test',
-        target: 'cli'
+        target: 'cli',
       })
     })
   })
@@ -223,10 +214,7 @@ describe('loadConfig', () => {
     let cwd
     let config
     beforeAll(async () => {
-      config = await readFile(
-        path.resolve(__dirname, 'stages', 'sensitive', 'config.yaml'),
-        'utf8'
-      )
+      config = await readFile(path.resolve(__dirname, 'stages', 'sensitive', 'config.yaml'), 'utf8')
     })
     beforeEach(async () => {
       // NOTE BRN: These methods import from our own methods which will redirect
@@ -234,10 +222,7 @@ describe('loadConfig', () => {
       // testing the .web.js extensions these methods will wrtie out to the
       // memfs system. Otherwise they'll write to disk.
       cwd = path.resolve(tmpDirectory(), 'tests', uuidv4())
-      await outputFile(
-        path.resolve(cwd, 'stages', 'sensitive', 'config.yaml'),
-        config
-      )
+      await outputFile(path.resolve(cwd, 'stages', 'sensitive', 'config.yaml'), config)
     })
 
     it('should drop all sensitive values when dropSensitive is true including nested values', async () => {
@@ -245,13 +230,13 @@ describe('loadConfig', () => {
         cwd,
         dropSensitive: true,
         stage: 'sensitive',
-        target: 'cli'
+        target: 'cli',
       })
 
       expect(result).toEqual({
         foo: 'bar',
         stage: 'sensitive',
-        target: 'cli'
+        target: 'cli',
       })
     })
 
@@ -260,18 +245,18 @@ describe('loadConfig', () => {
         cwd,
         dropSensitive: false,
         stage: 'sensitive',
-        target: 'cli'
+        target: 'cli',
       })
 
       expect(result).toEqual({
         ding: {
           dong: 'bong',
-          ring: 'wrong'
+          ring: 'wrong',
         },
         foo: 'bar',
         ping: 'pong',
         stage: 'sensitive',
-        target: 'cli'
+        target: 'cli',
       })
     })
   })

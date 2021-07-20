@@ -16,8 +16,6 @@ const mapWalkee = () => {
   }
 }
 
-const walkMap = curry((iteratee, collection) =>
-  walk(mapWalkee(), iteratee, collection)
-)
+const walkMap = curry((iteratee, collection) => walk(mapWalkee(), iteratee, collection))
 
 export default walkMap

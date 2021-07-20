@@ -7,7 +7,7 @@ describe('objectToIterator', () => {
     expect(objectToIterator({})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -16,7 +16,7 @@ describe('objectToIterator', () => {
     expect(objectToIterator([])).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -25,7 +25,7 @@ describe('objectToIterator', () => {
     expect(objectToIterator(/abc/)).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -34,27 +34,27 @@ describe('objectToIterator', () => {
     expect(objectToIterator(async () => {})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(() => {})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(function () {})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(async function () {})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(function* () {})).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -63,7 +63,7 @@ describe('objectToIterator', () => {
     expect(objectToIterator((function* () {})())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -72,62 +72,62 @@ describe('objectToIterator', () => {
     expect(objectToIterator(new ArrayBuffer(2))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Boolean(false))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Boolean(true))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Date())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Error())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Map())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Number(1))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Promise(() => {}))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new Set())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new String('abc'))).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new WeakMap())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
     expect(objectToIterator(new WeakSet())).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -136,7 +136,7 @@ describe('objectToIterator', () => {
     expect(objectToIterator({ length: 0 })).toEqual({
       getKey: expect.any(Function),
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
     })
   })
 
@@ -144,7 +144,7 @@ describe('objectToIterator', () => {
     const iterator = objectToIterator({})
     expect(iterator.next()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -152,7 +152,7 @@ describe('objectToIterator', () => {
     const iterator = objectToIterator({})
     expect(iterator.previous()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -161,7 +161,7 @@ describe('objectToIterator', () => {
     const iterator = objectToIterator({
       bim: 'bop',
       foo: 'bar',
-      [symBan]: 'ana'
+      [symBan]: 'ana',
     })
     let next = { done: false }
 
@@ -183,7 +183,7 @@ describe('objectToIterator', () => {
     const iterator = objectToIterator({
       bim: 'bop',
       foo: 'bar',
-      [symBan]: 'ana'
+      [symBan]: 'ana',
     })
     let next = { done: false }
     const accum = []
@@ -197,7 +197,7 @@ describe('objectToIterator', () => {
         kdx: 'bim',
         key: 'bim',
         prev: undefined,
-        value: 'bop'
+        value: 'bop',
       },
       {
         done: false,
@@ -207,9 +207,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'bim',
           key: 'bim',
-          value: 'bop'
+          value: 'bop',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: false,
@@ -219,9 +219,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'foo',
           key: 'foo',
-          value: 'bar'
+          value: 'bar',
         },
-        value: 'ana'
+        value: 'ana',
       },
       {
         done: true,
@@ -229,9 +229,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: symBan,
           key: symBan,
-          value: 'ana'
-        }
-      }
+          value: 'ana',
+        },
+      },
     ])
   })
 
@@ -241,7 +241,7 @@ describe('objectToIterator', () => {
       {
         bim: 'bop',
         foo: 'bar',
-        [symBan]: 'ana'
+        [symBan]: 'ana',
       },
       START
     )
@@ -257,7 +257,7 @@ describe('objectToIterator', () => {
         kdx: 'bim',
         key: 'bim',
         prev: undefined,
-        value: 'bop'
+        value: 'bop',
       },
       {
         done: false,
@@ -267,9 +267,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'bim',
           key: 'bim',
-          value: 'bop'
+          value: 'bop',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: false,
@@ -279,9 +279,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'foo',
           key: 'foo',
-          value: 'bar'
+          value: 'bar',
         },
-        value: 'ana'
+        value: 'ana',
       },
       {
         done: true,
@@ -289,9 +289,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: symBan,
           key: symBan,
-          value: 'ana'
-        }
-      }
+          value: 'ana',
+        },
+      },
     ])
   })
 
@@ -301,7 +301,7 @@ describe('objectToIterator', () => {
       {
         bim: 'bop',
         foo: 'bar',
-        [symBan]: 'ana'
+        [symBan]: 'ana',
       },
       END
     )
@@ -317,7 +317,7 @@ describe('objectToIterator', () => {
         kdx: symBan,
         key: symBan,
         prev: undefined,
-        value: 'ana'
+        value: 'ana',
       },
       {
         done: false,
@@ -327,9 +327,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: symBan,
           key: symBan,
-          value: 'ana'
+          value: 'ana',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: false,
@@ -339,9 +339,9 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'foo',
           key: 'foo',
-          value: 'bar'
+          value: 'bar',
         },
-        value: 'bop'
+        value: 'bop',
       },
       {
         done: true,
@@ -349,23 +349,23 @@ describe('objectToIterator', () => {
           done: false,
           kdx: 'bim',
           key: 'bim',
-          value: 'bop'
-        }
-      }
+          value: 'bop',
+        },
+      },
     ])
   })
 
   test('calling next and then previous results in iterating the same value twice', () => {
     const iterator = objectToIterator({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(iterator.next()).toEqual({
       done: false,
       kdx: 'bim',
       key: 'bim',
       prev: undefined,
-      value: 'bop'
+      value: 'bop',
     })
     expect(iterator.previous()).toEqual({
       done: false,
@@ -375,9 +375,9 @@ describe('objectToIterator', () => {
         done: false,
         kdx: 'foo',
         key: 'foo',
-        value: 'bar'
+        value: 'bar',
       },
-      value: 'bop'
+      value: 'bop',
     })
   })
 })

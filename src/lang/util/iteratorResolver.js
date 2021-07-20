@@ -47,11 +47,11 @@ const iterAt = (index, history) => {
     return {
       index,
       kdx: index,
-      ...iter
+      ...iter,
     }
   }
   return {
-    done: true
+    done: true,
   }
 }
 
@@ -61,7 +61,7 @@ const prevIterAt = (index, history) => {
     return {
       index,
       kdx: index,
-      ...iter
+      ...iter,
     }
   }
 }
@@ -82,7 +82,7 @@ const historicIterator = (iterator, start, withFunc) => {
         }
         return {
           ...resolvedIter,
-          prev
+          prev,
         }
       })
     },
@@ -94,9 +94,9 @@ const historicIterator = (iterator, start, withFunc) => {
       }
       return {
         ...iter,
-        prev
+        prev,
       }
-    }
+    },
   }
 
   if (start === END) {
@@ -138,26 +138,17 @@ const historicIterator = (iterator, start, withFunc) => {
 const iteratorResolver = (iterator, start = START, withFunc = IDENTITY) => {
   // NOTE BRN: Optimization here of reassigning histIterator so that we don't have to resolve it on every iteration.
   let histIterator
-  histIterator = anyResolveWith(
-    historicIterator(iterator, start, withFunc),
-    (resolvedIterator) => {
-      histIterator = resolvedIterator
-      return histIterator
-    }
-  )
+  histIterator = anyResolveWith(historicIterator(iterator, start, withFunc), (resolvedIterator) => {
+    histIterator = resolvedIterator
+    return histIterator
+  })
 
   // TODO BRN: Figure out a more efficient way of doing this rather than
   // resolving the iterator every time
   return {
-    next: () =>
-      anyResolveWith(histIterator, (resolvedIterator) =>
-        resolvedIterator.next()
-      ),
-    previous: () =>
-      anyResolveWith(histIterator, (resolvedIterator) =>
-        resolvedIterator.previous()
-      ),
-    resolver: true
+    next: () => anyResolveWith(histIterator, (resolvedIterator) => resolvedIterator.next()),
+    previous: () => anyResolveWith(histIterator, (resolvedIterator) => resolvedIterator.previous()),
+    resolver: true,
   }
 }
 

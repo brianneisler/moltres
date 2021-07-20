@@ -6,8 +6,8 @@ const omitLocationQuery = curry((props, location) =>
   buildLocation({
     ...dissocProperty('search', location),
     query: {
-      ...omit(props, location.query)
-    }
+      ...omit(props, location.query),
+    },
   })
 )
 

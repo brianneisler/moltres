@@ -9,7 +9,7 @@ const buildTransaction = async (context, builder) => {
     return database.runTransaction((transaction) =>
       builder({
         ...context,
-        transaction
+        transaction,
       })
     )
   } catch (error) {
@@ -17,7 +17,7 @@ const buildTransaction = async (context, builder) => {
       throw expected({
         causes: [error],
         code: ACCESS_DENIED,
-        message: error.message
+        message: error.message,
       })
     }
     throw error

@@ -15,10 +15,7 @@ function extractExpressions(code) {
       expressionStart = node.start
       expressionEnd = node.end
     }
-    if (
-      (trackingExpression && expressionStart !== node.start) ||
-      type === 'Program'
-    ) {
+    if ((trackingExpression && expressionStart !== node.start) || type === 'Program') {
       expressions.push(code.slice(expressionStart, expressionEnd))
       trackingExpression = false
     }

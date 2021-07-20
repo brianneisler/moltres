@@ -6,7 +6,7 @@ const KEY_CHAR_ESCAPES = {
   '.': '(P)',
   '/': '(FS)',
   '[': '(OB)',
-  ']': '(CB)'
+  ']': '(CB)',
 }
 
 const ESCAPE_CHARS = keys(KEY_CHAR_ESCAPES)

@@ -19,7 +19,7 @@ const findAllFromQuery = async ({ logger }, query, queryOptions = {}) => {
       throw expected({
         causes: [error],
         code: ACCESS_DENIED,
-        message: error.message
+        message: error.message,
       })
     }
     throw error

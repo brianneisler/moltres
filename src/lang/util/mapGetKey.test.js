@@ -5,7 +5,7 @@ describe('mapGetKey', () => {
     const map = new Map([
       ['a', 1],
       ['b', 2],
-      ['c', 3]
+      ['c', 3],
     ])
     const result = mapGetKey(map, 'a')
     expect(result).toBe(1)
@@ -15,7 +15,7 @@ describe('mapGetKey', () => {
     const map = new Map([
       ['a', 1],
       ['b', 2],
-      ['c', 3]
+      ['c', 3],
     ])
     const result = mapGetKey(map, 'd')
     expect(result).toBe(undefined)

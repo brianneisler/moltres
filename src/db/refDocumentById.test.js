@@ -34,10 +34,10 @@ describe('refDocumentById', () => {
   test('references top level document by id', () => {
     const database = new Database()
     const context = {
-      database
+      database,
     }
     const Schema = {
-      collectionName: 'foo'
+      collectionName: 'foo',
     }
     const id = 'bar'
     const ref = refDocumentById(Schema, context, id)
@@ -46,23 +46,23 @@ describe('refDocumentById', () => {
       refCollection: {
         collectionName: Schema.collectionName,
         ref: {
-          id: 'default'
-        }
-      }
+          id: 'default',
+        },
+      },
     })
   })
 
   test('references child document by ids', () => {
     const database = new Database()
     const context = {
-      database
+      database,
     }
     const ParentSchema = {
-      collectionName: 'ParentFoo'
+      collectionName: 'ParentFoo',
     }
     const ChildSchema = {
       collectionName: 'ChildFoo',
-      parentSchema: ParentSchema
+      parentSchema: ParentSchema,
     }
     const ids = ['parentBar', 'childBar']
     const ref = refDocumentById(ChildSchema, context, ids)
@@ -75,11 +75,11 @@ describe('refDocumentById', () => {
           refCollection: {
             collectionName: ParentSchema.collectionName,
             ref: {
-              id: 'default'
-            }
-          }
-        }
-      }
+              id: 'default',
+            },
+          },
+        },
+      },
     })
   })
 })

@@ -1,10 +1,4 @@
-const values = [
-  function () {},
-  () => {},
-  async function () {},
-  async () => {},
-  function* () {}
-]
+const values = [function () {}, () => {}, async function () {}, async () => {}, function* () {}]
 
 const functions = () => values
 

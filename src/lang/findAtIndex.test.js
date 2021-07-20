@@ -3,11 +3,7 @@ import findAtIndex from './findAtIndex'
 describe('findAtIndex', () => {
   test('finds value in array defaulting index to 0', () => {
     const array = ['a', 'b', 'c']
-    const result = findAtIndex(
-      (val, index) => val === 'b' && index === 1,
-      undefined,
-      array
-    )
+    const result = findAtIndex((val, index) => val === 'b' && index === 1, undefined, array)
     expect(result).toBe('b')
   })
 
@@ -18,7 +14,7 @@ describe('findAtIndex', () => {
       (val, index) => {
         calls.push({
           index,
-          val
+          val,
         })
         return false
       },
@@ -27,7 +23,7 @@ describe('findAtIndex', () => {
     )
     expect(calls).toEqual([
       { index: 1, val: 'b' },
-      { index: 2, val: 'c' }
+      { index: 2, val: 'c' },
     ])
     expect(result).toBe(undefined)
   })

@@ -78,7 +78,7 @@ const functionDefineLength = (func, length) => {
   if (descriptor.configurable) {
     objectDefineProperty(func, 'length', {
       configurable: true,
-      value: length
+      value: length,
     })
     return func
   }

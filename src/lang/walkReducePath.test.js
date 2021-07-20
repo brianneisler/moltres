@@ -12,11 +12,11 @@ describe('#walkReducePath()', () => {
       {
         a: {
           b: {
-            c: 'c'
+            c: 'c',
           },
-          d: 'd'
+          d: 'd',
         },
-        e: ['e', 'f']
+        e: ['e', 'f'],
       }
     )
     expect(result).toEqual([
@@ -25,32 +25,32 @@ describe('#walkReducePath()', () => {
         value: {
           a: {
             b: {
-              c: 'c'
+              c: 'c',
             },
-            d: 'd'
+            d: 'd',
           },
-          e: ['e', 'f']
-        }
+          e: ['e', 'f'],
+        },
       },
       {
         keys: ['a'],
         value: {
           b: {
-            c: 'c'
+            c: 'c',
           },
-          d: 'd'
-        }
+          d: 'd',
+        },
       },
       {
         keys: ['a', 'b'],
         value: {
-          c: 'c'
-        }
+          c: 'c',
+        },
       },
       {
         keys: ['a', 'b', 'c'],
-        value: 'c'
-      }
+        value: 'c',
+      },
     ])
   })
 
@@ -67,9 +67,9 @@ describe('#walkReducePath()', () => {
           b: {
             resolve() {
               return { c: 'c' }
-            }
-          }
-        }
+            },
+          },
+        },
       }
     )
     expect(result).toEqual([
@@ -78,29 +78,29 @@ describe('#walkReducePath()', () => {
         value: {
           a: {
             b: {
-              resolve: expect.any(Function)
-            }
-          }
-        }
+              resolve: expect.any(Function),
+            },
+          },
+        },
       },
       {
         keys: ['a'],
         value: {
           b: {
-            resolve: expect.any(Function)
-          }
-        }
+            resolve: expect.any(Function),
+          },
+        },
       },
       {
         keys: ['a', 'b'],
         value: {
-          resolve: expect.any(Function)
-        }
+          resolve: expect.any(Function),
+        },
       },
       {
         keys: ['a', 'b', 'c'],
-        value: 'c'
-      }
+        value: 'c',
+      },
     ])
   })
 
@@ -108,9 +108,9 @@ describe('#walkReducePath()', () => {
     const data = {
       a: {
         b: {
-          c: 'c'
-        }
-      }
+          c: 'c',
+        },
+      },
     }
 
     const result = walkReducePath(
@@ -132,27 +132,27 @@ describe('#walkReducePath()', () => {
         value: {
           a: {
             b: {
-              c: 'c'
-            }
-          }
-        }
+              c: 'c',
+            },
+          },
+        },
       },
       {
         keys: ['a'],
         value: {
           b: {
-            c: 'c'
-          }
-        }
+            c: 'c',
+          },
+        },
       },
       {
         keys: ['a', 'b'],
-        value: { c: 'c' }
+        value: { c: 'c' },
       },
       {
         keys: ['a', 'b', 'c'],
-        value: 'c'
-      }
+        value: 'c',
+      },
     ])
   })
 })

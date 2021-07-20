@@ -5,35 +5,35 @@ describe('evaluateConfigAndEnv', () => {
     const result = evaluateConfigAndEnv({
       config: {
         bar: '${env.BAR}',
-        foo: '${this.bar}'
+        foo: '${this.bar}',
       },
       env: {
         BAR: 'bar',
-        FOO: '${config.foo}'
-      }
+        FOO: '${config.foo}',
+      },
     })
     expect(result).toEqual({
       config: {
         bar: 'bar',
-        foo: 'bar'
+        foo: 'bar',
       },
       env: {
         BAR: 'bar',
-        FOO: 'bar'
-      }
+        FOO: 'bar',
+      },
     })
   })
 
   it('supports arrays', () => {
     const result = evaluateConfigAndEnv({
       config: {
-        bar: ['foo', 'bar']
-      }
+        bar: ['foo', 'bar'],
+      },
     })
     expect(result).toEqual({
       config: {
-        bar: ['foo', 'bar']
-      }
+        bar: ['foo', 'bar'],
+      },
     })
   })
 
@@ -41,14 +41,14 @@ describe('evaluateConfigAndEnv', () => {
     const result = evaluateConfigAndEnv({
       config: {
         bar: ['${this.foo}', 'bar'],
-        foo: 'fooed'
-      }
+        foo: 'fooed',
+      },
     })
     expect(result).toEqual({
       config: {
         bar: ['fooed', 'bar'],
-        foo: 'fooed'
-      }
+        foo: 'fooed',
+      },
     })
   })
 
@@ -56,14 +56,14 @@ describe('evaluateConfigAndEnv', () => {
     const result = evaluateConfigAndEnv({
       config: {
         bar: {
-          value: 'foo'
-        }
-      }
+          value: 'foo',
+        },
+      },
     })
     expect(result).toEqual({
       config: {
-        bar: 'foo'
-      }
+        bar: 'foo',
+      },
     })
   })
 
@@ -73,18 +73,18 @@ describe('evaluateConfigAndEnv', () => {
         bar: {
           value: {
             baz: {
-              value: 'bong'
-            }
-          }
-        }
-      }
+              value: 'bong',
+            },
+          },
+        },
+      },
     })
     expect(result).toEqual({
       config: {
         bar: {
-          baz: 'bong'
-        }
-      }
+          baz: 'bong',
+        },
+      },
     })
   })
 
@@ -94,18 +94,18 @@ describe('evaluateConfigAndEnv', () => {
         foo: {
           value: {
             bar: 'barred',
-            baz: '${this.foo.bar}'
-          }
-        }
-      }
+            baz: '${this.foo.bar}',
+          },
+        },
+      },
     })
     expect(result).toEqual({
       config: {
         foo: {
           bar: 'barred',
-          baz: 'barred'
-        }
-      }
+          baz: 'barred',
+        },
+      },
     })
   })
 
@@ -113,22 +113,22 @@ describe('evaluateConfigAndEnv', () => {
     const result = evaluateConfigAndEnv({
       config: {
         bar: {
-          baz: '${this.bop}'
+          baz: '${this.bop}',
         },
         bop: 'bip',
-        foo: '${this.bar}'
-      }
+        foo: '${this.bar}',
+      },
     })
     expect(result).toEqual({
       config: {
         bar: {
-          baz: 'bip'
+          baz: 'bip',
         },
         bop: 'bip',
         foo: {
-          baz: 'bip'
-        }
-      }
+          baz: 'bip',
+        },
+      },
     })
   })
 
@@ -138,16 +138,16 @@ describe('evaluateConfigAndEnv', () => {
         config: {
           foo: {
             sensitive: true,
-            value: 'bar'
-          }
-        }
+            value: 'bar',
+          },
+        },
       },
       {
-        dropSensitive: true
+        dropSensitive: true,
       }
     )
     expect(result).toEqual({
-      config: {}
+      config: {},
     })
   })
 
@@ -159,19 +159,19 @@ describe('evaluateConfigAndEnv', () => {
             sensitive: true,
             value: {
               bar: {
-                value: 'baz'
+                value: 'baz',
               },
-              dong: 'bong'
-            }
-          }
-        }
+              dong: 'bong',
+            },
+          },
+        },
       },
       {
-        dropSensitive: true
+        dropSensitive: true,
       }
     )
     expect(result).toEqual({
-      config: {}
+      config: {},
     })
   })
 
@@ -182,21 +182,21 @@ describe('evaluateConfigAndEnv', () => {
           foo: {
             sensitive: true,
             value: {
-              bar: 'baz'
-            }
-          }
-        }
+              bar: 'baz',
+            },
+          },
+        },
       },
       {
-        dropSensitive: false
+        dropSensitive: false,
       }
     )
     expect(result).toEqual({
       config: {
         foo: {
-          bar: 'baz'
-        }
-      }
+          bar: 'baz',
+        },
+      },
     })
   })
 })

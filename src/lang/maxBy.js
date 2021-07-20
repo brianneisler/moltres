@@ -12,8 +12,7 @@ const maxBy = curryN(2, (transform, ...values) => {
     values = values[0]
   }
   return maxWith(
-    (valueA, valueB) =>
-      transform(valueB) > transform(valueA) ? valueB : valueA,
+    (valueA, valueB) => (transform(valueB) > transform(valueA) ? valueB : valueA),
     ...values
   )
 })

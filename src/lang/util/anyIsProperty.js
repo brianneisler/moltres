@@ -47,7 +47,6 @@ import anyIsSymbol from './anyIsSymbol'
  * anyIsProperty({})
  * //=> false
  */
-const anyIsProperty = (any) =>
-  anyIsSymbol(any) || anyIsString(any) || any instanceof Property
+const anyIsProperty = (any) => anyIsSymbol(any) || anyIsString(any) || any instanceof Property
 
 export default anyIsProperty

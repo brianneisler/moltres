@@ -16,7 +16,7 @@ const download = async (url, filePath) => {
     })
   }
   throw expected({
-    message: response.message
+    message: response.message,
   })
 }
 
