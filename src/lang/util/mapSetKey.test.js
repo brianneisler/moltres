@@ -8,21 +8,21 @@ describe('mapSetKey', () => {
     const map = new Map([
       ['bar', 2],
       ['baz', 3],
-      ['foo', 1]
+      ['foo', 1],
     ])
     const result = mapSetKey(map, 'foo', 4)
     expect(result).toEqual(
       new Map([
         ['bar', 2],
         ['baz', 3],
-        ['foo', 4]
+        ['foo', 4],
       ])
     )
     expect(map).toEqual(
       new Map([
         ['bar', 2],
         ['baz', 3],
-        ['foo', 1]
+        ['foo', 1],
       ])
     )
   })
@@ -30,20 +30,20 @@ describe('mapSetKey', () => {
   test('setting a Key that does not exist on an Map sets the Key', () => {
     const map = new Map([
       ['bar', 2],
-      ['baz', 3]
+      ['baz', 3],
     ])
     const result = mapSetKey(map, 'foo', 4)
     expect(result).toEqual(
       new Map([
         ['bar', 2],
         ['baz', 3],
-        ['foo', 4]
+        ['foo', 4],
       ])
     )
     expect(map).toEqual(
       new Map([
         ['bar', 2],
-        ['baz', 3]
+        ['baz', 3],
       ])
     )
   })
@@ -51,20 +51,20 @@ describe('mapSetKey', () => {
   test('setting a Key that does not exist on an Map to undefined sets the Key on the Map', () => {
     const map = new Map([
       ['bar', 2],
-      ['baz', 3]
+      ['baz', 3],
     ])
     const result = mapSetKey(map, 'foo', undefined)
     expect(result).toEqual(
       new Map([
         ['bar', 2],
         ['baz', 3],
-        ['foo', undefined]
+        ['foo', undefined],
       ])
     )
     expect(map).toEqual(
       new Map([
         ['bar', 2],
-        ['baz', 3]
+        ['baz', 3],
       ])
     )
     expect(result).not.toBe(map)

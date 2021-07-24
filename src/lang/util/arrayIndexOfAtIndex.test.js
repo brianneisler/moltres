@@ -65,9 +65,7 @@ describe('arrayIndexOfAtIndex', () => {
     const object2 = { b: 2 }
     const object3 = { c: 3 }
     const array = [object1, object2, object3]
-    expect(arrayIndexOfAtIndex(array, { d: 4 }, 0, anyIdenticalWithAny)).toBe(
-      -1
-    )
+    expect(arrayIndexOfAtIndex(array, { d: 4 }, 0, anyIdenticalWithAny)).toBe(-1)
   })
 
   test('returns the index of an object by value in array starting from 0', () => {
@@ -75,9 +73,7 @@ describe('arrayIndexOfAtIndex', () => {
     const object2 = { b: 2 }
     const object3 = { c: 3 }
     const array = [object1, object2, object3]
-    expect(arrayIndexOfAtIndex(array, { d: 4 }, 0, anyIdenticalWithAny)).toBe(
-      -1
-    )
+    expect(arrayIndexOfAtIndex(array, { d: 4 }, 0, anyIdenticalWithAny)).toBe(-1)
   })
 
   test('returns the index of an object by value when no indexOf is present', () => {

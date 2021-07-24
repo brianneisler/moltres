@@ -17,13 +17,7 @@ const reduceWalkee = (iteratee, pathParts, accum, value, keys, recur) =>
         const nextKey = getProperty(keys.length, pathParts)
         const newKeys = append(nextKey, keys)
         value = resolve(value)
-        return recur(
-          iteratee,
-          pathParts,
-          result,
-          resolvedValue[nextKey],
-          newKeys
-        )
+        return recur(iteratee, pathParts, result, resolvedValue[nextKey], newKeys)
       }
       return result
     }

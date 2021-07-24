@@ -50,7 +50,7 @@ describe('anyIsMap', () => {
   test('returns true for instances of Map using non node anyIsMap method', () => {
     jest.mock('./nodeTypes', () => ({
       ...jest.requireActual('./nodeTypes'),
-      anyIsMap: undefined
+      anyIsMap: undefined,
     }))
     const anyIsMap = require('./anyIsMap').default
     expect(anyIsMap(new Map())).toBe(true)
@@ -59,7 +59,7 @@ describe('anyIsMap', () => {
   test('returns false for all other values using non node anyIsMap method', () => {
     jest.mock('./nodeTypes', () => ({
       ...jest.requireActual('./nodeTypes'),
-      anyIsMap: undefined
+      anyIsMap: undefined,
     }))
     const anyIsMap = require('./anyIsMap').default
     expect(anyIsMap(undefined)).toBe(false)

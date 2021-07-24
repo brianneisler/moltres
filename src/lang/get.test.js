@@ -3,7 +3,7 @@ import get from './get'
 describe('get', () => {
   test('get using a single key', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(get('foo', value)).toBe('bar')
     expect(get(['foo'], value)).toBe('bar')
@@ -18,10 +18,10 @@ describe('get', () => {
         [
           'bar',
           {
-            bim: 'bop'
-          }
-        ]
-      ])
+            bim: 'bop',
+          },
+        ],
+      ]),
     }
     expect(get('foo.bar.bim', value)).toBe('bop')
   })
@@ -30,15 +30,15 @@ describe('get', () => {
     const foo = {
       data: {
         bar: {
-          bim: 'bop'
-        }
+          bim: 'bop',
+        },
       },
       get(prop) {
         return this.data[prop]
-      }
+      },
     }
     const value = {
-      foo
+      foo,
     }
     expect(get('foo.bar.bim', value)).toBe('bop')
   })
@@ -62,7 +62,7 @@ describe('get', () => {
       [false]: 'foo',
       [null]: 'foo',
       [sym]: 'foo',
-      [true]: 'foo'
+      [true]: 'foo',
     }
     expect(get(null, value)).toBe('foo')
     expect(get(0, value)).toBe('foo')
@@ -74,22 +74,22 @@ describe('get', () => {
   test('converts dot props to paths', () => {
     const value = {
       foo: {
-        bar: 'foobar'
-      }
+        bar: 'foobar',
+      },
     }
     expect(get('foo.bar', value)).toBe('foobar')
   })
 
   test('works with props that have dots', () => {
     const value = {
-      'foo.bar': 'foobar'
+      'foo.bar': 'foobar',
     }
     expect(get(['foo.bar'], value)).toBe('foobar')
   })
 
   test('supports array syntax', () => {
     const value = {
-      foo: ['foobar']
+      foo: ['foobar'],
     }
     expect(get('foo[0]', value)).toBe('foobar')
   })
@@ -116,7 +116,7 @@ describe('get', () => {
 
   test('curries the get method', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     const getFoo = get('foo')
     expect(getFoo(value)).toBe('bar')
@@ -128,8 +128,8 @@ describe('get', () => {
         return this.props[path]
       },
       props: {
-        foo: 'bar'
-      }
+        foo: 'bar',
+      },
     }
     expect(get('foo', value)).toBe('bar')
   })
@@ -141,9 +141,9 @@ describe('get', () => {
       }),
       props: {
         foo: {
-          bar: 'baz'
-        }
-      }
+          bar: 'baz',
+        },
+      },
     }
     const getFooBar = get('foo.bar')
     expect(getFooBar(value)).toBe('baz')

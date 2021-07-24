@@ -31,7 +31,7 @@ const formatLocation = (location) => {
     query: formatQuery(location),
     search: formatSearch(location),
     slashes: formatSlashes(location),
-    username: formatUsername(location)
+    username: formatUsername(location),
   }
   if (location.state) {
     return assocProperty('state', location.state, result)

@@ -9,14 +9,14 @@ describe('isGenerator', () => {
   test('identifies a generator created from basic object', () => {
     const testGenerator = {
       next: () => {},
-      throw: () => {}
+      throw: () => {},
     }
     expect(isGenerator(testGenerator)).toBe(true)
   })
 
   test('is not a generator when object is missing next method', () => {
     const testGenerator = {
-      throw: () => {}
+      throw: () => {},
     }
     expect(isGenerator(testGenerator)).toBe(false)
   })

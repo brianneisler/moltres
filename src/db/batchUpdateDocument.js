@@ -9,10 +9,7 @@ const batchUpdateDocument = curry((Schema, context, batch, id, data) => {
   const ref = refDocumentById(Schema, context, id)
   batch.update(
     ref,
-    addUpdatedAtTimestamp(
-      context,
-      convertDataToFirebase(context, cleanseData(Schema, data))
-    )
+    addUpdatedAtTimestamp(context, convertDataToFirebase(context, cleanseData(Schema, data)))
   )
   return ref
 })

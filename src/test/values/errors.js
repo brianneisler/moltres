@@ -4,7 +4,7 @@ import {
   ReferenceError,
   SyntaxError,
   TypeError,
-  URIError
+  URIError,
 } from '../../lang/classes'
 
 const values = [
@@ -13,7 +13,7 @@ const values = [
   new ReferenceError(),
   new SyntaxError(),
   new TypeError(),
-  new URIError()
+  new URIError(),
 ]
 
 const errors = () => values

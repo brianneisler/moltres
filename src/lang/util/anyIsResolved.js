@@ -40,11 +40,6 @@ import anyIsPromise from './anyIsPromise'
  */
 const anyIsResolved = (any) =>
   !anyIsObject(any) ||
-  !(
-    anyIsPromise(any) ||
-    anyIsFunction(any.resolve) ||
-    anyIsGenerator(any) ||
-    anyIsOp(any)
-  )
+  !(anyIsPromise(any) || anyIsFunction(any.resolve) || anyIsGenerator(any) || anyIsOp(any))
 
 export default anyIsResolved

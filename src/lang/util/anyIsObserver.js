@@ -22,9 +22,6 @@ import anyIsFunction from './anyIsFunction'
  * //=> false
  */
 const anyIsObserver = (any) =>
-  any != null &&
-  anyIsFunction(any.next) &&
-  anyIsFunction(any.error) &&
-  anyIsFunction(any.complete)
+  any != null && anyIsFunction(any.next) && anyIsFunction(any.error) && anyIsFunction(any.complete)
 
 export default anyIsObserver

@@ -19,7 +19,6 @@ import anyIsFunction from './anyIsFunction'
  * anyIsBuffer(new Uint8Array(2))
  * // => false
  */
-const anyIsBuffer = (any) =>
-  any != null && anyIsFunction(any.fill) && anyIsFunction(any.write)
+const anyIsBuffer = (any) => any != null && anyIsFunction(any.fill) && anyIsFunction(any.write)
 
 export default anyIsBuffer

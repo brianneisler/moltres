@@ -7,7 +7,7 @@ import {
   ImmutableOrderedSet,
   ImmutableSet,
   ImmutableStack,
-  Seq
+  Seq,
 } from '../../lang/classes'
 
 const valueMap = {
@@ -20,10 +20,9 @@ const valueMap = {
   Seq: Seq(),
   ['Seq.Indexed']: Seq.Indexed(),
   ['Seq.Keyed']: Seq.Keyed(),
-  ['Seq.Set']: Seq.Set()
+  ['Seq.Set']: Seq.Set(),
 }
 
-const immutables = (selected = keys(valueMap)) =>
-  map((key) => valueMap[key], selected)
+const immutables = (selected = keys(valueMap)) => map((key) => valueMap[key], selected)
 
 export default immutables

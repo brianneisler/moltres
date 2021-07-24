@@ -12,7 +12,7 @@ const getOneFromQuery = async ({ logger }, query, options = {}) => {
     if (options.disallowPendingWrites && snapshot.metadata.hasPendingWrites) {
       throw expected({
         code: PENDING_WRITES,
-        message: 'Writes to the DB for this record are still pending'
+        message: 'Writes to the DB for this record are still pending',
       })
     }
     return formatSnapshot(snapshot, { ...options, getOne: true })
@@ -25,7 +25,7 @@ const getOneFromQuery = async ({ logger }, query, options = {}) => {
       throw expected({
         causes: [error],
         code: ACCESS_DENIED,
-        message: error.message
+        message: error.message,
       })
     }
     throw error

@@ -52,9 +52,9 @@ _NOTES_
   * [function where()](#function-where)
   * [function whereEquals()](#function-whereequals)
 - [lang.classes](#langclasses)
-  * [**private** function _Array()](#private-function-_array)
-  * [class _Boolean](#class-_boolean)
-  * [class _Function](#class-_function)
+  * [**private** function \_Array()](#private-function-_array)
+  * [class \_Boolean](#class-_boolean)
+  * [class \_Function](#class-_function)
   * [class ImmutableList](#class-immutablelist)
   * [class ImmutableMap](#class-immutablemap)
   * [class ImmutableOrderedMap](#class-immutableorderedmap)
@@ -258,7 +258,7 @@ when the batch is commited.</p>
 
 ### function refDocumentById()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/db/refDocumentById.js#L14)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.5.7
+[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/db/refDocumentById.js#L6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.5.7
 <p>Reference a document by id</p>
 
 **Params**
@@ -1217,7 +1217,7 @@ walkReduceDepthFirst(
 
 ### function walkReducePath()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/lang/walkReducePath.js#L32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
+[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/lang/walkReducePath.js#L26)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.0.6
 <p>Walk reduce the specific path using the given reducer function</p>
 <p>NOTE: This method will resolve values during the walk before walking them. However, the unresolved value will be delivered to the iteratee.</p>
 
@@ -1780,7 +1780,7 @@ anyIsGenerator({
 
 ### **private** function anyIsGeneratorFunction()
 
-[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/lang/util/anyIsGeneratorFunction.js#L17)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
+[source](https://github.com/brianneisler/moltres/tree/v0.5.11/src/lang/util/anyIsGeneratorFunction.js#L15)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since v0.1.0
 <p>Checks whether a function is generator function.</p>
 
 **Params**

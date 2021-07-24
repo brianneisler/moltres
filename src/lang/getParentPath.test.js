@@ -3,7 +3,7 @@ import getParentPath from './getParentPath'
 describe('getParentPath', () => {
   test('getParentPath using a single key returns original value', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(getParentPath(['foo'], value)).toBe(value)
     expect(getParentPath(['bim'], value)).toBe(value)
@@ -30,13 +30,13 @@ describe('getParentPath', () => {
         [
           'bar',
           {
-            bim: 'bop'
-          }
-        ]
-      ])
+            bim: 'bop',
+          },
+        ],
+      ]),
     }
     expect(getParentPath(['foo', 'bar', 'bim'], value)).toEqual({
-      bim: 'bop'
+      bim: 'bop',
     })
   })
 
@@ -48,8 +48,8 @@ describe('getParentPath', () => {
   test('does not convert props to paths', () => {
     const value = {
       foo: {
-        bar: 'foobar'
-      }
+        bar: 'foobar',
+      },
     }
     expect(getParentPath(['foo.bar'], value)).toBe(value)
   })
@@ -57,15 +57,15 @@ describe('getParentPath', () => {
   test('works with props that have dots', () => {
     const value = {
       'foo.bar': {
-        baz: 'foobar'
-      }
+        baz: 'foobar',
+      },
     }
     expect(getParentPath(['foo.bar', 'baz'], value)).toBe(value['foo.bar'])
   })
 
   test('curries the getParentPath method', () => {
     const value = {
-      foo: 'bar'
+      foo: 'bar',
     }
     const getFoo = getParentPath(['foo'])
     expect(getFoo(value)).toBe(value)
@@ -77,8 +77,8 @@ describe('getParentPath', () => {
         return getParentPath(path, this.props)
       },
       props: {
-        foo: 'bar'
-      }
+        foo: 'bar',
+      },
     }
     expect(getParentPath(['foo'], value)).toEqual({ foo: 'bar' })
   })
@@ -90,9 +90,9 @@ describe('getParentPath', () => {
       }),
       props: {
         foo: {
-          bar: 'baz'
-        }
-      }
+          bar: 'baz',
+        },
+      },
     }
     const getFooBar = getParentPath(['foo', 'bar'])
     expect(getFooBar(value)).toBe(value.props.foo)

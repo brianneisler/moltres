@@ -2,12 +2,7 @@ import { unexpected } from '../error'
 
 import createExpandingBuffer from './createExpandingBuffer'
 import invariant from './invariant'
-import {
-  anyIsObserver,
-  anyIsRingBuffer,
-  anyIsUndefined,
-  arrayRemove
-} from './util'
+import { anyIsObserver, anyIsRingBuffer, anyIsUndefined, arrayRemove } from './util'
 
 const createChannel = (buffer = createExpandingBuffer()) => {
   let closed = false
@@ -20,12 +15,12 @@ const createChannel = (buffer = createExpandingBuffer()) => {
   function checkForbiddenStates() {
     if (closed && observers.length) {
       throw unexpected({
-        message: 'Cannot have a closed channel with pending observers'
+        message: 'Cannot have a closed channel with pending observers',
       })
     }
     if (observers.length && !buffer.isEmpty()) {
       throw unexpected({
-        message: 'Cannot have pending observers with non empty buffer'
+        message: 'Cannot have pending observers with non empty buffer',
       })
     }
   }
@@ -49,10 +44,7 @@ const createChannel = (buffer = createExpandingBuffer()) => {
   function next(observer) {
     if (process.env.NODE_ENV !== 'production') {
       checkForbiddenStates()
-      invariant(
-        anyIsObserver(observer),
-        "channel.take's observer must be an Observer"
-      )
+      invariant(anyIsObserver(observer), "channel.take's observer must be an Observer")
     }
 
     if (closed && buffer.isEmpty()) {
@@ -70,10 +62,7 @@ const createChannel = (buffer = createExpandingBuffer()) => {
   function flush(observer) {
     if (process.env.NODE_ENV !== 'production') {
       checkForbiddenStates()
-      invariant(
-        anyIsObserver(observer),
-        "channel.flush's observer must be a Observer"
-      )
+      invariant(anyIsObserver(observer), "channel.flush's observer must be a Observer")
     }
 
     if (closed && buffer.isEmpty()) {
@@ -107,7 +96,7 @@ const createChannel = (buffer = createExpandingBuffer()) => {
     close,
     flush,
     next,
-    put
+    put,
   }
 }
 

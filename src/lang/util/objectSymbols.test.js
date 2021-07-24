@@ -7,7 +7,7 @@ describe('objectSymbols', () => {
     expect(
       objectSymbols({
         [symA]: 'a',
-        [symB]: 'b'
+        [symB]: 'b',
       })
     ).toEqual([symA, symB])
   })
@@ -18,7 +18,7 @@ describe('objectSymbols', () => {
     Object.defineProperty(object, symA, {
       configurable: true,
       enumerable: false,
-      value: 'bar'
+      value: 'bar',
     })
 
     expect(objectSymbols(object)).toEqual([])

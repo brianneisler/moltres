@@ -20,10 +20,7 @@ const generateProjectId = (config = {}) => {
   //   return 'local'
   // }
 
-  invariant(
-    config.firebase.projectId,
-    'config.firebase.projectId must be defined'
-  )
+  invariant(config.firebase.projectId, 'config.firebase.projectId must be defined')
   return config.firebase.projectId
 }
 

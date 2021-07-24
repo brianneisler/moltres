@@ -4,7 +4,9 @@ import dox from 'dox'
 import fs from 'fs-extra'
 import glob from 'glob'
 import markdownMagic from 'markdown-magic'
+import minimatch from 'minimatch'
 import {
+  __,
   append,
   assoc,
   filter,
@@ -12,8 +14,10 @@ import {
   forEach,
   isEmpty,
   map,
+  pipe,
   prop,
-  reduce
+  reduce,
+  reject,
 } from 'ramda'
 
 import pack from '../../package.json'
@@ -45,9 +49,7 @@ const parseReturnsString = (string) => {
     const typesDescription = result[0]
     return {
       description: string.slice(result.index + typesDescription.length).trim(),
-      typesDescription: typesDescription
-        .slice(1, typesDescription.length - 1)
-        .trim()
+      typesDescription: typesDescription.slice(1, typesDescription.length - 1).trim(),
     }
   }
   return {}
@@ -62,7 +64,7 @@ const parseParamString = (string) => {
     return {
       description,
       name,
-      typesDescription
+      typesDescription,
     }
   }
   return {}
@@ -75,13 +77,19 @@ const parseSrcFiles = async (srcFiles) =>
       const contents = await fs.readFile(fullPath, 'utf8')
       return {
         meta: dox.parseComments(contents),
-        srcFile
+        srcFile,
       }
     }, srcFiles)
   )
 
-const findSrcFiles = () =>
-  new Promise((resolve, reject) => {
+const matchSrcFiles = (srcFiles, match, options) =>
+  pipe(
+    filter(minimatch.filter(match)),
+    reduce((accum, ignore) => reject(minimatch.filter(ignore), accum), __, options.ignore)
+  )(srcFiles)
+
+const findSrcFiles = (srcFiles) =>
+  new Promise((resolve, pReject) => {
     const options = {
       cwd: SRC_PATH,
       ignore: [
@@ -91,15 +99,19 @@ const findSrcFiles = () =>
         'index.js',
         'data/freeGlobal.js',
         'data/nodeTypes.js',
-        'data/root.js'
-      ]
+        'data/root.js',
+      ],
     }
-    glob('**/*.js', options, (error, files) => {
-      if (error) {
-        return reject(error)
-      }
-      resolve(files)
-    })
+    if (srcFiles && !isEmpty(srcFiles)) {
+      resolve(matchSrcFiles(srcFiles, '**/*.js', options))
+    } else {
+      glob('**/*.js', options, (error, files) => {
+        if (error) {
+          return pReject(error)
+        }
+        resolve(files)
+      })
+    }
   })
 
 const findCategory = (tags) => {
@@ -118,10 +130,7 @@ const findParams = (tags) => {
 }
 
 const findReturns = (tags) => {
-  const returnsTag = find(
-    (tag) => tag.type === 'return' || tag.type === 'returns',
-    tags
-  )
+  const returnsTag = find((tag) => tag.type === 'return' || tag.type === 'returns', tags)
   return returnsTag
 }
 
@@ -191,7 +200,7 @@ const renderFunctionMarkdown = ({
   private: _private,
   returns,
   since,
-  srcFile
+  srcFile,
 }) => {
   let markdown = `### ${_private ? '**private** ' : ''}function ${name}()\n\n`
   // console.log('meta:', JSON.stringify(data, null, 2))
@@ -212,7 +221,7 @@ const renderClassMarkdown = ({
   name,
   private: _private,
   since,
-  srcFile
+  srcFile,
 }) => {
   let markdown = `### ${_private ? '**private** ' : ''}class ${name}\n\n`
   markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
@@ -232,7 +241,7 @@ const renderValueMarkdown = ({
   private: _private,
   since,
   srcFile,
-  type
+  type,
 }) => {
   let markdown = `### ${_private ? '**private** ' : ''}${name}\n\n`
   markdown += `[source](${GITHUB_TAG_URL}/src/${srcFile}#L${line})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; since ${since}\n`
@@ -275,7 +284,7 @@ const generateParams = (tags) => {
     const parsed = parseParamString(paramTag.string)
     return {
       type: 'param',
-      ...parsed
+      ...parsed,
     }
   }, paramTags)
 }
@@ -286,7 +295,7 @@ const generateReturns = (tags) => {
     const parsed = parseReturnsString(returnsTag.string)
     return {
       type: 'returns',
-      ...parsed
+      ...parsed,
     }
   }
   return null
@@ -312,7 +321,7 @@ const generateFunctionDocs = (meta, srcFile) => {
     private: _private,
     returns: generateReturns(meta.tags),
     since,
-    srcFile
+    srcFile,
   }
 }
 
@@ -335,7 +344,7 @@ const generateClassDocs = (meta, srcFile) => {
     line: meta.line,
     name: meta.ctx.name,
     since,
-    srcFile
+    srcFile,
   }
 }
 
@@ -357,7 +366,7 @@ const generateValueDocs = (meta, srcFile) => {
     name: meta.ctx.name,
     since,
     srcFile,
-    type: typeTag.string
+    type: typeTag.string,
   }
 }
 
@@ -384,7 +393,7 @@ const getCategory = (name, categories) => {
       classes: [],
       functions: [],
       name,
-      values: []
+      values: [],
     }
   }
   return category
@@ -405,29 +414,17 @@ const generateCategoryDocs = (srcData) =>
           if (type === 'function') {
             const fnDocs = generateFunctionDocs(meta, data.srcFile)
             let category = getCategory(fnDocs.category, categories)
-            category = assoc(
-              'functions',
-              append(fnDocs, category.functions),
-              category
-            )
+            category = assoc('functions', append(fnDocs, category.functions), category)
             categories = assoc(fnDocs.category, category, categories)
           } else if (type === 'class') {
             const classDocs = generateClassDocs(meta, data.srcFile)
             let category = getCategory(classDocs.category, categories)
-            category = assoc(
-              'classes',
-              append(classDocs, category.classes),
-              category
-            )
+            category = assoc('classes', append(classDocs, category.classes), category)
             categories = assoc(classDocs.category, category, categories)
           } else {
             const valueDocs = generateValueDocs(meta, data.srcFile)
             let category = getCategory(valueDocs.category, categories)
-            category = assoc(
-              'values',
-              append(valueDocs, category.values),
-              category
-            )
+            category = assoc('values', append(valueDocs, category.values), category)
             categories = assoc(valueDocs.category, category, categories)
           }
         }
@@ -438,7 +435,7 @@ const generateCategoryDocs = (srcData) =>
     srcData
   )
 const generateAPIDocs = (srcData) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve, pReject) => {
     const magicConfig = {
       transforms: {
         METHODS() {
@@ -450,15 +447,15 @@ const generateAPIDocs = (srcData) =>
             '',
             categories
           )
-        }
-      }
+        },
+      },
     }
 
     markdownMagic([API_README_PATH], magicConfig, (error) => {
       if (error) {
         // eslint-disable-next-line no-console
         console.log('Error while generating docs')
-        return reject(error)
+        return pReject(error)
       }
       // eslint-disable-next-line no-console
       console.log('🎉 Docs updated!')
@@ -467,7 +464,13 @@ const generateAPIDocs = (srcData) =>
   })
 
 const exec = async () => {
-  const srcFiles = await findSrcFiles()
+  // const args = process.argv.slice(2)
+  // TODO BRN: We can't simply just match the given files yet because then the
+  // docs that are produced only contain documentation for the files that were
+  // matched. Instead, we need a way of caching the generated documentation
+  // first.
+  const args = []
+  const srcFiles = await findSrcFiles(args)
   const srcData = await parseSrcFiles(srcFiles)
   await generateAPIDocs(srcData)
 }

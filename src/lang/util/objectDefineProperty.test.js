@@ -5,10 +5,10 @@ describe('objectDefineProperty', () => {
     const object = objectDefineProperty({}, 'foo', {
       configurable: true,
       enumerable: true,
-      value: 'bar'
+      value: 'bar',
     })
     expect(object).toEqual({
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 })

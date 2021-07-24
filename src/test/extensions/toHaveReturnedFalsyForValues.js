@@ -2,7 +2,7 @@ function toHaveReturnedFalsyForValues(func, values) {
   const options = {
     comment: 'Checks for a return of `false` from multiple values',
     isNot: this.isNot,
-    promise: this.promise
+    promise: this.promise,
   }
 
   let idx = 0
@@ -18,12 +18,7 @@ function toHaveReturnedFalsyForValues(func, values) {
   }
 
   const message = () =>
-    this.utils.matcherHint(
-      'toHaveReturnedFalsyForValues',
-      func,
-      `[${value}]`,
-      options
-    ) +
+    this.utils.matcherHint('toHaveReturnedFalsyForValues', func, `[${value}]`, options) +
     '\n\n' +
     `Expected: ${this.utils.printExpected(expected)}\n` +
     `Received: ${this.utils.printReceived(received)}`
@@ -31,7 +26,7 @@ function toHaveReturnedFalsyForValues(func, values) {
   return {
     actual: received,
     message,
-    pass
+    pass,
   }
 }
 

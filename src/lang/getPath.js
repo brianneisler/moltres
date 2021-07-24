@@ -40,9 +40,7 @@ const getPath = curry((path, obj) => {
     path = createPath(path)
   }
   if (!isPath(path)) {
-    throw new TypeError(
-      `getPath expected 'path' parameter to be a Path. Instead received ${path}`
-    )
+    throw new TypeError(`getPath expected 'path' parameter to be a Path. Instead received ${path}`)
   }
   let val = obj
   let idx = 0

@@ -11,11 +11,11 @@ describe('#walkReduceDepthFirst()', () => {
       {
         a: {
           b: {
-            c: 'c'
+            c: 'c',
           },
-          d: 'd'
+          d: 'd',
         },
-        e: ['e', 'f']
+        e: ['e', 'f'],
       }
     )
     expect(result).toEqual([
@@ -26,7 +26,7 @@ describe('#walkReduceDepthFirst()', () => {
       ['e', 0],
       ['e', 1],
       ['e'],
-      []
+      [],
     ])
   })
 
@@ -41,7 +41,7 @@ describe('#walkReduceDepthFirst()', () => {
         a: () => {},
         b() {},
         async c() {},
-        *d() {}
+        *d() {},
       }
     )
     expect(result).toEqual([['a'], ['b'], ['c'], ['d'], []])
@@ -52,7 +52,7 @@ describe('#walkReduceDepthFirst()', () => {
       (accum, value, keys) => {
         accum.push({
           keys,
-          value
+          value,
         })
         return accum
       },
@@ -62,46 +62,46 @@ describe('#walkReduceDepthFirst()', () => {
           b: {
             resolve() {
               return { c: 'c' }
-            }
-          }
-        }
+            },
+          },
+        },
       }
     )
     expect(result).toEqual([
       {
         keys: ['a', 'b', 'c'],
-        value: 'c'
+        value: 'c',
       },
       {
         keys: ['a', 'b'],
         value: {
-          resolve: expect.any(Function)
-        }
+          resolve: expect.any(Function),
+        },
       },
       {
         keys: ['a'],
         value: {
           b: {
-            resolve: expect.any(Function)
-          }
-        }
+            resolve: expect.any(Function),
+          },
+        },
       },
       {
         keys: [],
         value: {
           a: {
             b: {
-              resolve: expect.any(Function)
-            }
-          }
-        }
-      }
+              resolve: expect.any(Function),
+            },
+          },
+        },
+      },
     ])
   })
 
   it('should upgrade to async when an async iteratee is used', async () => {
     const props = {
-      foo: 'bar'
+      foo: 'bar',
     }
 
     const result = walkReduceDepthFirst(
@@ -119,12 +119,12 @@ describe('#walkReduceDepthFirst()', () => {
     expect(await result).toEqual([
       {
         keys: ['foo'],
-        value: 'bar'
+        value: 'bar',
       },
       {
         keys: [],
-        value: props
-      }
+        value: props,
+      },
     ])
   })
 })

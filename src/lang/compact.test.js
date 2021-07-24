@@ -33,7 +33,7 @@ describe('compact', () => {
       compact() {
         return compact(this.list)
       },
-      list: ['a', null, undefined]
+      list: ['a', null, undefined],
     }
     expect(compact(value)).toEqual(['a'])
   })

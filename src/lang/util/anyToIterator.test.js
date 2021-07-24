@@ -12,7 +12,7 @@ describe('anyToIterator', () => {
       index: 0,
       kdx: 0,
       prev: undefined,
-      value: 'a'
+      value: 'a',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -22,9 +22,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 0,
         kdx: 0,
-        value: 'a'
+        value: 'a',
       },
-      value: 'b'
+      value: 'b',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -34,9 +34,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'b'
+        value: 'b',
       },
-      value: 'c'
+      value: 'c',
     })
     expect(iter.next()).toEqual({
       done: true,
@@ -44,9 +44,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 2,
         kdx: 2,
-        value: 'c'
+        value: 'c',
       },
-      value: undefined
+      value: undefined,
     })
   })
 
@@ -57,7 +57,7 @@ describe('anyToIterator', () => {
       index: 0,
       kdx: 0,
       prev: undefined,
-      value: 'abc'
+      value: 'abc',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -67,9 +67,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 0,
         kdx: 0,
-        value: 'abc'
+        value: 'abc',
       },
-      value: 'foo'
+      value: 'foo',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -79,9 +79,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'foo'
+        value: 'foo',
       },
-      value: 'bar'
+      value: 'bar',
     })
     expect(iter.next()).toEqual({
       done: true,
@@ -89,9 +89,9 @@ describe('anyToIterator', () => {
         done: false,
         index: 2,
         kdx: 2,
-        value: 'bar'
+        value: 'bar',
       },
-      value: undefined
+      value: undefined,
     })
   })
 
@@ -99,14 +99,14 @@ describe('anyToIterator', () => {
     const iter = anyToIterator({
       abc: 'def',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(iter.next()).toEqual({
       done: false,
       kdx: 'abc',
       key: 'abc',
       prev: undefined,
-      value: 'def'
+      value: 'def',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -116,9 +116,9 @@ describe('anyToIterator', () => {
         done: false,
         kdx: 'abc',
         key: 'abc',
-        value: 'def'
+        value: 'def',
       },
-      value: 'bop'
+      value: 'bop',
     })
     expect(iter.next()).toEqual({
       done: false,
@@ -128,9 +128,9 @@ describe('anyToIterator', () => {
         done: false,
         kdx: 'bim',
         key: 'bim',
-        value: 'bop'
+        value: 'bop',
       },
-      value: 'bar'
+      value: 'bar',
     })
     expect(iter.next()).toEqual({
       done: true,
@@ -138,36 +138,36 @@ describe('anyToIterator', () => {
         done: false,
         kdx: 'foo',
         key: 'foo',
-        value: 'bar'
+        value: 'bar',
       },
-      value: undefined
+      value: undefined,
     })
   })
 
   test('returns iterator from iterable value by calling iterator symbol', () => {
     const iter = {
-      next: () => {}
+      next: () => {},
     }
     const iterable = {
-      [ITERATOR]: () => iter
+      [ITERATOR]: () => iter,
     }
     const result = anyToIterator(iterable)
     expect(result).toEqual({
       next: expect.any(Function),
       previous: expect.any(Function),
-      resolver: true
+      resolver: true,
     })
   })
 
   test('returns an iterator resolver if the value is already an Iterator', () => {
     const iter = {
-      next: () => {}
+      next: () => {},
     }
     const result = anyToIterator(iter)
     expect(result).toEqual({
       next: expect.any(Function),
       previous: expect.any(Function),
-      resolver: true
+      resolver: true,
     })
   })
 

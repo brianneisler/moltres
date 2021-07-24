@@ -29,7 +29,6 @@ import { MAX_SAFE } from '../constants/Integer'
  * anyIsLength(MAX_SAFE_INTEGER + 1)
  * //=> false
  */
-const anyIsLength = (any) =>
-  typeof any == 'number' && any > -1 && any % 1 == 0 && any <= MAX_SAFE
+const anyIsLength = (any) => typeof any == 'number' && any > -1 && any % 1 == 0 && any <= MAX_SAFE
 
 export default anyIsLength

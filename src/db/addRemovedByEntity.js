@@ -5,20 +5,20 @@ const addRemovedByEntity = curry(({ currentUser, serviceAccount }, data) => {
     return {
       removedByEntityId: currentUser.id,
       removedByEntityType: 'User',
-      ...data
+      ...data,
     }
   }
   if (serviceAccount) {
     return {
       removedByEntityId: serviceAccount.id,
       removedByEntityType: 'ServiceAccount',
-      ...data
+      ...data,
     }
   }
   return {
     removedByEntityId: null,
     removedByEntityType: null,
-    ...data
+    ...data,
   }
 })
 

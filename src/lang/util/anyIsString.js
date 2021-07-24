@@ -25,10 +25,7 @@ const anyIsString = (any) => {
   const type = typeof any
   return (
     type == 'string' ||
-    (type == 'object' &&
-      any != null &&
-      !anyIsArray(any) &&
-      anyToStringTag(any) == 'String')
+    (type == 'object' && any != null && !anyIsArray(any) && anyToStringTag(any) == 'String')
   )
 }
 

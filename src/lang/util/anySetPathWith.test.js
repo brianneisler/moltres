@@ -51,21 +51,14 @@ describe('anySetPathWith', () => {
 
   test('correctly calls setFunc on all path parts', () => {
     const any = {
-      a: { b: { c: 0 } }
+      a: { b: { c: 0 } },
     }
     const path = new Path(['a', 'b', 'c'])
     const contagionFunc = jest.fn(() => ({}))
     const getFunc = jest.fn((target, key) => objectGetProperty(target, key))
     const setFunc = jest.fn((target, key, value) => {
       if (anyIsPath(key)) {
-        return anySetPathWith(
-          target,
-          key,
-          value,
-          contagionFunc,
-          getFunc,
-          setFunc
-        )
+        return anySetPathWith(target, key, value, contagionFunc, getFunc, setFunc)
       }
       return objectSetProperty(target, key, value)
     })
@@ -81,7 +74,7 @@ describe('anySetPathWith', () => {
     expect(setFunc).toHaveBeenCalledTimes(3)
 
     expect(result).toEqual({
-      a: { b: { c: 3 } }
+      a: { b: { c: 3 } },
     })
   })
 
@@ -91,33 +84,22 @@ describe('anySetPathWith', () => {
     const getFunc = (target, key) => objectGetProperty(target, key)
     const setFunc = (target, key, value) => {
       if (anyIsPath(key)) {
-        return anySetPathWith(
-          target,
-          key,
-          value,
-          contagionFunc,
-          getFunc,
-          setFunc
-        )
+        return anySetPathWith(target, key, value, contagionFunc, getFunc, setFunc)
       }
       return objectSetProperty(target, key, value)
     }
 
     const objectA = { a: undefined }
-    expect(
-      anySetPathWith(objectA, path, 'foo', contagionFunc, getFunc, setFunc)
-    ).toEqual({
+    expect(anySetPathWith(objectA, path, 'foo', contagionFunc, getFunc, setFunc)).toEqual({
       a: {
-        b: 'foo'
-      }
+        b: 'foo',
+      },
     })
     const objectB = { a: null }
-    expect(
-      anySetPathWith(objectB, path, 'foo', contagionFunc, getFunc, setFunc)
-    ).toEqual({
+    expect(anySetPathWith(objectB, path, 'foo', contagionFunc, getFunc, setFunc)).toEqual({
       a: {
-        b: 'foo'
-      }
+        b: 'foo',
+      },
     })
   })
 
@@ -133,20 +115,13 @@ describe('anySetPathWith', () => {
     }
 
     const any = {
-      a: { b: null }
+      a: { b: null },
     }
-    const promise = anySetPathWith(
-      any,
-      path,
-      3,
-      contagionFunc,
-      getFunc,
-      setFunc
-    )
+    const promise = anySetPathWith(any, path, 3, contagionFunc, getFunc, setFunc)
     expect(promise).toBeInstanceOf(Promise)
     const result = await promise
     expect(result).toEqual({
-      a: { b: { c: 3 } }
+      a: { b: { c: 3 } },
     })
   })
 
@@ -156,33 +131,19 @@ describe('anySetPathWith', () => {
     const getFunc = (target, key) => objectGetProperty(target, key)
     const setFunc = (target, key, value) => {
       if (anyIsPath(key)) {
-        return anySetPathWith(
-          target,
-          key,
-          value,
-          contagionFunc,
-          getFunc,
-          setFunc
-        )
+        return anySetPathWith(target, key, value, contagionFunc, getFunc, setFunc)
       }
       return objectSetProperty(target, key, value)
     }
 
     const any = {
-      a: Promise.resolve({ b: Promise.resolve(null) })
+      a: Promise.resolve({ b: Promise.resolve(null) }),
     }
-    const promise = anySetPathWith(
-      any,
-      path,
-      3,
-      contagionFunc,
-      getFunc,
-      setFunc
-    )
+    const promise = anySetPathWith(any, path, 3, contagionFunc, getFunc, setFunc)
     expect(promise).toBeInstanceOf(Promise)
     const result = await promise
     expect(result).toEqual({
-      a: { b: { c: 3 } }
+      a: { b: { c: 3 } },
     })
   })
 })

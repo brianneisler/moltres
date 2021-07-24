@@ -7,7 +7,7 @@ describe('objectGetOwnPropertySymbols', () => {
     expect(
       objectGetOwnPropertySymbols({
         [symA]: 'a',
-        [symB]: 'b'
+        [symB]: 'b',
       })
     ).toEqual([symA, symB])
   })
@@ -18,7 +18,7 @@ describe('objectGetOwnPropertySymbols', () => {
     Object.defineProperty(object, symA, {
       configurable: true,
       enumerable: false,
-      value: 'bar'
+      value: 'bar',
     })
 
     expect(objectGetOwnPropertySymbols(object)).toEqual([symA])

@@ -5,13 +5,13 @@ describe('objectMutateSetProperty', () => {
     const object = {
       bar: 2,
       baz: 3,
-      foo: 1
+      foo: 1,
     }
     const result = objectMutateSetProperty(object, 'foo', 4)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 4
+      foo: 4,
     })
     expect(result).toBe(object)
   })
@@ -19,13 +19,13 @@ describe('objectMutateSetProperty', () => {
   test('setting a Property that does not exist on an Object sets the Property', () => {
     const object = {
       bar: 2,
-      baz: 3
+      baz: 3,
     }
     const result = objectMutateSetProperty(object, 'foo', 4)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: 4
+      foo: 4,
     })
     expect(result).toBe(object)
   })
@@ -33,13 +33,13 @@ describe('objectMutateSetProperty', () => {
   test('setting a Property that does not exist on an Object to undefined sets the Property on the Object', () => {
     const object = {
       bar: 2,
-      baz: 3
+      baz: 3,
     }
     const result = objectMutateSetProperty(object, 'foo', undefined)
     expect(result).toEqual({
       bar: 2,
       baz: 3,
-      foo: undefined
+      foo: undefined,
     })
     expect(result).toBe(object)
   })

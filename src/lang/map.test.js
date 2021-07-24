@@ -36,7 +36,7 @@ describe('map', () => {
       expect(result).toEqual([
         ['a', 0],
         ['b', 1],
-        ['c', 2]
+        ['c', 2],
       ])
     })
 
@@ -57,7 +57,7 @@ describe('map', () => {
       expect(result).toEqual([
         ['a', 0],
         ['b', 1],
-        ['c', 2]
+        ['c', 2],
       ])
     })
 
@@ -79,7 +79,7 @@ describe('map', () => {
       expect(result).toEqual([
         ['a', 0],
         ['b', 1],
-        ['c', 2]
+        ['c', 2],
       ])
     })
   })
@@ -101,7 +101,7 @@ describe('map', () => {
       const object = {
         baz: 'bam',
         bim: 'bop',
-        foo: 'bar'
+        foo: 'bar',
       }
       const iteratee = jest.fn((identity) => identity)
       const result = map(iteratee, object)
@@ -111,7 +111,7 @@ describe('map', () => {
       expect(result).toEqual({
         baz: 'bam',
         bim: 'bop',
-        foo: 'bar'
+        foo: 'bar',
       })
     })
 
@@ -120,7 +120,7 @@ describe('map', () => {
       const symB = Symbol.for('b')
       const object = {
         [symA]: 'a',
-        [symB]: 'b'
+        [symB]: 'b',
       }
       const iteratee = jest.fn((value) => value)
       const result = map(iteratee, object)
@@ -128,7 +128,7 @@ describe('map', () => {
       expect(iteratee).toHaveBeenNthCalledWith(2, 'b', symB, object)
       expect(result).toEqual({
         [symA]: 'a',
-        [symB]: 'b'
+        [symB]: 'b',
       })
     })
   })
@@ -168,7 +168,7 @@ describe('map', () => {
         ImmutableList([
           ['a', 0],
           ['b', 1],
-          ['c', 2]
+          ['c', 2],
         ])
       )
     })
@@ -191,7 +191,7 @@ describe('map', () => {
         ImmutableList([
           ['a', 0],
           ['b', 1],
-          ['c', 2]
+          ['c', 2],
         ])
       )
     })

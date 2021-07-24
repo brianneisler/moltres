@@ -1,7 +1,7 @@
 const updateEnv = (env) => {
   process.env = {
     ...process.env,
-    ...env
+    ...env,
   }
   return process.env
 }

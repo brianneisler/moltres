@@ -25,10 +25,7 @@ const cacheMethod = (options, method) => {
     }
     const cacheKey = keyFn(context, ...rest)
     const cached = get(cacheKey, cache)
-    if (
-      cached &&
-      (isNil(ttl) || ttl === Infinity || system.now() < cached.cachedAt + ttl)
-    ) {
+    if (cached && (isNil(ttl) || ttl === Infinity || system.now() < cached.cachedAt + ttl)) {
       if (isFunction(onHit)) {
         onHit(context, ...rest)
       }
@@ -40,7 +37,7 @@ const cacheMethod = (options, method) => {
       anyToPath(cacheKey),
       {
         cachedAt: system.now(),
-        result
+        result,
       },
       contagion,
       get,

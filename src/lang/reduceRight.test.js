@@ -30,13 +30,9 @@ describe('reduceRight', () => {
     const object = {
       baz: 'bam',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     }
-    const result = reduceRight(
-      (acc, value, key) => acc + value + key,
-      '',
-      object
-    )
+    const result = reduceRight((acc, value, key) => acc + value + key, '', object)
     expect(result).toEqual('barfoobopbimbambaz')
   })
 
@@ -44,7 +40,7 @@ describe('reduceRight', () => {
     const object = {
       baz: 'bam',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     }
     const reducer = jest.fn((acc) => acc)
     const result = reduceRight(reducer, '', object)
@@ -64,7 +60,7 @@ describe('reduceRight', () => {
       },
       async foo() {
         return 'foo'
-      }
+      },
     }
     const reducer = (acc, method, name) => {
       acc.prototype[name] = method
@@ -74,7 +70,7 @@ describe('reduceRight', () => {
     expect(result.prototype).toEqual({
       bam: expect.any(Function),
       bim: expect.any(Function),
-      foo: expect.any(Function)
+      foo: expect.any(Function),
     })
   })
 
@@ -97,7 +93,7 @@ describe('reduceRight', () => {
     expect(result).toEqual([
       ['c', 2],
       ['b', 1],
-      ['a', 0]
+      ['a', 0],
     ])
   })
 })

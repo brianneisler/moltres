@@ -28,7 +28,6 @@ import anyIsIterator from './anyIsIterator'
  * })
  * //=> true
  */
-const anyIsKeyedIterator = (any) =>
-  anyIsIterator(any) && anyIsFunction(any.getKey)
+const anyIsKeyedIterator = (any) => anyIsIterator(any) && anyIsFunction(any.getKey)
 
 export default anyIsKeyedIterator

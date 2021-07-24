@@ -14,7 +14,7 @@ const getStats = async (src, dest) =>
       }
       throw err
     }),
-    srcStat: bigIntStat(src)
+    srcStat: bigIntStat(src),
   })
 
 const checkPaths = async (src, dest, funcName) => {
@@ -23,9 +23,7 @@ const checkPaths = async (src, dest, funcName) => {
     throw new Error('Source and destination must not be the same.')
   }
   if (srcStat.isDirectory() && isPathSubdir(src, dest)) {
-    throw new Error(
-      `Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`
-    )
+    throw new Error(`Cannot ${funcName} '${src}' to a subdirectory of itself, '${dest}'.`)
   }
   return { destStat, srcStat }
 }

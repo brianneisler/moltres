@@ -49,7 +49,7 @@ describe('anyIsSet', () => {
   test('returns true for instances of Set using non node anyIsSet method', () => {
     jest.mock('./nodeTypes', () => ({
       ...jest.requireActual('./nodeTypes'),
-      anyIsSet: undefined
+      anyIsSet: undefined,
     }))
     const anyIsSet = require('./anyIsSet').default
     expect(anyIsSet(new Set())).toBe(true)
@@ -58,7 +58,7 @@ describe('anyIsSet', () => {
   test('returns false for all other values using non node anyIsSet method', () => {
     jest.mock('./nodeTypes', () => ({
       ...jest.requireActual('./nodeTypes'),
-      anyIsSet: undefined
+      anyIsSet: undefined,
     }))
     const anyIsSet = require('./anyIsSet').default
     expect(anyIsSet(undefined)).toBe(false)

@@ -4,9 +4,7 @@ import { mkdirSync } from './util'
 
 const checkPath = (path) => {
   if (process.platform === 'win32') {
-    const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(
-      path.replace(pathParse(path).root, '')
-    )
+    const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(path.replace(pathParse(path).root, ''))
 
     if (pathHasInvalidWinCharacters) {
       const error = new Error(`Path contains invalid characters: ${path}`)
@@ -32,7 +30,7 @@ const ensureDirectorySync = (input, options) => {
 
   return mkdirSync(pth, {
     mode: options.mode,
-    recursive: true
+    recursive: true,
   })
 }
 

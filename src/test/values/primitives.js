@@ -17,11 +17,10 @@ const typeMap = {
   numbers,
   stringObjects,
   strings,
-  symbols
+  symbols,
 }
 
-const primitives = (
-  selected = ['booleans', 'nils', 'numbers', 'strings', 'symbols']
-) => flatten(map((type) => type(), values(pick(selected, typeMap))))
+const primitives = (selected = ['booleans', 'nils', 'numbers', 'strings', 'symbols']) =>
+  flatten(map((type) => type(), values(pick(selected, typeMap))))
 
 export default primitives

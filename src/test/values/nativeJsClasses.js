@@ -1,12 +1,4 @@
-import {
-  ArrayBuffer,
-  Map,
-  Promise,
-  Proxy,
-  Set,
-  WeakMap,
-  WeakSet
-} from '../../lang/classes'
+import { ArrayBuffer, Map, Promise, Proxy, Set, WeakMap, WeakSet } from '../../lang/classes'
 
 const values = [
   new ArrayBuffer(2),
@@ -15,7 +7,7 @@ const values = [
   new Proxy({}, {}),
   new Set(),
   new WeakMap(),
-  new WeakSet()
+  new WeakSet(),
 ]
 
 const nativeJsClasses = () => values

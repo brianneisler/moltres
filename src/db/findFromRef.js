@@ -19,7 +19,7 @@ const findFromRef = async (context, ref, options = {}) => {
         causes: [error],
         code: Code.ACCESS_DENIED,
         message: error.message,
-        statusCode: StatusCode.ACCESS_DENIED
+        statusCode: StatusCode.ACCESS_DENIED,
       })
     }
     throw error

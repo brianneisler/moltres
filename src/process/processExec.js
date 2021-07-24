@@ -10,7 +10,7 @@ const processExec = async (command, options) =>
       }
       return resolve({
         stderr,
-        stdout
+        stdout,
       })
     })
   })

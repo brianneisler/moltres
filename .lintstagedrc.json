@@ -1,3 +1,4 @@
 {
-  "*.js": ["npm run lint", "npm run docs:generate", "git add -A"]
+  "*.{json,css,md}": ["npm run prettier-staged"],
+  "*.{js,jsx,ts,tsx}": ["npm run lint-staged", "npm run docs-generate"]
 }

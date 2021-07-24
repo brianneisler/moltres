@@ -10,9 +10,7 @@ const getGeneratorFunc = () => {
   } catch (e) {}
 }
 const generatorFunc = getGeneratorFunc()
-const GeneratorFunction = generatorFunc
-  ? objectGetPrototypeOf(generatorFunc)
-  : {}
+const GeneratorFunction = generatorFunc ? objectGetPrototypeOf(generatorFunc) : {}
 
 /**
  * Checks whether a function is generator function.

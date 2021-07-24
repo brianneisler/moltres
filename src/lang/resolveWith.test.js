@@ -18,7 +18,7 @@ describe('resolveWith', () => {
     expect(
       resolveWith(
         () => ({
-          resolve: () => 1
+          resolve: () => 1,
         }),
         0
       )
@@ -41,7 +41,7 @@ describe('resolveWith', () => {
   test('handler that returns a Promise that resolves to a resolvable is resolved', async () => {
     const promise = new Promise((pResolve) => {
       pResolve({
-        resolve: () => 'foo'
+        resolve: () => 'foo',
       })
     })
     const handler = jest.fn(() => promise)
@@ -64,11 +64,11 @@ describe('resolveWith', () => {
     expect(isGenerator(generator)).toBe(true)
     expect(generator.next()).toEqual({
       done: false,
-      value: 'foo'
+      value: 'foo',
     })
     expect(generator.next()).toEqual({
       done: true,
-      value: 'baz'
+      value: 'baz',
     })
     expect(handler).toHaveBeenCalledWith('bar')
     expect(handler).toHaveBeenCalledTimes(1)
@@ -109,11 +109,11 @@ describe('resolveWith', () => {
     expect(isGenerator(generator)).toBe(true)
     expect(generator.next()).toEqual({
       done: false,
-      value: 'foo'
+      value: 'foo',
     })
     expect(generator.next()).toEqual({
       done: true,
-      value: 'baz'
+      value: 'baz',
     })
     expect(handler).toHaveBeenCalledWith('bar')
     expect(handler).toHaveBeenCalledTimes(1)
@@ -131,13 +131,13 @@ describe('resolveWith', () => {
     const firstNext = generator.next()
     expect(firstNext).toEqual({
       done: false,
-      value: expect.any(Promise)
+      value: expect.any(Promise),
     })
     await firstNext.value
     const result = generator.next()
     expect(result).toEqual({
       done: true,
-      value: 'baz'
+      value: 'baz',
     })
     expect(handler).toHaveBeenCalledWith('bar')
     expect(handler).toHaveBeenCalledTimes(1)

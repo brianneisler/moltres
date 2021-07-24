@@ -27,7 +27,7 @@ describe('anyResolve', () => {
     const resolvable = {
       resolve() {
         return 'foo'
-      }
+      },
     }
     expect(anyResolve(resolvable)).toBe('foo')
   })
@@ -38,9 +38,9 @@ describe('anyResolve', () => {
         return {
           resolve() {
             return 'foo'
-          }
+          },
         }
-      }
+      },
     }
     expect(anyResolve(reresolvable)).toBe('foo')
   })

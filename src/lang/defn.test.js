@@ -29,7 +29,7 @@ describe('defn', () => {
       func: defn('test', function () {
         expect(this).toBe(test)
         return 'baz'
-      })
+      }),
     }
     expect(test.func()).toBe('baz')
   })
@@ -67,7 +67,7 @@ describe('defn', () => {
         expect(arg3).toBe(obj)
         expect(this).toBe(obj)
         return 'baz'
-      }
+      },
     }
     // eslint-disable-next-line no-unused-vars
     const test = defn('test', (arg1, arg2, arg3) => 'wrong')
@@ -92,7 +92,7 @@ describe('defn', () => {
   test('does not exceed stack limit when embedded function is defined function', () => {
     const test = defn('test', () => 'baz')
     const obj = {
-      test
+      test,
     }
 
     const result = test('foo', 'bar', obj)
@@ -104,7 +104,7 @@ describe('defn', () => {
     const obj = {
       test() {
         return test.call(this)
-      }
+      },
     }
 
     const result = test('foo', 'bar', obj)

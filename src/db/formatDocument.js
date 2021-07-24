@@ -7,7 +7,7 @@ const formatDocument = (document, options = {}) => {
       throw expected({
         code: Code.NOT_FOUND,
         message: `Could not get document`,
-        statusCode: StatusCode.NOT_FOUND
+        statusCode: StatusCode.NOT_FOUND,
       })
     }
     return null
@@ -21,7 +21,7 @@ const formatDocument = (document, options = {}) => {
   }
   return {
     id: document.id,
-    ...data
+    ...data,
   }
 }
 

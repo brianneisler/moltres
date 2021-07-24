@@ -9,7 +9,7 @@ describe('anyIterateRight', () => {
       return {
         ...next,
         done: !next.value,
-        value: acc
+        value: acc,
       }
     })
     expect(result).toEqual([
@@ -18,7 +18,7 @@ describe('anyIterateRight', () => {
         index: 5,
         kdx: 5,
         prev: undefined,
-        value: 'f'
+        value: 'f',
       },
       {
         done: false,
@@ -28,10 +28,10 @@ describe('anyIterateRight', () => {
           done: false,
           index: 5,
           kdx: 5,
-          value: 'f'
+          value: 'f',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   })
 
@@ -47,7 +47,7 @@ describe('anyIterateRight', () => {
             resolve({
               ...next,
               done: !next.value,
-              value: acc
+              value: acc,
             })
           }, 500) // NOTE BRN: delay first using greatest time to test order of iteration
         })
@@ -60,7 +60,7 @@ describe('anyIterateRight', () => {
         index: 5,
         kdx: 5,
         prev: undefined,
-        value: 'f'
+        value: 'f',
       },
       {
         done: false,
@@ -70,10 +70,10 @@ describe('anyIterateRight', () => {
           done: false,
           index: 5,
           kdx: 5,
-          value: 'f'
+          value: 'f',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   })
 
@@ -87,15 +87,15 @@ describe('anyIterateRight', () => {
           setTimeout(() => {
             if (idx >= values.length) {
               return resolve({
-                done: true
+                done: true,
               })
             }
             return resolve({
               done: false,
-              value: values[idx]
+              value: values[idx],
             })
           }, 0)
-        })
+        }),
     }
     const acc = []
     const result = anyIterateRight(iterator, (next) => {
@@ -103,7 +103,7 @@ describe('anyIterateRight', () => {
       return {
         ...next,
         done: !next.value,
-        value: acc
+        value: acc,
       }
     })
     expect(result).toBeInstanceOf(Promise)
@@ -113,7 +113,7 @@ describe('anyIterateRight', () => {
         index: 5,
         kdx: 5,
         prev: undefined,
-        value: 'f'
+        value: 'f',
       },
       {
         done: false,
@@ -123,10 +123,10 @@ describe('anyIterateRight', () => {
           done: false,
           index: 5,
           kdx: 5,
-          value: 'f'
+          value: 'f',
         },
-        value: null
-      }
+        value: null,
+      },
     ])
   })
 })

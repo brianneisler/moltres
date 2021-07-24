@@ -10,7 +10,7 @@ describe('forEach', () => {
       expect(acc).toEqual([
         ['a', 0],
         ['b', 1],
-        ['c', 2]
+        ['c', 2],
       ])
       expect(result).toBe(array)
     })
@@ -24,7 +24,7 @@ describe('forEach', () => {
       expect(acc).toEqual([
         ['valueA', 'a'],
         ['valueB', 'b'],
-        ['valueC', 'c']
+        ['valueC', 'c'],
       ])
       expect(result).toBe(object)
     })
@@ -37,7 +37,7 @@ describe('forEach', () => {
       const result = forEach((val, key) => acc.push([val, key]), object)
       expect(acc).toEqual([
         ['valueA', symA],
-        ['valueB', symB]
+        ['valueB', symB],
       ])
       expect(result).toBe(object)
     })
@@ -51,7 +51,7 @@ describe('forEach', () => {
       expect(acc).toEqual([
         ['valueA', 'a'],
         ['valueB', 'b'],
-        ['valueC', 'c']
+        ['valueC', 'c'],
       ])
       expect(result).toBe(map)
     })
@@ -76,7 +76,7 @@ describe('forEach', () => {
     expect(acc).toEqual([
       ['a', 0],
       ['b', 1],
-      ['c', 2]
+      ['c', 2],
     ])
     expect(result).toBe(array)
   })
@@ -101,7 +101,7 @@ describe('forEach', () => {
     expect(acc).toEqual([
       ['a', 0],
       ['b', 1],
-      ['c', 2]
+      ['c', 2],
     ])
     expect(result).toBe(array)
   })

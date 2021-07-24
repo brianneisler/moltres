@@ -41,7 +41,7 @@ const matchPath = (pathname, options = {}) => {
   const { keys, regexp } = compilePath(path, {
     end: exact,
     sensitive,
-    strict
+    strict,
   })
   const match = regexp.exec(pathname)
 
@@ -63,7 +63,7 @@ const matchPath = (pathname, options = {}) => {
       return memo
     }, {}),
     path,
-    url: path === '/' && url === '' ? '/' : url
+    url: path === '/' && url === '' ? '/' : url,
   }
 }
 

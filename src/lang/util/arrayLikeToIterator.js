@@ -8,11 +8,11 @@ const iterAt = (index, arrayLike) => {
       done: false,
       index,
       kdx: index,
-      value: arrayLike[index]
+      value: arrayLike[index],
     }
   }
   return {
-    done: true
+    done: true,
   }
 }
 
@@ -22,7 +22,7 @@ const prevIterAt = (index, arrayLike) => {
       done: false,
       index,
       kdx: index,
-      value: arrayLike[index]
+      value: arrayLike[index],
     }
   }
 }
@@ -91,7 +91,7 @@ const arrayLikeToIterator = (arrayLike, index = 0) => {
       }
       return {
         ...iter,
-        prev
+        prev,
       }
     },
     previous: () => {
@@ -103,9 +103,9 @@ const arrayLikeToIterator = (arrayLike, index = 0) => {
       }
       return {
         ...iter,
-        prev
+        prev,
       }
-    }
+    },
   }
 }
 

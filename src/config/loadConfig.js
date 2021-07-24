@@ -19,9 +19,7 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
     // NOTE BRN: We can't use fs here to load files and we shouldn't load the yaml
     // files in because they have sensitive data. Instead the config should be
     // precompiled and then injected into process.env
-    config = process.env.MOLTRES_CONFIG
-      ? JSON.parse(process.env.MOLTRES_CONFIG)
-      : {}
+    config = process.env.MOLTRES_CONFIG ? JSON.parse(process.env.MOLTRES_CONFIG) : {}
     env = process.env.MOLTRES_ENV ? JSON.parse(process.env.MOLTRES_ENV) : {}
     // NOTE BRN: We do not need to evaluate this config because it should have
     // already been evaluated at webpack time.
@@ -39,7 +37,7 @@ const loadConfig = async (options = {}, initialConfig = {}, context = {}) => {
     ;({ config, env } = evaluateConfigAndEnv(
       {
         config: mergeDeepRight(initialConfig, config || {}),
-        env
+        env,
       },
       options,
       mergeDeepRight({ project: { dir: cwd } }, context)

@@ -18,7 +18,7 @@ const validateConfig = (modules, config) => {
         throw expected({
           code: 'ConfigMissing',
           data: getProperty(name, config),
-          message: `Config missing for module '${name}'. ${error.message}`
+          message: `Config missing for module '${name}'. ${error.message}`,
         })
       }
     }

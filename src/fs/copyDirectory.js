@@ -20,7 +20,7 @@ const copyDirectoryItems = async (items, src, dest, options, context) => {
   }
   return copyDirectoryItem(items, item, src, dest, options, {
     ...context,
-    copyDirectoryItems
+    copyDirectoryItems,
   })
 }
 

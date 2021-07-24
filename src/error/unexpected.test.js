@@ -12,7 +12,7 @@ describe('unexpected', () => {
         message: 'An unexpected error occurred',
         name: 'Unexpected',
         stack: expect.any(String),
-        statusCode: 500
+        statusCode: 500,
       })
     )
   })

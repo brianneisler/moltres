@@ -8,7 +8,7 @@ describe('reflectOwnKeys', () => {
       reflectOwnKeys({
         c: 'c',
         [symA]: 'a',
-        [symB]: 'b'
+        [symB]: 'b',
       })
     ).toEqual(['c', symA, symB])
   })

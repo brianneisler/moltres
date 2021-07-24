@@ -1,13 +1,4 @@
-import {
-  cleanse,
-  getProperty,
-  isEmpty,
-  isObject,
-  isString,
-  join,
-  keys,
-  map
-} from '../lang'
+import { cleanse, getProperty, isEmpty, isObject, isString, join, keys, map } from '../lang'
 
 const formatSearch = ({ query, search }) => {
   query = query ? cleanse(query) : null

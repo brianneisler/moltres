@@ -31,7 +31,7 @@ describe('reduce', () => {
     const object = {
       baz: 'bam',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     }
     const result = reduce((acc, value, key) => acc + value + key, '', object)
     expect(result).toEqual('bambazbopbimbarfoo')
@@ -41,7 +41,7 @@ describe('reduce', () => {
     const object = {
       baz: 'bam',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     }
     const reducer = jest.fn((acc) => acc)
     const result = reduce(reducer, '', object)
@@ -56,7 +56,7 @@ describe('reduce', () => {
     const symB = Symbol.for('b')
     const object = {
       [symA]: 'a',
-      [symB]: 'b'
+      [symB]: 'b',
     }
     const reducer = jest.fn((acc, value) => value)
     const result = reduce(reducer, 'c', object)
@@ -75,7 +75,7 @@ describe('reduce', () => {
       },
       async foo() {
         return 'foo'
-      }
+      },
     }
     const reducer = (acc, method, name) => {
       acc.prototype[name] = method
@@ -85,7 +85,7 @@ describe('reduce', () => {
     expect(result.prototype).toEqual({
       bam: expect.any(Function),
       bim: expect.any(Function),
-      foo: expect.any(Function)
+      foo: expect.any(Function),
     })
   })
 
@@ -104,7 +104,7 @@ describe('reduce', () => {
     const resolveable = {
       resolve() {
         return 'bam'
-      }
+      },
     }
     const array = [Promise.resolve('foo'), resolveable]
     const reducer = (acc, value) => {
@@ -134,7 +134,7 @@ describe('reduce', () => {
     expect(result).toEqual([
       ['a', 0],
       ['b', 1],
-      ['c', 2]
+      ['c', 2],
     ])
   })
 })

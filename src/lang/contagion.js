@@ -22,9 +22,7 @@ const contagion = (value, sample) => {
       return new ImmutableList([])
     }
     if (isImmutable(value)) {
-      throw new Error(
-        `This kind of Immutable value is not currently supported ${value}`
-      )
+      throw new Error(`This kind of Immutable value is not currently supported ${value}`)
     }
     if (isObject(value)) {
       return {}

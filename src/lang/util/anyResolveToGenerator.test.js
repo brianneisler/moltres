@@ -19,11 +19,11 @@ describe('resolveToGenerator', () => {
   test('resolves resolvable values to a generator that resolves to the value', () => {
     expect(
       anyResolveToGenerator({
-        resolve: () => 1
+        resolve: () => 1,
       }).next()
     ).toEqual({
       done: true,
-      value: 1
+      value: 1,
     })
   })
 
@@ -31,11 +31,11 @@ describe('resolveToGenerator', () => {
     const operation = op(() => {})
     expect(
       anyResolveToGenerator({
-        resolve: () => operation
+        resolve: () => operation,
       }).next()
     ).toEqual({
       done: false,
-      value: operation
+      value: operation,
     })
   })
 
@@ -54,7 +54,7 @@ describe('resolveToGenerator', () => {
     const result = generator.next(promiseValue)
     expect(result).toEqual({
       done: true,
-      value: 'foo'
+      value: 'foo',
     })
   })
 
@@ -68,11 +68,11 @@ describe('resolveToGenerator', () => {
     expect(anyIsGenerator(generator)).toBe(true)
     expect(generator.next()).toEqual({
       done: false,
-      value: 'foo'
+      value: 'foo',
     })
     expect(generator.next()).toEqual({
       done: true,
-      value: 'bar'
+      value: 'bar',
     })
   })
 })

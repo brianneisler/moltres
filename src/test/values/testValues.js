@@ -34,7 +34,7 @@ const testValues = () =>
     objects(),
     stringObjects(),
     strings(),
-    symbols()
+    symbols(),
   ])
 
 export default testValues

@@ -5,13 +5,13 @@ describe('cacheMethod', () => {
     const context = {
       cache: {},
       system: {
-        now: () => 0
-      }
+        now: () => 0,
+      },
     }
     const cachedFunc = cacheMethod(
       {
         key: () => 'foo',
-        ttl: 10
+        ttl: 10,
       },
       () => 'bar'
     )
@@ -19,8 +19,8 @@ describe('cacheMethod', () => {
     expect(context.cache).toEqual({
       foo: {
         cachedAt: 0,
-        result: 'bar'
-      }
+        result: 'bar',
+      },
     })
   })
 
@@ -29,12 +29,12 @@ describe('cacheMethod', () => {
       cache: {
         foo: {
           cachedAt: 0,
-          result: 'bar'
-        }
+          result: 'bar',
+        },
       },
       system: {
-        now: () => 5
-      }
+        now: () => 5,
+      },
     }
     const func = jest.fn()
     const key = jest.fn(() => 'foo')
@@ -43,7 +43,7 @@ describe('cacheMethod', () => {
       {
         key,
         onHit,
-        ttl: 10
+        ttl: 10,
       },
       func
     )

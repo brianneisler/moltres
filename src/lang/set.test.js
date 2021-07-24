@@ -3,22 +3,22 @@ import set from './set'
 describe('set', () => {
   test('set to an object using a single existing string key', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     const result = set('foo', 'baz', collection)
     expect(result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
     expect(result).not.toBe(collection)
   })
 
   test('set to an object using a single existing string key in array', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     const result = set(['foo'], 'baz', collection)
     expect(result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
     expect(result).not.toBe(collection)
   })
@@ -27,10 +27,10 @@ describe('set', () => {
     const collection = {}
     const symFoo = Symbol('foo')
     expect(set(symFoo, 'baz', collection)).toEqual({
-      [symFoo]: 'baz'
+      [symFoo]: 'baz',
     })
     expect(set([symFoo], 'baz', collection)).toEqual({
-      [symFoo]: 'baz'
+      [symFoo]: 'baz',
     })
   })
 
@@ -39,27 +39,27 @@ describe('set', () => {
     const symFoo = Symbol('foo')
     const result1 = set(symFoo, 'baz', collection)
     expect(result1).toEqual({
-      [symFoo]: 'baz'
+      [symFoo]: 'baz',
     })
     expect(collection).toEqual({})
 
     const result2 = set('test', 'value', result1)
     expect(result2).toEqual({
       [symFoo]: 'baz',
-      test: 'value'
+      test: 'value',
     })
     expect(result1).toEqual({
-      [symFoo]: 'baz'
+      [symFoo]: 'baz',
     })
     expect(collection).toEqual({})
   })
 
   test('set to an object using a single existing key with dots', () => {
     const collection = {
-      'foo.bar': 'baz'
+      'foo.bar': 'baz',
     }
     expect(set(['foo.bar'], 'fum', collection)).toEqual({
-      'foo.bar': 'fum'
+      'foo.bar': 'fum',
     })
   })
 
@@ -71,25 +71,21 @@ describe('set', () => {
 
   test('set to a Map using a single existing key', () => {
     const collection = new Map([['foo', 'bar']])
-    expect([...set('foo', 'baz', collection).entries()]).toEqual([
-      ['foo', 'baz']
-    ])
-    expect([...set(['foo'], 'baz', collection).entries()]).toEqual([
-      ['foo', 'baz']
-    ])
+    expect([...set('foo', 'baz', collection).entries()]).toEqual([['foo', 'baz']])
+    expect([...set(['foo'], 'baz', collection).entries()]).toEqual([['foo', 'baz']])
   })
 
   test('set to an object using a single non existing key', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(set('bim', 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(set(['bim'], 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
@@ -103,11 +99,11 @@ describe('set', () => {
     const collection = new Map([['foo', 'bar']])
     expect([...set('bim', 'bop', collection).entries()]).toEqual([
       ['foo', 'bar'],
-      ['bim', 'bop']
+      ['bim', 'bop'],
     ])
     expect([...set(['bim'], 'bop', collection).entries()]).toEqual([
       ['foo', 'bar'],
-      ['bim', 'bop']
+      ['bim', 'bop'],
     ])
   })
 
@@ -116,46 +112,46 @@ describe('set', () => {
       set: (key, value) => {
         return {
           foo: 'bar',
-          [key]: value
+          [key]: value,
         }
-      }
+      },
     }
 
     expect(set('bim', 'bop', collection)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 
   test('automatically upgrades to async when the collection is a Promise', async () => {
     const collection = Promise.resolve({
-      foo: 'bar'
+      foo: 'bar',
     })
     const result = set('foo', 'baz', collection)
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
   })
 
   test('automatically upgrades to async when the key is a Promise', async () => {
     const key = Promise.resolve('foo')
     const result = set(key, 'baz', {
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
-      foo: 'baz'
+      foo: 'baz',
     })
   })
 
   test('does NOT automatically upgrades to async when the value is a Promise', async () => {
     const value = Promise.resolve('baz')
     const result = set('foo', value, {
-      foo: 'bar'
+      foo: 'bar',
     })
     expect(result).toEqual({
-      foo: Promise.resolve('baz')
+      foo: Promise.resolve('baz'),
     })
   })
 
@@ -164,16 +160,16 @@ describe('set', () => {
       set: (key, value) => {
         return {
           foo: 'bar',
-          [key]: value
+          [key]: value,
         }
-      }
+      },
     })
 
     const result = set('bim', 'bop', collection)
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
     })
   })
 })

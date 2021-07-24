@@ -1,12 +1,4 @@
-import {
-  curry,
-  isArray,
-  isDate,
-  isFunction,
-  isObject,
-  isPlainObject,
-  map
-} from '../lang'
+import { curry, isArray, isDate, isFunction, isObject, isPlainObject, map } from '../lang'
 
 import fromDate from './fromDate'
 

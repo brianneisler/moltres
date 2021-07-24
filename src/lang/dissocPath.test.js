@@ -3,14 +3,14 @@ import dissocPath from './dissocPath'
 describe('dissocPath', () => {
   test('removes existing property using Array', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(dissocPath(['foo'], collection)).toEqual({})
   })
 
   test('removes existing property using string', () => {
     const collection = {
-      foo: 'bar'
+      foo: 'bar',
     }
     expect(dissocPath('foo', collection)).toEqual({})
   })
@@ -29,21 +29,21 @@ describe('dissocPath', () => {
   test('removes existing path using Array', () => {
     const collection = {
       foo: {
-        bar: 'baz'
-      }
+        bar: 'baz',
+      },
     }
     expect(dissocPath(['foo', 'bar'], collection)).toEqual({
-      foo: {}
+      foo: {},
     })
   })
   test('removes existing path using Array', () => {
     const collection = {
       foo: {
-        bar: 'baz'
-      }
+        bar: 'baz',
+      },
     }
     expect(dissocPath('foo.bar', collection)).toEqual({
-      foo: {}
+      foo: {},
     })
   })
 })

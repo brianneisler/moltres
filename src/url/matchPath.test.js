@@ -6,7 +6,7 @@ describe('matchPath', () => {
       isExact: true,
       params: {},
       path: '/foo',
-      url: '/foo'
+      url: '/foo',
     })
   })
 
@@ -14,10 +14,10 @@ describe('matchPath', () => {
     expect(matchPath('/foo/123', { path: '/foo/:fooId' })).toEqual({
       isExact: true,
       params: {
-        fooId: '123'
+        fooId: '123',
       },
       path: '/foo/:fooId',
-      url: '/foo/123'
+      url: '/foo/123',
     })
   })
 })

@@ -6,7 +6,7 @@ const addRemovedAtTimestamp = curry((context, data) => {
   const now = nowTimestamp(context)
   return {
     ...data,
-    removedAt: now
+    removedAt: now,
   }
 })
 

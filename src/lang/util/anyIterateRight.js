@@ -71,7 +71,6 @@ const doReverseSeriesIteration = (fn, iter) => {
  * }), ['a', 'b', 'c'])
  * //=> 1
  */
-const anyIterateRight = (any, func) =>
-  doReverseSeriesIteration(func, anyToIterator(any, END))
+const anyIterateRight = (any, func) => doReverseSeriesIteration(func, anyToIterator(any, END))
 
 export default anyIterateRight

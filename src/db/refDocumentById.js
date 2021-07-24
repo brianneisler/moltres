@@ -1,12 +1,4 @@
-import {
-  curry,
-  isArray,
-  isNumber,
-  isObject,
-  isString,
-  reduce,
-  zip
-} from '../lang'
+import { curry, isArray, isNumber, isObject, isString, reduce, zip } from '../lang'
 
 import collection from './collection'
 import getSchemaLineage from './getSchemaLineage'
@@ -40,19 +32,15 @@ const refDocumentById = curry((Schema, context, ids) => {
   }
   const schemas = getSchemaLineage(Schema)
   if (schemas.length < ids.length) {
-    throw new Error(
-      `ids contains too many ids for the given Schema ${Schema.name} - ids: ${ids}`
-    )
+    throw new Error(`ids contains too many ids for the given Schema ${Schema.name} - ids: ${ids}`)
   } else if (schemas.length > ids.length) {
-    throw new Error(
-      `ids contains too few ids for the given Schema ${Schema.name} - ids: ${ids}`
-    )
+    throw new Error(`ids contains too few ids for the given Schema ${Schema.name} - ids: ${ids}`)
   }
   return reduce(
     (parentRef, [schema, id]) => {
       const ParentCollection = collection(schema, {
         ...context,
-        parentRef
+        parentRef,
       })
       return ParentCollection.doc(id.toString())
     },

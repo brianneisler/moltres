@@ -28,7 +28,6 @@ import anyIsNumber from './anyIsNumber'
  * anyIsInfinity(123)
  * // => false
  */
-const anyIsInfinity = (value) =>
-  anyIsNumber(value) && (Infinity === +value || -Infinity === +value)
+const anyIsInfinity = (value) => anyIsNumber(value) && (Infinity === +value || -Infinity === +value)
 
 export default anyIsInfinity

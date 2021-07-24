@@ -17,7 +17,7 @@ describe('buildURL', () => {
         query: {},
         search: '',
         slashes: true,
-        username: ''
+        username: '',
       })
     ).toBe('https://')
   })
@@ -38,7 +38,7 @@ describe('buildURL', () => {
         query: {},
         search: '',
         slashes: true,
-        username: ''
+        username: '',
       })
     ).toBe('https://wat.app/')
   })
@@ -59,7 +59,7 @@ describe('buildURL', () => {
         query: {},
         search: '',
         slashes: true,
-        username: 'duck'
+        username: 'duck',
       })
     ).toBe('https://duck:quack@wat.app/')
   })
@@ -80,7 +80,7 @@ describe('buildURL', () => {
         query: {},
         search: '',
         slashes: true,
-        username: ''
+        username: '',
       })
     ).toBe('https://wat-dev.com/wat/xbRf7k4euvo1QirancLP')
   })
@@ -99,11 +99,11 @@ describe('buildURL', () => {
         port: '',
         protocol: 'https:',
         query: {
-          foo: 'bar'
+          foo: 'bar',
         },
         search: '?foo=bar',
         slashes: true,
-        username: ''
+        username: '',
       })
     ).toBe('https://wat-dev.com/wat/xbRf7k4euvo1QirancLP?foo=bar')
   })
@@ -124,7 +124,7 @@ describe('buildURL', () => {
         query: {},
         search: '',
         slashes: false,
-        username: ''
+        username: '',
       })
     ).toBe('/foo')
   })

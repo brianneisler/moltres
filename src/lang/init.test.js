@@ -22,7 +22,7 @@ describe('init', () => {
 
   test('dispatches to the init() method if present', () => {
     const object = {
-      init: () => [1, 2]
+      init: () => [1, 2],
     }
     expect(init(object)).toEqual([1, 2])
   })

@@ -9,11 +9,11 @@ const iterAt = (index, keys, object) => {
       done: false,
       kdx: key,
       key,
-      value: object[key]
+      value: object[key],
     }
   }
   return {
-    done: true
+    done: true,
   }
 }
 
@@ -24,7 +24,7 @@ const prevIterAt = (index, keys, object) => {
       done: false,
       kdx: key,
       key,
-      value: object[key]
+      value: object[key],
     }
   }
 }
@@ -88,7 +88,7 @@ const objectToIterator = (object, start = START) => {
       }
       return {
         ...iter,
-        prev
+        prev,
       }
     },
     previous: () => {
@@ -100,9 +100,9 @@ const objectToIterator = (object, start = START) => {
       }
       return {
         ...iter,
-        prev
+        prev,
       }
-    }
+    },
   }
 }
 

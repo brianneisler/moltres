@@ -12,15 +12,15 @@ const testAsyncArrayIterator = (values) => {
         setTimeout(() => {
           if (idx >= values.length) {
             return resolve({
-              done: true
+              done: true,
             })
           }
           return resolve({
             done: false,
-            value: values[idx]
+            value: values[idx],
           })
         }, 0)
-      })
+      }),
   }
   return iterator
 }
@@ -31,7 +31,7 @@ describe('iteratorResolver', () => {
     expect(iteratorResolver(iter)).toEqual({
       next: expect.any(Function),
       previous: expect.any(Function),
-      resolver: true
+      resolver: true,
     })
   })
 
@@ -39,7 +39,7 @@ describe('iteratorResolver', () => {
     expect(iteratorResolver({ next: () => {} })).toEqual({
       next: expect.any(Function),
       previous: expect.any(Function),
-      resolver: true
+      resolver: true,
     })
   })
 
@@ -48,7 +48,7 @@ describe('iteratorResolver', () => {
     const iterator = iteratorResolver(iter)
     expect(iterator.next()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -57,7 +57,7 @@ describe('iteratorResolver', () => {
     const iterator = iteratorResolver(iter)
     expect(iterator.previous()).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -69,7 +69,7 @@ describe('iteratorResolver', () => {
     expect(result).toBeInstanceOf(Promise)
     expect(await result).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -80,7 +80,7 @@ describe('iteratorResolver', () => {
     const result = iterator.previous()
     expect(result).toEqual({
       done: true,
-      prev: undefined
+      prev: undefined,
     })
   })
 
@@ -100,7 +100,7 @@ describe('iteratorResolver', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: false,
@@ -110,9 +110,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -120,9 +120,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -142,7 +142,7 @@ describe('iteratorResolver', () => {
         index: 1,
         kdx: 1,
         prev: undefined,
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: false,
@@ -152,9 +152,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
+          value: 'bar',
         },
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: true,
@@ -162,9 +162,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
-        }
-      }
+          value: 'foo',
+        },
+      },
     ])
   })
 
@@ -184,7 +184,7 @@ describe('iteratorResolver', () => {
         index: 0,
         kdx: 0,
         prev: undefined,
-        value: 'foo'
+        value: 'foo',
       },
       {
         done: false,
@@ -194,9 +194,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 0,
           kdx: 0,
-          value: 'foo'
+          value: 'foo',
         },
-        value: 'bar'
+        value: 'bar',
       },
       {
         done: true,
@@ -204,9 +204,9 @@ describe('iteratorResolver', () => {
           done: false,
           index: 1,
           kdx: 1,
-          value: 'bar'
-        }
-      }
+          value: 'bar',
+        },
+      },
     ])
   })
 
@@ -221,7 +221,7 @@ describe('iteratorResolver', () => {
       index: 0,
       kdx: 0,
       prev: undefined,
-      value: 'a'
+      value: 'a',
     })
 
     result = iterator.next()
@@ -235,9 +235,9 @@ describe('iteratorResolver', () => {
         done: false,
         index: 0,
         kdx: 0,
-        value: 'a'
+        value: 'a',
       },
-      value: 'b'
+      value: 'b',
     })
 
     result = iterator.next()
@@ -250,9 +250,9 @@ describe('iteratorResolver', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'b'
+        value: 'b',
       },
-      value: 'c'
+      value: 'c',
     })
 
     result = iterator.next()
@@ -263,8 +263,8 @@ describe('iteratorResolver', () => {
         done: false,
         index: 2,
         kdx: 2,
-        value: 'c'
-      }
+        value: 'c',
+      },
     })
   })
 
@@ -279,7 +279,7 @@ describe('iteratorResolver', () => {
       index: 2,
       kdx: 2,
       prev: undefined,
-      value: 'c'
+      value: 'c',
     })
 
     result = iterator.previous()
@@ -291,9 +291,9 @@ describe('iteratorResolver', () => {
         done: false,
         index: 2,
         kdx: 2,
-        value: 'c'
+        value: 'c',
       },
-      value: 'b'
+      value: 'b',
     })
 
     result = iterator.previous()
@@ -305,9 +305,9 @@ describe('iteratorResolver', () => {
         done: false,
         index: 1,
         kdx: 1,
-        value: 'b'
+        value: 'b',
       },
-      value: 'a'
+      value: 'a',
     })
 
     result = iterator.previous()
@@ -317,8 +317,8 @@ describe('iteratorResolver', () => {
         done: false,
         index: 0,
         kdx: 0,
-        value: 'a'
-      }
+        value: 'a',
+      },
     })
   })
 })

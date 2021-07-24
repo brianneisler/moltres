@@ -30,9 +30,7 @@ const hasPath = curry((path, obj) => {
     path = createPath(path)
   }
   if (!isPath(path)) {
-    throw new TypeError(
-      `getPath expected 'path' parameter to be a Path. Instead received ${path}`
-    )
+    throw new TypeError(`getPath expected 'path' parameter to be a Path. Instead received ${path}`)
   }
   if (path.length === 0 || isNil(obj)) {
     return false

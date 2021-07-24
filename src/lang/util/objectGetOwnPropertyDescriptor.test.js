@@ -7,7 +7,7 @@ describe('objectGetOwnPropertyDescriptor', () => {
       configurable: true,
       enumerable: true,
       value: 'bar',
-      writable: true
+      writable: true,
     })
   })
 })

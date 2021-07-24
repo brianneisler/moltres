@@ -6,7 +6,7 @@ describe('hasPath', () => {
   describe('Object', () => {
     test('hasPath a single existing Property from an Object using [Property, Object] argument order', () => {
       const object = {
-        foo: 'bar'
+        foo: 'bar',
       }
       const result = hasPath('foo', object)
       expect(result).toEqual(true)
@@ -14,7 +14,7 @@ describe('hasPath', () => {
 
     test('has a single non-existing Property from an Object using [Property, Object] argument order', () => {
       const value = {
-        foo: 'bar'
+        foo: 'bar',
       }
       expect(hasPath('bim', value)).toBe(false)
     })
@@ -26,14 +26,14 @@ describe('hasPath', () => {
 
     test('`undefined` is NOT considered a Property', () => {
       const value = {
-        [undefined]: 'foo'
+        [undefined]: 'foo',
       }
       expect(() => hasPath(undefined, value)).toThrow()
     })
 
     test('`null` is NOT considered a Property for Object', () => {
       const value = {
-        [null]: 'foo'
+        [null]: 'foo',
       }
       expect(() => hasPath(null, value)).toThrow()
     })
@@ -41,7 +41,7 @@ describe('hasPath', () => {
     test('Booleans are not considered Properties for Object', () => {
       const value = {
         [false]: 'foo',
-        [true]: 'bar'
+        [true]: 'bar',
       }
       expect(() => hasPath(false, value)).toThrow()
       expect(() => hasPath(true, value)).toThrow()
@@ -49,7 +49,7 @@ describe('hasPath', () => {
 
     test('`Number` is NOT considered a Property for Object', () => {
       const value = {
-        [0]: 'foo'
+        [0]: 'foo',
       }
       expect(() => hasPath(0, value)).toThrow()
     })
@@ -57,7 +57,7 @@ describe('hasPath', () => {
     test('supports Symbol values as Property for Object', () => {
       const sym = Symbol('foo')
       const value = {
-        [sym]: 'foo'
+        [sym]: 'foo',
       }
       expect(hasPath(sym, value)).toBe(true)
     })
@@ -65,15 +65,15 @@ describe('hasPath', () => {
     test('converts dot props to paths', () => {
       const value = {
         foo: {
-          bar: 'foobar'
-        }
+          bar: 'foobar',
+        },
       }
       expect(hasPath('foo.bar', value)).toBe(true)
     })
 
     test('supports array syntax', () => {
       const value = {
-        foo: ['foobar']
+        foo: ['foobar'],
       }
       const result = hasPath('foo[0]', value)
       expect(result).toBe(true)
@@ -87,10 +87,10 @@ describe('hasPath', () => {
           [
             'bar',
             {
-              bim: 'bop'
-            }
-          ]
-        ])
+              bim: 'bop',
+            },
+          ],
+        ]),
       }
       expect(hasPath('foo.bar.bim', value)).toBe(true)
     })

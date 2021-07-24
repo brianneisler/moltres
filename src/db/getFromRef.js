@@ -13,7 +13,7 @@ const getFromRef = async (context, ref, options = {}) => {
       throw expected({
         code: Code.NOT_FOUND,
         message: `Could not get document at ${ref.path}`,
-        statusCode: StatusCode.NOT_FOUND
+        statusCode: StatusCode.NOT_FOUND,
       })
     }
     return formatDocument(document, options)
@@ -26,7 +26,7 @@ const getFromRef = async (context, ref, options = {}) => {
         causes: [error],
         code: Code.ACCESS_DENIED,
         message: error.message,
-        statusCode: StatusCode.ACCESS_DENIED
+        statusCode: StatusCode.ACCESS_DENIED,
       })
     }
     throw error

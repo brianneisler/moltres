@@ -52,7 +52,7 @@ const reduceRight = curry((iteratee, accumulator, collection) => {
           if (next.done) {
             return {
               ...next,
-              value: accum
+              value: accum,
             }
           }
           return next

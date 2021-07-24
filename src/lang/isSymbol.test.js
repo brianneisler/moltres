@@ -9,8 +9,6 @@ describe('isSymbol', () => {
   })
 
   test('returns false for all other values', () => {
-    expect(isSymbol).toHaveReturnedFalsyForValues(
-      arrayDifference(testValues(), symbols())
-    )
+    expect(isSymbol).toHaveReturnedFalsyForValues(arrayDifference(testValues(), symbols()))
   })
 })

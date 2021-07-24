@@ -18,7 +18,6 @@ import anyToStringTag from './anyToStringTag'
  * anyIsArguments([1, 2, 3])
  * // => false
  */
-const anyIsArguments = (any) =>
-  anyIsObjectLike(any) && anyToStringTag(any) == 'Arguments'
+const anyIsArguments = (any) => anyIsObjectLike(any) && anyToStringTag(any) == 'Arguments'
 
 export default anyIsArguments

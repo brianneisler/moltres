@@ -11,7 +11,7 @@ describe('replaceWildcards', () => {
   test('replaces wildcard in an array', () => {
     const path = ['foo', ':bar', 'baz']
     const wildValues = ImmutableMap({
-      ':bar': 'bop'
+      ':bar': 'bop',
     })
     expect(replaceWildcards(wildValues, path)).toEqual(['foo', 'bop', 'baz'])
   })
@@ -20,7 +20,7 @@ describe('replaceWildcards', () => {
     const path = ['foo', ':bar', ':baz']
     const wildValues = ImmutableMap({
       ':bar': 'bim',
-      ':baz': 'bop'
+      ':baz': 'bop',
     })
     expect(replaceWildcards(wildValues, path)).toEqual(['foo', 'bim', 'bop'])
   })

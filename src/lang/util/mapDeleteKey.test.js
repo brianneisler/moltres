@@ -5,21 +5,21 @@ describe('mapDeleteKey', () => {
     const map = new Map([
       ['a', 1],
       ['b', 2],
-      ['c', 3]
+      ['c', 3],
     ])
     const result = mapDeleteKey(map, 'a')
 
     expect(result).toEqual(
       new Map([
         ['b', 2],
-        ['c', 3]
+        ['c', 3],
       ])
     )
     expect(map).toEqual(
       new Map([
         ['a', 1],
         ['b', 2],
-        ['c', 3]
+        ['c', 3],
       ])
     )
   })
@@ -28,7 +28,7 @@ describe('mapDeleteKey', () => {
     const map = new Map([
       ['a', 1],
       ['b', 2],
-      ['c', 3]
+      ['c', 3],
     ])
     const result = mapDeleteKey(map, 'd')
 
@@ -36,7 +36,7 @@ describe('mapDeleteKey', () => {
       new Map([
         ['a', 1],
         ['b', 2],
-        ['c', 3]
+        ['c', 3],
       ])
     )
     expect(result).toBe(map)
