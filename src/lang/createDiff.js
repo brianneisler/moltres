@@ -1,13 +1,11 @@
 import append from './append'
-import ImmutableList from './classes/ImmutableList'
-import ImmutableSet from './classes/ImmutableSet'
 import getPath from './getPath'
+import hasPath from './hasPath'
 import isObject from './isObject'
 import updateProperty from './updateProperty'
 import walkReduceDepthFirst from './walkReduceDepthFirst'
 
 const createDiff = (current, next) => {
-  let paths = ImmutableSet()
   let diff = {
     assocs: [],
     dissocs: [],
@@ -17,7 +15,6 @@ const createDiff = (current, next) => {
       if (!isObject(value)) {
         const currentValue = getPath(path, current)
         if (currentValue !== value) {
-          paths = paths.add(ImmutableList(path))
           return updateProperty(
             'assocs',
             append({
@@ -36,7 +33,7 @@ const createDiff = (current, next) => {
 
   return walkReduceDepthFirst(
     (accum, currentValue, path) => {
-      if (!isObject(currentValue) && !paths.contains(ImmutableList(path))) {
+      if (!isObject(currentValue) && !hasPath(path, next)) {
         return updateProperty('dissocs', append({ path }), accum)
       }
       return accum

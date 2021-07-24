@@ -68,4 +68,25 @@ describe('createDiff', () => {
       ],
     })
   })
+
+  test('returns the missing prop as a dissoc when a prop has been removed', () => {
+    expect(
+      createDiff(
+        {
+          bim: 'bop',
+          foo: 'bar',
+        },
+        {
+          bim: 'bop',
+        }
+      )
+    ).toEqual({
+      assocs: [],
+      dissocs: [
+        {
+          path: ['foo'],
+        },
+      ],
+    })
+  })
 })
