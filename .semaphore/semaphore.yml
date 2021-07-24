@@ -74,7 +74,7 @@ blocks:
       jobs:
         - name: Npm Audit
           commands:
-              # At this point we can assume 100% cache hit rate of node modules:
+            # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
             - cache restore cache-$SEMAPHORE_GIT_BRANCH
 
@@ -97,7 +97,7 @@ blocks:
       jobs:
         - name: Lint
           commands:
-             # At this point we can assume 100% cache hit rate of node modules:
+            # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
 
             # Run task as defined in package.json:
@@ -119,7 +119,7 @@ blocks:
       jobs:
         - name: Build
           commands:
-             # At this point we can assume 100% cache hit rate of node modules:
+            # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
 
             # Run task as defined in package.json:
@@ -128,7 +128,6 @@ blocks:
             # store the dist folder so that it can be used by the deploy
             # pipeline. For more information https://docs.semaphoreci.com/essentials/artifacts/
             - artifact push workflow dist
-
 
   - name: Test
     task:
@@ -149,13 +148,12 @@ blocks:
       jobs:
         - name: Test
           commands:
-             # At this point we can assume 100% cache hit rate of node modules:
+            # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
             - cache restore cache-$SEMAPHORE_GIT_BRANCH
 
             # Run task as defined in package.json:
             - npm run test-ci
-
 
 # Each Semaphore project starts with the default pipeline specified in
 # .semaphore/semaphore.yml. Real world pipelines tend to branch out when certain
@@ -163,7 +161,7 @@ blocks:
 # or deploying to a pre-production environment on topic branches.
 # https://docs.semaphoreci.com/guided-tour/deploying-with-promotions/
 promotions:
-- name: publish package
-  pipeline_file: publish-package.yml
-  auto_promote:
-    when: "result = 'passed' and tag =~ '^v[0-9]\.[0-9]\.[0-9]'"
+  - name: publish package
+    pipeline_file: publish-package.yml
+    auto_promote:
+      when: "result = 'passed' and tag =~ '^v[0-9]\\.[0-9]\\.[0-9]'"
