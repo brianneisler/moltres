@@ -32,7 +32,7 @@ npm-debug.log
 babel.config.js
 
 # browserlist
-.browserlistrc
+.browserslistrc
 
 # codecov
 .codecov.yml
@@ -74,6 +74,9 @@ tests
 # prettier
 .prettierignore
 prettier.config.js
+
+# semaphore
+.semaphore
 
 # travis
 .travis.yml

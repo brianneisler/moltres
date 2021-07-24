@@ -46,6 +46,7 @@
     "build": "bash ./scripts/build.sh",
     "clean": "bash ./scripts/clean.sh",
     "cleanse": "bash ./scripts/cleanse.sh",
+    "deploy": "bash ./scripts/deploy.sh",
     "docs-generate": "bash ./scripts/docs-generate.sh",
     "lint": "bash ./scripts/lint.sh",
     "lint-ci": "bash ./scripts/lint-ci.sh",
