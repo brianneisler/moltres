@@ -21,3 +21,17 @@
 
 - Change export folders back to using src instead of dist
 - Prettify .md, .yml and .json files. Update npm token on travis.
+
+### Release v0.5.12
+
+- Fix bug in createDiff. Add more tests for applyDiff and createDiff
+- Fix lint issues
+- Switch from Travis to Semaphore for CI
+- Update docs
+- Improve lint. Add createDiff and applyDiff
+- update docs
+- lint fix
+- lint fix
+- Bump set-getter from 0.1.0 to 0.1.1
+- Bump ws from 7.4.5 to 7.4.6
+- Bump browserslist from 4.16.4 to 4.16.6
